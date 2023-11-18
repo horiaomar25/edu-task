@@ -8,16 +8,15 @@ const TaskCard = () => {
       <CardContent>
        
         <Typography variant="h5" component="div">
-         Hello
+       
         </Typography>
        
         <Typography variant="body2">
-          well meaning and kindly.
-          {'"a benevolent smile"'}
+         
         </Typography>
 
          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          adjective
+    
         </Typography>
 
       </CardContent>

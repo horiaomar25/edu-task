@@ -29,9 +29,7 @@ const TaskBoard = () => {
             }}
           >
             <h2 style={{ textAlign: "center" }}>Weekly</h2> {/* Heading centered within each column  */}
-            <TaskCard sx={{ width: "100%" }} />
-            <TaskCard sx={{ width: "100%" }} />
-            <TaskCard sx={{ width: "100%" }} />
+            
 
               
              
@@ -53,9 +51,9 @@ const TaskBoard = () => {
             }}
           >
             <h2 style={{ textAlign: "center" }}>Daily</h2>
+            {/* <TaskCard sx={{ width: "100%" }} />
             <TaskCard sx={{ width: "100%" }} />
-            <TaskCard sx={{ width: "100%" }} />
-            <TaskCard sx={{ width: "100%" }} />
+            <TaskCard sx={{ width: "100%" }} /> */}
             
           </Grid>
 
@@ -74,9 +72,9 @@ const TaskBoard = () => {
             }}
           >
             <h2 style={{ textAlign: "center" }}>Completed</h2>
+            {/* <TaskCard sx={{ width: "100%" }} />
             <TaskCard sx={{ width: "100%" }} />
-            <TaskCard sx={{ width: "100%" }} />
-            <TaskCard sx={{ width: "100%" }} />
+            <TaskCard sx={{ width: "100%" }} /> */}
             
           </Grid>
         </Grid>
