@@ -5,14 +5,13 @@ import TaskCard from "./TaskCard";
 import Button from "@mui/material/Button";
 
 // eslint-disable-next-line react/prop-types
-const TaskBoard = ({ openForm }) => {
+const TaskBoard = () => {
 
   return (
     <>
     {/*When the "Create Task" button is clicked, call setIsFormOpen(true).*/}
 
-            <Button onClick={openForm}
-            sx={{ margin: "15px", float: 'right'}} variant="outlined"> Create Task </Button>
+       
       <Box sx={{ flexGrow: 1, margin: "20px" }}> {/* set the flex-grow to 1, allowing the box to grow to fill the avaliable space*/}
         <Grid container spacing={4}> {/*Container with spacing between grid items to 3.*/}
           {/* Weekly Column */}

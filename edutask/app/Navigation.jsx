@@ -11,32 +11,31 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import MenuIcon from '@mui/icons-material/Menu';
+import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import Link from 'next/link';
+import Link from "next/link";
 import { useState } from "react";
-import Modal from '@mui/material/Modal';
+import Modal from "@mui/material/Modal";
 import TaskForm from "./tasks/TaskForm";
 
-
 const drawerWidth = 240;
-const navItems = ["Dashboard", "Tasks", "Resources", ];
+const navItems = ["Dashboard", "Tasks", "Resources"];
 
 const Navigation = (props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-    // Create a new state variable, isFormOpen, and its setter function, setIsFormOpen.
-    const [modalOpen, setModalOpen] = useState(false);
+  // Create a new state variable, isFormOpen, and its setter function, setIsFormOpen.
+  const [modalOpen, setModalOpen] = useState(false);
 
-    const handleOpen = () => {
-      setModalOpen(true);
-    };
-    
-    const handleClose = () => {
-      setModalOpen(false);
-    };
+  const handleOpen = () => {
+    setModalOpen(true);
+  };
+
+  const handleClose = () => {
+    setModalOpen(false);
+  };
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -57,7 +56,6 @@ const Navigation = (props) => {
           </ListItem>
         ))}
       </List>
-    
     </Box>
   );
 
@@ -68,55 +66,59 @@ const Navigation = (props) => {
     <>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <AppBar component="nav" sx={{   background: 'linear-gradient(to right, #8e24aa, #673ab7)'}}>
-          <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Box sx={{ display: 'flex', alignItems: 'center'}}>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { sm: "none" } }}
-            >
-               <MenuIcon /> 
-            </IconButton>
-            <Typography
-              variant="h5"
-              component="div"
-              sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-            >
-              EduTask
-            </Typography>
+        <AppBar
+          component="nav"
+          sx={{ background: "linear-gradient(to right, #8e24aa, #673ab7)" }}
+        >
+          <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="start"
+                onClick={handleDrawerToggle}
+                sx={{ mr: 2, display: { sm: "none" } }}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography
+                variant="h5"
+                component="div"
+                sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+              >
+                EduTask
+              </Typography>
             </Box>
 
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
-  {navItems.map((item) => (
-    <Link key={item} href={`/${item.toLowerCase()}`} passHref>
-      <Button sx={{ color: "#fff" }}>
-        {item}
-      </Button>
-      
-    </Link>
-  ))}
-    
-</Box>
+              {navItems.map((item) => (
+                <Link key={item} href={`/${item.toLowerCase()}`} passHref>
+                  <Button sx={{ color: "#fff" }}>{item}</Button>
+                </Link>
+              ))}
+            </Box>
 
-<Button onClick={handleOpen}
-        sx={{ margin: "15px", float: 'right'}} variant="outlined"> Create Task </Button>
+            <Button
+              onClick={handleOpen}
+              sx={{ margin: "15px", float: "right", border: "1px solid #fff", color: "#fff" }}
+              variant="outlined"
+            >
+              {" "}
+              Create Task +{" "}
+            </Button>
 
+            <Modal
+              open={modalOpen}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <TaskForm handleClose={handleClose} />
+            </Modal>
 
-
-<Modal
-  open={modalOpen}
-  onClose={handleClose}
-  aria-labelledby="modal-modal-title"
-  aria-describedby="modal-modal-description"
->
-  <TaskForm />
-</Modal>
           </Toolbar>
         </AppBar>
-        
+
         <nav>
           <Drawer
             container={container}
@@ -124,25 +126,23 @@ const Navigation = (props) => {
             open={mobileOpen}
             onClose={handleDrawerToggle}
             ModalProps={{
-              keepMounted: true // Better open performance on mobile.
+              keepMounted: true, // Better open performance on mobile.
             }}
             sx={{
               display: { xs: "block", sm: "none" },
               "& .MuiDrawer-paper": {
                 boxSizing: "border-box",
-                width: drawerWidth
-              }
+                width: drawerWidth,
+              },
             }}
           >
             {drawer}
           </Drawer>
         </nav>
-     
-          <Toolbar />
-          {/* Your main content goes here */}
-          
-        </Box>
- 
+
+        <Toolbar />
+        {/* Your main content goes here */}
+      </Box>
     </>
   );
 };
