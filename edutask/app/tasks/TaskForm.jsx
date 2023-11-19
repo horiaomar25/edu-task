@@ -10,29 +10,34 @@ const TaskForm = ({ handleClose }) => {
   const[taskType, setTaskType] = useState('')
 
 // POST request for Form Data to be sent to the server
-  async function handleSubmit (event) {
+async function handleSubmit(event) {
+  event.preventDefault();
 
-    try {
-      const response = await fetch("http://localhost:3001/tasks/",{
+  const formattedDueDate = new Date(taskDueDate).toISOString().split('T')[0];
+
+  try {
+    const response = await fetch("http://localhost:3001/tasks/", {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify ({
+      body: JSON.stringify({
         task_name: taskName,
         task_description: taskDescription,
-        task_date: taskDueDate,
+        task_date: formattedDueDate,
         task_type: taskType,
       })
-    })
-   console.log(response)
-  } catch (error){
-    error.log("error", error)
-  }
-    
-  }
+    });
 
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
 
+    console.log(await response.json());
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
 
   return (
     <div
@@ -128,7 +133,11 @@ const TaskForm = ({ handleClose }) => {
           name="taskDueDate"
           placeholder="Task Due Date"
           value={taskDueDate}
-          onChange={(e) => setTaskDueDate(e.target.value)}
+          onChange={(e) => {
+            const formattedDate = new Date(e.target.value).toISOString().split('T')[0];
+            setTaskDueDate(formattedDate);
+            console.log('Formatted Date:', formattedDate);
+          }}
           
         />
 
@@ -185,4 +194,4 @@ const TaskForm = ({ handleClose }) => {
   );
 };
 
-export default TaskForm;
+export default TaskForm

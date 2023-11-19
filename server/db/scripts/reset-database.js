@@ -14,6 +14,7 @@ async function resetDatabase() {
         id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
         task_name TEXT,
         task_description TEXT,
+        task_date DATE,
         task_type TEXT,
         completed BOOLEAN)`);
 
