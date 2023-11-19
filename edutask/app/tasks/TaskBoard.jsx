@@ -3,6 +3,8 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import TaskCard from "./TaskCard";
 import Button from "@mui/material/Button";
+import { useState} from "react";
+
 
 // eslint-disable-next-line react/prop-types
 const TaskBoard = () => {
@@ -29,8 +31,11 @@ const TaskBoard = () => {
             }}
           >
             <h2 style={{ textAlign: "center" }}>Weekly</h2> {/* Heading centered within each column  */}
-            
 
+          {/* <TaskCard sx={{ width: "100%" }} />
+            <TaskCard sx={{ width: "100%" }} />
+            <TaskCard sx={{ width: "100%" }} /> */}
+            
               
              
            
@@ -50,10 +55,14 @@ const TaskBoard = () => {
               boxSizing: "border-box",
             }}
           >
-            <h2 style={{ textAlign: "center" }}>Daily</h2>
-            {/* <TaskCard sx={{ width: "100%" }} />
+             <h2 style={{ textAlign: "center" }}>
+              Daily
+             </h2>
+       {/* <TaskCard sx={{ width: "100%" }} />
             <TaskCard sx={{ width: "100%" }} />
             <TaskCard sx={{ width: "100%" }} /> */}
+            
+              
             
           </Grid>
 

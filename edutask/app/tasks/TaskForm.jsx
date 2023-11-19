@@ -1,7 +1,39 @@
-import Button from '@mui/material/Button';
-
+import Button from "@mui/material/Button";
+import  { useState }  from "react";
 
 const TaskForm = ({ handleClose }) => {
+
+  // useState for each input field of the form to send a POST request to the server.
+  const [taskName, setTaskName] = useState('')
+  const[taskDescription, setTaskDescription] = useState('')
+  const[taskDueDate, setTaskDueDate] = useState('')
+  const[taskType, setTaskType] = useState('')
+
+// POST request for Form Data to be sent to the server
+  async function handleSubmit (event) {
+
+    try {
+      const response = await fetch("http://localhost:3001/tasks/",{
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify ({
+        task_name: taskName,
+        task_description: taskDescription,
+        task_date: taskDueDate,
+        task_type: taskType,
+      })
+    })
+   console.log(response)
+  } catch (error){
+    error.log("error", error)
+  }
+    
+  }
+
+
+
   return (
     <div
       style={{
@@ -31,13 +63,17 @@ const TaskForm = ({ handleClose }) => {
         <button
           onClick={handleClose}
           id="close-button"
-          style={{ background: "transparent", border: "none", fontSize: "30px" }}
+          style={{
+            background: "transparent",
+            border: "none",
+            fontSize: "30px",
+          }}
         >
           &times;
         </button>
       </div>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="taskName">Task Name</label>
         <input
           style={{
@@ -52,6 +88,11 @@ const TaskForm = ({ handleClose }) => {
           id="taskName"
           name="taskName"
           placeholder="Task Name"
+          value={taskName}
+          onChange={(e) => {
+            setTaskName(e.target.value);
+            console.log('taskName:', e.target.value); // Log the updated taskName
+          }}
         />
 
         <label
@@ -69,6 +110,9 @@ const TaskForm = ({ handleClose }) => {
           }}
           rows="4"
           cols="50"
+          value={taskDescription}
+          onChange={(e) => setTaskDescription(e.target.value)}
+          
         ></textarea>
 
         <label
@@ -83,6 +127,9 @@ const TaskForm = ({ handleClose }) => {
           id="taskDueDate"
           name="taskDueDate"
           placeholder="Task Due Date"
+          value={taskDueDate}
+          onChange={(e) => setTaskDueDate(e.target.value)}
+          
         />
 
         <label
@@ -100,6 +147,9 @@ const TaskForm = ({ handleClose }) => {
           }}
           id="select-type"
           name="task_type"
+          value={taskType}
+          onChange={(e) => setTaskType(e.target.value)}
+          
         >
           <option
             style={{
@@ -127,8 +177,9 @@ const TaskForm = ({ handleClose }) => {
           </option>
         </select>
 
-        
-        <Button sx={{float: "right"}}type="submit" variant="outlined">Add Task</Button>
+        <Button sx={{ float: "right" }} type="submit" variant="outlined">
+          Add Task
+        </Button>
       </form>
     </div>
   );

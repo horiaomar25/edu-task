@@ -1,16 +1,16 @@
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
-const TaskCard = () => {
+const TaskCard = ({ task }) => {
   return (
     <>
     <Card sx={{ minWidth: 275, margin: '8px'}}>
       <CardContent>
        
         <Typography variant="h5" component="div">
-       
+        {task.taskName}
         </Typography>
-       
+       {task.taskDescription}
         <Typography variant="body2">
          
         </Typography>
