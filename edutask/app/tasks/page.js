@@ -1,7 +1,8 @@
 "use client"
 import React from 'react'
 import TaskBoard from './TaskBoard'
-import TaskForm from './TaskForm'
+import TaskCard from './TaskCard'
+
 
 
 
@@ -12,8 +13,8 @@ const Tasks = () => {
 
   return (
     <>
-    <TaskBoard />
     
+   <TaskBoard />
     </>
   )
 }
