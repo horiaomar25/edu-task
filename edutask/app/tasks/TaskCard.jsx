@@ -4,33 +4,19 @@ import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
 
 
-const TaskCard = ({ task }) => {
-  console.log('TaskCard:', task);
+
+const TaskCard = ({task}) => {
+
   return (
     <>
+    
 
+    <h1>{task.task_name}</h1>
+    <p>{task.task_description}</p>
         
 
 
-    <Card sx={{ minWidth: 275, margin: '8px'}}>
-      <CardContent>
-       
-        <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
-            {task.task_name}                                              
-     </Typography>
-        <Typography variant="body2">
-      {task.task_name}    
-        </Typography>
-
-         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-       
-        </Typography>
-
-      </CardContent>
-      {/* <CardActions></CardActions> */}
-       {/* chip to placed in here*/}
-      
-    </Card>
+    
     </>
   )
     

@@ -3,34 +3,12 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import TaskCard from "./TaskCard";
 
-import { useEffect, useState } from "react";
+
 
 // eslint-disable-next-line react/prop-types
-const TaskBoard = () => {
-  // 1. Create state to display/store the data
-  const [tasks, setTasks] = useState([]);
-
-  // 2. Fetching data from the database to display on the task board.
-  const fetchTasks = async () => {
-    const response = await fetch("http://localhost:3001/tasks");
-    const data = await response.json();
-   
-    setTasks(data);
-  };
-
-
-  // 3. This will hand the side effect of fetching data from the database.
-  useEffect(() => {
-    fetchTasks();
-  }, []);
- 
-  // 4. Need to filter the data with the different types: Weekly or Daily to make taskCard is appended to the right column.
-  // const dailyTasks = tasks.filter (task => task.task_type === "Daily");
-  // const weeklyTasks = tasks.filter (task => task.task_type === "Weekly");
-
-  const dailyTasks =  tasks.filter(task => task.task_type === "Daily") 
-const weeklyTasks =  tasks.filter(task => task.task_type === "Weekly") 
-
+const TaskBoard = ({tasks}) => {
+  const dailyTasks = tasks.filter(task => task.task_type === 'Daily');
+  const weeklyTasks = tasks.filter(task => task.task_type === 'Weekly');
  
   return (
     <>
@@ -55,12 +33,12 @@ const weeklyTasks =  tasks.filter(task => task.task_type === "Weekly")
             }}
           >
             <h2 style={{ textAlign: "center" }}>Daily</h2>
-            {dailyTasks.map((task, index) => (
-    <TaskCard key={index} task={task}  sx={{ width: '100%'}} />
-  ))}
+         
             {/* Heading centered within each column  */}
 
-            
+            {dailyTasks.map(task => (
+          <TaskCard key={task.id} task={task} />
+        ))}
 
        
 
@@ -82,9 +60,9 @@ const weeklyTasks =  tasks.filter(task => task.task_type === "Weekly")
             <h2 style={{ textAlign: "center" }}>Weekly</h2>
 
            
-            {weeklyTasks.map((task, index) => (
-    <TaskCard key={index} task={task} sx={{ width: '100%'}} />
-  ))}
+            {weeklyTasks.map(task => (
+          <TaskCard key={task.id} task={task} />
+        ))}
 
           </Grid>
           {/* Completed Column */}
@@ -102,9 +80,7 @@ const weeklyTasks =  tasks.filter(task => task.task_type === "Weekly")
             }}
           >
             <h2 style={{ textAlign: "center" }}>Completed</h2>
-            {/* <TaskCard sx={{ width: "100%" }} />
-            <TaskCard sx={{ width: "100%" }} />
-            <TaskCard sx={{ width: "100%" }} /> */}
+            
           </Grid>
         </Grid>
       </Box>
