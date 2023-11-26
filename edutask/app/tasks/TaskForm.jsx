@@ -13,7 +13,7 @@ const TaskForm = ({ handleClose }) => {
 async function handleSubmit(event) {
   event.preventDefault();
 
-  const formattedDueDate = new Date(taskDueDate).toISOString().split('T')[0];
+  const formattedDueDate = new Date(taskDueDate)
 
   try {
     const response = await fetch("http://localhost:3001/tasks/", {
@@ -159,32 +159,36 @@ async function handleSubmit(event) {
           value={taskType}
           onChange={(e) => setTaskType(e.target.value)}
           
+          
         >
-          <option
-            style={{
-              width: "400px",
-              height: "40px",
-              width: "100%",
-              marginBottom: "15px",
-            }}
-            value="Daily"
-            id="daily"
-          >
-            Daily
-          </option>
-          <option
-            style={{
-              width: "400px",
-              height: "40px",
-              width: "100%",
-              marginBottom: "15px",
-            }}
-            value="Weekly"
-            id="weekly"
-          >
-            Weekly
-          </option>
-        </select>
+           <option value="" disabled selected>
+    Select Task Type
+  </option>
+  <option
+    style={{
+      width: "400px",
+      height: "40px",
+      width: "100%",
+      marginBottom: "15px",
+    }}
+    value="Daily"
+    id="daily"
+  >
+    Daily
+  </option>
+  <option
+    style={{
+      width: "400px",
+      height: "40px",
+      width: "100%",
+      marginBottom: "15px",
+    }}
+    value="Weekly"
+    id="weekly"
+  >
+    Weekly
+  </option>
+</select>
 
         <Button sx={{ float: "right" }} type="submit" variant="outlined">
           Add Task

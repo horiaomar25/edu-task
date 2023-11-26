@@ -15,7 +15,7 @@ const TaskBoard = ({tasks}) => {
       <Box sx={{ flexGrow: 1, margin: "20px" }}>
         {" "}
         {/* set the flex-grow to 1, allowing the box to grow to fill the avaliable space*/}
-        <Grid container spacing={4}>
+        <Grid container spacing={4}  >
           {" "}
           {/*Container with spacing between grid items to 3.*/}
           {/* Daily Column */}

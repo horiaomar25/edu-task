@@ -39,14 +39,14 @@ export async function createTask(tasks) {
 
 // 2. Daily Tasks
 
-//Query the database and return the task with a matching id or null
+// Query the database and return the task with a matching id or null
 export async function getDailyTaskById(id) {
-  //Define the SQL query to fetch the task with the specified id from the task table.
-  const dailyTask = "SELECT * FROM tasks id = $1 AND task_type = 'Daily";
+  // Define the SQL query to fetch the task with the specified id and task_type 'Daily' from the tasks table.
+  const dailyTask = 'SELECT * FROM tasks WHERE id = $1 AND task_type = $2';
 
-  //Use the pool object to send the query to the database
-  //passing the id as a parameter to prevent SQL injection
-  const taskId = await pool.query(dailyTask, [id]);
+  // Use the pool object to send the query to the database
+  // passing the id and task_type as parameters to prevent SQL injection
+  const taskId = await pool.query(dailyTask, [id, 'Daily']);
 
   // The rows property of the result object contains the retrieved records
   return taskId.rows[0] || null;
@@ -54,18 +54,19 @@ export async function getDailyTaskById(id) {
 
 //  1.Weekly Tasks
 
-//Query the database and return the task with a matching id or null
+// Query the database and return the task with a matching id or null
 export async function getWeeklyTaskById(id) {
-  //Define the SQL query to fetch the task with the specified id from the task table.
-  const weeklyTask = "SELECT * FROM tasks id = $1 AND task_type = 'Weekly' ";
+  // Define the SQL query to fetch the task with the specified id and task_type 'Weekly' from the tasks table.
+  const weeklyTask = 'SELECT * FROM tasks WHERE id = $1 AND task_type = $2';
 
-  //Use the pool object to send the query to the database
-  //passing the id as a parameter to prevent SQL injection
-  const taskId = await pool.query(weeklyTask, [id]);
+  // Use the pool object to send the query to the database
+  // passing the id and task_type as parameters to prevent SQL injection
+  const taskId = await pool.query(weeklyTask, [id, 'Weekly']);
 
   // The rows property of the result object contains the retrieved records
   return taskId.rows[0] || null;
 }
+
 
 // UPDATE TASK
 
