@@ -1,9 +1,14 @@
+"use client"
 import React from 'react'
-import WeeklyTasks from './Components/WeeklyTasks'
+import TaskGrids from './Components/TaskGrids'
+import useData from '../api/useData'
 
 const Dashboard = () => {
+  const{ tasks } = useData();
+
+  
   return (
-  <WeeklyTasks/>
+  <TaskGrids tasks={tasks}/>
   )
 }
 
