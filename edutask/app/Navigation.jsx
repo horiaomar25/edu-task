@@ -68,7 +68,7 @@ const Navigation = (props) => {
         <CssBaseline />
         <AppBar
           component="nav"
-          sx={{ background: "linear-gradient(to right, #8e24aa, #673ab7)" }}
+  sx={{ background: "linear-gradient(to right, #8e24aa, #673ab7)"}}
         >
           <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
