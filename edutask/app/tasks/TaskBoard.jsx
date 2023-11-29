@@ -3,19 +3,17 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import TaskCard from "./TaskCard";
 
-
-
 // eslint-disable-next-line react/prop-types
-const TaskBoard = ({tasks}) => {
-  const dailyTasks = tasks.filter(task => task.task_type === 'Daily');
-  const weeklyTasks = tasks.filter(task => task.task_type === 'Weekly');
- 
+const TaskBoard = ({ tasks }) => {
+  const dailyTasks = tasks.filter((task) => task.task_type === "Daily");
+  const weeklyTasks = tasks.filter((task) => task.task_type === "Weekly");
+
   return (
     <>
       <Box sx={{ flexGrow: 1, margin: "20px" }}>
         {" "}
         {/* set the flex-grow to 1, allowing the box to grow to fill the avaliable space*/}
-        <Grid container spacing={4}  >
+        <Grid container spacing={4}>
           {" "}
           {/*Container with spacing between grid items to 3.*/}
           {/* Daily Column */}
@@ -33,15 +31,12 @@ const TaskBoard = ({tasks}) => {
             }}
           >
             <h2 style={{ textAlign: "center" }}>Daily</h2>
-         
+
             {/* Heading centered within each column  */}
 
-            {dailyTasks.map(task => (
-          <TaskCard key={task.id} task={task} />
-        ))}
-
-       
-
+            {dailyTasks.map((task) => (
+              <TaskCard key={task.id} task={task} />
+            ))}
           </Grid>
           {/* Weekly Column */}
           <Grid
@@ -59,11 +54,9 @@ const TaskBoard = ({tasks}) => {
           >
             <h2 style={{ textAlign: "center" }}>Weekly</h2>
 
-           
-            {weeklyTasks.map(task => (
-          <TaskCard key={task.id} task={task} />
-        ))}
-
+            {weeklyTasks.map((task) => (
+              <TaskCard key={task.id} task={task} />
+            ))}
           </Grid>
           {/* Completed Column */}
           <Grid
@@ -80,7 +73,6 @@ const TaskBoard = ({tasks}) => {
             }}
           >
             <h2 style={{ textAlign: "center" }}>Completed</h2>
-            
           </Grid>
         </Grid>
       </Box>

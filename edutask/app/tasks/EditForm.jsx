@@ -1,45 +1,47 @@
+import React from 'react'
 import Button from "@mui/material/Button";
-import { useState } from "react";
+import {useState, useEffect} from 'react'
 
-const TaskForm = ({ handleClose }) => {
-  // useState for each input field of the form to send a POST request to the server.
-  const [taskName, setTaskName] = useState("");
-  const [taskDescription, setTaskDescription] = useState("");
-  const [taskDueDate, setTaskDueDate] = useState("");
-  const [taskType, setTaskType] = useState("");
 
-  // POST request for Form Data to be sent to the server
-  async function handleSubmit(event) {
-    event.preventDefault();
-
-    const formattedDueDate = new Date(taskDueDate);
-
-    try {
-      const response = await fetch("http://localhost:3001/tasks/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          task_name: taskName,
-          task_description: taskDescription,
-          task_date: formattedDueDate,
-          task_type: taskType,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+const EditForm = ({ task, handleClose }) => {
+    const [taskName, setTaskName] = useState("");
+    const [taskDescription, setTaskDescription] = useState("");
+    const [taskDueDate, setTaskDueDate] = useState("");
+    const [taskType, setTaskType] = useState("");
+  
+    // POST request for Form Data to be sent to the server
+    async function handleSubmit(event) {
+      event.preventDefault();
+  
+      const formattedDueDate = new Date(taskDueDate);
+  
+      try {
+        const response = await fetch("http://localhost:3001/tasks/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            task_name: taskName,
+            task_description: taskDescription,
+            task_date: formattedDueDate,
+            task_type: taskType,
+          }),
+        });
+  
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+  
+        console.log(await response.json());
+      } catch (error) {
+        console.error("Error:", error);
       }
-
-      console.log(await response.json());
-    } catch (error) {
-      console.error("Error:", error);
     }
-  }
-
-  return (
-    <div
+    
+    return (
+        <>
+        <div
       style={{
         backgroundColor: "white",
         top: "50%",
@@ -63,7 +65,7 @@ const TaskForm = ({ handleClose }) => {
           alignItems: "center",
         }}
       >
-        <h1>Add Task</h1>
+        <h1>Edit Task</h1>
         <button
           onClick={handleClose}
           id="close-button"
@@ -188,11 +190,12 @@ const TaskForm = ({ handleClose }) => {
         </select>
 
         <Button sx={{ float: "right" }} type="submit" variant="outlined">
-          Add Task
+          Save
         </Button>
       </form>
     </div>
-  );
-};
+        </>
+    )
+}
 
-export default TaskForm;
+export default EditForm
