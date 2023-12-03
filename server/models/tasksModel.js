@@ -78,6 +78,7 @@ export async function updateTaskById(id, edit) {
         task_description = COALESCE($2, task_description),
         task_date = COALESCE($3, task_date),
         task_type = COALESCE($4, task_type)
+    WHERE id = $5
     `;
 
   // Use the pool object to send the query to the database
@@ -89,8 +90,8 @@ export async function updateTaskById(id, edit) {
     id,
   ]);
 
-  //The rows property of the result object contains the updated record
-  return edit.rows[0] || null;
+  // The rows property of the result object contains the updated record
+  return updateTask.rows[0] || null;
 }
 
 // DELETE TASK
@@ -109,4 +110,19 @@ export async function deleteTaskById(id) {
   const result = await pool.query(queryTask, [id]);
 
   return result.rows[0] || null;
+}
+
+
+
+// Complete Task By ID
+export async function completeTaskById(id){
+  const completeTask = `
+  UPDATE tasks SET completed = $1 WHERE id = $2 RETURNING *
+  
+  `
+  const result = await pool.query(completeTask, [true, id]);
+  
+  return result.rows[0] || null;
+
+ 
 }

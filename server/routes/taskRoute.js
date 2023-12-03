@@ -15,3 +15,5 @@ tasksRoutes.post("/", taskController.createTask);
 tasksRoutes.patch("/:id", taskController.updateTaskById);
 
 tasksRoutes.delete("/:id", taskController.deleteTaskById);
+
+tasksRoutes.put("/:id", taskController.completeTaskById);
