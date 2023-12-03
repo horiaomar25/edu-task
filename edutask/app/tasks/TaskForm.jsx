@@ -1,42 +1,33 @@
 import Button from "@mui/material/Button";
 import { useState } from "react";
+import useData from "../Custom Hooks/useData";
 
 const TaskForm = ({ handleClose }) => {
+  // POST request for Form Data to be sent to the server
+  const { createTask } = useData();
+
   // useState for each input field of the form to send a POST request to the server.
+
   const [taskName, setTaskName] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [taskDueDate, setTaskDueDate] = useState("");
   const [taskType, setTaskType] = useState("");
 
-  // POST request for Form Data to be sent to the server
-  async function handleSubmit(event) {
-    event.preventDefault();
-
+  const handleSubmit = (event) => {
+    // event.preventDefault();
     const formattedDueDate = new Date(taskDueDate);
-
-    try {
-      const response = await fetch("http://localhost:3001/tasks/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          task_name: taskName,
-          task_description: taskDescription,
-          task_date: formattedDueDate,
-          task_type: taskType,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      console.log(await response.json());
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  }
+    createTask({
+      task_name: taskName,
+      task_description: taskDescription,
+      task_date: formattedDueDate,
+      task_type: taskType,
+    });
+    // Clear form inputs after task creation
+    setTaskName("");
+    setTaskDescription("");
+    setTaskDueDate("");
+    setTaskType("");
+  };
 
   return (
     <div

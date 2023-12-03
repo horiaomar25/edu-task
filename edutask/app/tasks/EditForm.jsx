@@ -1,43 +1,42 @@
 import React from 'react'
 import Button from "@mui/material/Button";
 import {useState, useEffect} from 'react'
+import useData from '../Custom Hooks/useData';
 
 
 const EditForm = ({ task, handleClose }) => {
-    const [taskName, setTaskName] = useState("");
-    const [taskDescription, setTaskDescription] = useState("");
-    const [taskDueDate, setTaskDueDate] = useState("");
-    const [taskType, setTaskType] = useState("");
+  const{updateTask} = useData();
   
-    // POST request for Form Data to be sent to the server
+  const [taskName, setTaskName] = useState(task.task_name || "");
+  const [taskDescription, setTaskDescription] = useState(task.task_description || "");
+  const [taskDueDate, setTaskDueDate] = useState(task.task_date || "");
+  const [taskType, setTaskType] = useState(task.task_type || "");
+  
+  
+    // PATCH request taken from the useData (custom hook).
     async function handleSubmit(event) {
-      event.preventDefault();
-  
+    
+    
       const formattedDueDate = new Date(taskDueDate);
-  
+    
       try {
-        const response = await fetch("http://localhost:3001/tasks/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            task_name: taskName,
-            task_description: taskDescription,
-            task_date: formattedDueDate,
-            task_type: taskType,
-          }),
+        const taskId = task.id; // Assuming task.id holds the identifier of the task to update
+    
+        // Update the task using the updateTask function from the useData hook
+        await updateTask(taskId, {
+          task_name: taskName,
+          task_description: taskDescription,
+          task_date: formattedDueDate,
+          task_type: taskType,
         });
-  
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-  
-        console.log(await response.json());
+    
+        // Close the form after the update is successful
+        handleClose();
       } catch (error) {
         console.error("Error:", error);
       }
     }
+    
     
     return (
         <>
@@ -138,7 +137,7 @@ const EditForm = ({ task, handleClose }) => {
               .toISOString()
               .split("T")[0];
             setTaskDueDate(formattedDate);
-            console.log("Formatted Date:", formattedDate);
+           
           }}
         />
 

@@ -41,6 +41,14 @@ const Navigation = (props) => {
     setMobileOpen((prevState) => !prevState);
   };
 
+  const [tasks, setTasks] = useState([]);
+
+  // Function to update the task list
+  const updateTaskList = (newTask) => {
+    setTasks([...tasks, newTask]);
+  };
+
+
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
@@ -68,7 +76,7 @@ const Navigation = (props) => {
         <CssBaseline />
         <AppBar
           component="nav"
-  sx={{ background: "linear-gradient(to right, #8e24aa, #673ab7)"}}
+          sx={{ background: "linear-gradient(to right, #8e24aa, #673ab7)" }}
         >
           <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -100,7 +108,12 @@ const Navigation = (props) => {
 
             <Button
               onClick={handleOpen}
-              sx={{ margin: "15px", float: "right", border: "1px solid #fff", color: "#fff" }}
+              sx={{
+                margin: "15px",
+                float: "right",
+                border: "1px solid #fff",
+                color: "#fff",
+              }}
               variant="outlined"
             >
               {" "}
@@ -113,9 +126,8 @@ const Navigation = (props) => {
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
             >
-              <TaskForm handleClose={handleClose} />
+              <TaskForm handleClose={handleClose} updateTaskList={updateTaskList} />
             </Modal>
-
           </Toolbar>
         </AppBar>
 

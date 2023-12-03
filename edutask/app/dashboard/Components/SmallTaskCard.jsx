@@ -3,7 +3,7 @@ import Checkbox from '@mui/material/Checkbox';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 const SmallTaskCard = ({ task }) => {
-    console.log(task)
+  
   return (
     <div style={{ borderRadius: '8px', width: '90%', paddingLeft: '20px', marginBottom: '10px' }}>
     <span style={{display: "flex"}} >

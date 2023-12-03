@@ -11,7 +11,7 @@ import EditForm from "./EditForm";
 import { useState } from "react";
 import Modal from "@mui/material/Modal";
 
-const TaskCard = ({ task }) => {
+const TaskCard = ({ task, taskList, delTask, completedTask }) => {
   const date = new Date(task.task_date);
   // Get the date in a formatted string (YYYY-MM-DD)
   const formattedDate = date.toISOString().split("T")[0];
@@ -26,6 +26,31 @@ const TaskCard = ({ task }) => {
 
   const handleClose = () => {
     setModalOpen(false);
+  };
+
+  const handleTaskUpdate = () => {
+    // Pass the updated task to the parent component
+    onTaskUpdate(updatedTask);
+    setModalOpen(false); // Close the modal after updating
+    taskList(updatedTask);
+  };
+
+  // const handleTaskComplete = () => {
+  //   const updatedTask = { ...task, completed: true };
+
+  //   // Call the taskList function to update the task with the updatedTask
+  //   taskList(updatedTask);
+  // };
+
+  // Delete Task
+  const handleDelete = () => {
+    // Implement deletion logic and pass task ID to delTask function
+    delTask(task.id);
+  };
+
+  const handleTaskComplete = () => {
+    // Call the completedTask function with the task ID to mark it as completed
+    completedTask(task.id);
   };
 
   return (
@@ -47,6 +72,7 @@ const TaskCard = ({ task }) => {
               fontWeight: "600",
               fontSize: "15px",
             }}
+            onClick={handleDelete}
           >
             X
           </button>
@@ -67,20 +93,14 @@ const TaskCard = ({ task }) => {
               flexDirection: "row",
             }}
           >
-            <Chip
-              label={`due: ${formattedDate}`}
-              size="small"
-              sx={{ marginTop: "10px" }}
-            />
-            <div
-              style={{
-                float: "left",
-                paddingLeft: "60px",
-                height: "50px",
-                marginTop: "10px",
-              }}
-            >
-              <Button size="small" onClick={handleOpen}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <Chip
+                label={`due: ${formattedDate}`}
+                size="small"
+                sx={{ marginTop: "2px", marginRight: "100px" }}
+              />
+
+              <Button size="small" onClick={handleOpen} sx={{ marginTop: "2px"}}>
                 Edit
               </Button>
               <Modal
@@ -89,12 +109,20 @@ const TaskCard = ({ task }) => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
               >
-                <EditForm handleClose={handleClose} task={task} />
+                <EditForm
+                  handleClose={handleClose}
+                  task={task}
+                  onTaskUpdate={handleTaskUpdate}
+                  style={{ marginLeft: "10px"}}
+                />
               </Modal>
 
-              <Button size="small">
-                <Checkbox {...label} color="success" />
-              </Button>
+              <input
+                type="checkbox"
+                style={{ marginLeft: "8px" }}
+                checked={task.completed}
+                onClick={handleTaskComplete}
+              />
             </div>
           </div>
         </CardContent>
