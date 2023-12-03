@@ -9,6 +9,8 @@ import SmallTaskCard from "./SmallTaskCard";
 
 import AddWeekNumber from "./Calendar";
 
+import useData from "@/app/Custom Hooks/useData";
+
 const TaskGrids = ({ tasks }) => {
   const dailyTasks = tasks
     .filter((task) => task.task_type === "Daily")

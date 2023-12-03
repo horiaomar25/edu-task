@@ -7,7 +7,7 @@ import useData from '../Custom Hooks/useData'
 
 
 const Dashboard = () => {
-  const{ tasks } = useData();
+  const{ tasks, co } = useData();
 
   
   return (
