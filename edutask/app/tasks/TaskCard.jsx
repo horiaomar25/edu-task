@@ -2,22 +2,22 @@
 
 import CardContent from "@mui/material/CardContent";
 import * as React from "react";
-import CardActions from "@mui/material/CardActions";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
-import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
 import EditForm from "./EditForm";
 import { useState } from "react";
 import Modal from "@mui/material/Modal";
+import Alert from "@mui/material/Alert";
+
+import Slide from "@mui/material/Slide";
 
 const TaskCard = ({ task, taskList, delTask, completedTask }) => {
   const date = new Date(task.task_date);
   // Get the date in a formatted string (YYYY-MM-DD)
   const formattedDate = date.toISOString().split("T")[0];
 
-  const label = { inputProps: { "aria-label": "Checkbox demo" } };
-
+  // Open Edit Form Modal.
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleOpen = () => {
@@ -35,17 +35,23 @@ const TaskCard = ({ task, taskList, delTask, completedTask }) => {
     taskList(updatedTask);
   };
 
- 
-
   // Delete Task
   const handleDelete = () => {
     // Implement deletion logic and pass task ID to delTask function
     delTask(task.id);
   };
 
+  // Setting State for Alert
+  const [alertOpen, setAlertOpen] = useState(false);
+
+  // Complete Task when Ticketing checkbox.
+  // Success Message when tick complete checkbox.
   const handleTaskComplete = () => {
-    // Call the completedTask function with the task ID to mark it as completed
     completedTask(task.id);
+    setAlertOpen(true); // Display the alert when the task is completed
+    setTimeout(() => {
+      setAlertOpen(false); // Close the alert after 5 seconds
+    }, 35000);
   };
 
   return (
@@ -95,7 +101,11 @@ const TaskCard = ({ task, taskList, delTask, completedTask }) => {
                 sx={{ marginTop: "2px", marginRight: "100px" }}
               />
 
-              <Button size="small" onClick={handleOpen} sx={{ marginTop: "2px"}}>
+              <Button
+                size="small"
+                onClick={handleOpen}
+                sx={{ marginTop: "2px" }}
+              >
                 Edit
               </Button>
               <Modal
@@ -108,7 +118,7 @@ const TaskCard = ({ task, taskList, delTask, completedTask }) => {
                   handleClose={handleClose}
                   task={task}
                   onTaskUpdate={handleTaskUpdate}
-                  style={{ marginLeft: "10px"}}
+                  style={{ marginLeft: "10px" }}
                 />
               </Modal>
 
@@ -122,6 +132,21 @@ const TaskCard = ({ task, taskList, delTask, completedTask }) => {
           </div>
         </CardContent>
       </div>
+
+      <Slide direction="up" in={alertOpen} mountOnEnter unmountOnExit>
+        <Alert
+          severity="success"
+          onClose={handleCloseAlert}
+          sx={{
+            position: "fixed",
+            bottom: "20px",
+            left: "20px",
+            zIndex: 9999,
+          }}
+        >
+          This is a success alert — check it out!
+        </Alert>
+      </Slide>
     </>
   );
 };
