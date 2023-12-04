@@ -8,9 +8,9 @@ import Button from "@mui/material/Button";
 import EditForm from "./EditForm";
 import { useState } from "react";
 import Modal from "@mui/material/Modal";
-import Alert from "@mui/material/Alert";
+import Alert from '@mui/material/Alert';
 
-import Slide from "@mui/material/Slide";
+import Slide from '@mui/material/Slide';
 
 const TaskCard = ({ task, taskList, delTask, completedTask }) => {
   const date = new Date(task.task_date);
@@ -45,13 +45,17 @@ const TaskCard = ({ task, taskList, delTask, completedTask }) => {
   const [alertOpen, setAlertOpen] = useState(false);
 
   // Complete Task when Ticketing checkbox.
-  // Success Message when tick complete checkbox.
+  // Success Message when tick complete checkbox. 
   const handleTaskComplete = () => {
     completedTask(task.id);
     setAlertOpen(true); // Display the alert when the task is completed
     setTimeout(() => {
       setAlertOpen(false); // Close the alert after 5 seconds
     }, 35000);
+  };
+
+  const handleCloseAlert = () => {
+    setAlertOpen(false); // Close the alert
   };
 
   return (
@@ -128,6 +132,7 @@ const TaskCard = ({ task, taskList, delTask, completedTask }) => {
                 checked={task.completed}
                 onClick={handleTaskComplete}
               />
+              
             </div>
           </div>
         </CardContent>
@@ -138,9 +143,9 @@ const TaskCard = ({ task, taskList, delTask, completedTask }) => {
           severity="success"
           onClose={handleCloseAlert}
           sx={{
-            position: "fixed",
-            bottom: "20px",
-            left: "20px",
+            position: 'fixed',
+            bottom: '20px',
+            left: '20px',
             zIndex: 9999,
           }}
         >
