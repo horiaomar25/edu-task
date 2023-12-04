@@ -11,7 +11,7 @@ const useData = () => {
   // Create Task - POST method
   const createTask = async (task) => {
     try {
-      const response = await fetch("http://localhost:3001/tasks/", {
+      const response = await fetch("https://edutask-be.onrender.com/tasks", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -30,13 +30,6 @@ const useData = () => {
 
       const newTask = await response.json();
 
-      // Update the task list in the parent component
-      // updateTask(newTask);
-
-      // setTaskName("");
-      // setTaskDescription("");
-      // setTaskDueDate("");
-      // setTaskType("");
       
       fetchTasks();
     } catch (error) {
@@ -48,7 +41,7 @@ const useData = () => {
   // 2. Fetching data from the database to display on the task board.
   const fetchTasks = async () => {
     try {
-      const response = await fetch("http://localhost:3001/tasks");
+      const response = await fetch("https://edutask-be.onrender.com/tasks");
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
@@ -62,7 +55,7 @@ const useData = () => {
   // PATCH route to update Tasks
   const updateTask = async (taskId, updatedTaskData) => {
     try {
-      const response = await fetch(`http://localhost:3001/tasks/${taskId}`, {
+      const response = await fetch(`https://edutask-be.onrender.com/tasks/${taskId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -84,7 +77,7 @@ const useData = () => {
   // Delete Task
   const delTask = async (taskId) => {
     try {
-      const response = await fetch(`http://localhost:3001/tasks/${taskId}`, {
+      const response = await fetch(`https://edutask-be.onrender.com/tasks/${taskId}`, {
         method: "DELETE",
       });
 
@@ -102,7 +95,7 @@ const useData = () => {
   // Complete Task - PUT method
   const completeTask = async (taskId) => {
     try {
-      const response = await fetch(`http://localhost:3001/tasks/${taskId}`, {
+      const response = await fetch(`https://edutask-be.onrender.com/tasks/${taskId}`, {
         method: "PUT", // Assuming PUT method is used for updating tasks
       });
 
