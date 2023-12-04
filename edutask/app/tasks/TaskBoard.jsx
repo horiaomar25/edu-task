@@ -7,11 +7,11 @@ import useData from "../Custom Hooks/useData";
 
 // eslint-disable-next-line react/prop-types
 const TaskBoard = ({ tasks, taskList, delTask, completeTask}) => {
+
   const dailyTasks = tasks.filter(
     (task) => task.task_type === "Daily" && !task.completed);
   const weeklyTasks = tasks.filter(
     (task) => task.task_type === "Weekly" && !task.completed);
-
   const completedTasks = tasks.filter((task) => task.completed === true);
 
  
@@ -92,7 +92,7 @@ const TaskBoard = ({ tasks, taskList, delTask, completeTask}) => {
           >
             <h2 style={{ textAlign: "center" }}>Completed</h2>
             {completedTasks.map((task) => (
-              <CompletedCard key={task.id} task={task} taskList={taskList} completedTask={completeTask} />
+              <CompletedCard key={task.id} task={task} taskList={taskList} completedTask={completeTask} delTask={delTask} />
             ))}
           </Grid>
         </Grid>

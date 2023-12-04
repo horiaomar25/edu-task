@@ -4,21 +4,10 @@ import Link from 'next/link'
 
 
 
-
 export default function Home() {
   return (
     <>
-    <div>
-    <Navigation />
-      <Link href="/tasks">
-        Tasks
-       
-      </Link>
-      <Link href="/dashboard">
-      Dashboard
-      </Link>
-    </div>
-      
+   <h2> Home </h2>
      
     </>
 

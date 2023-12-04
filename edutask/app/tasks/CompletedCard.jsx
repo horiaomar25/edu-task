@@ -1,8 +1,12 @@
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
-const CompletedCard = ({task, completedTask}) => {
-
+const CompletedCard = ({task, completedTask, delTask}) => {
+ // Delete Task
+ const handleDelete = () => {
+  // Implement deletion logic and pass task ID to delTask function
+  delTask(task.id);
+};
   
   return (
     <>
@@ -15,6 +19,18 @@ const CompletedCard = ({task, completedTask}) => {
             marginBottom: "20px",
           }}
         >
+          <button
+            style={{
+              float: "right",
+              border: "none",
+              background: "transparent",
+              fontWeight: "600",
+              fontSize: "15px",
+            }}
+            onClick={handleDelete}
+          >
+            X
+          </button>
           <Typography
             variant="h5"
             component="div"

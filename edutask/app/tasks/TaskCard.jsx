@@ -35,12 +35,7 @@ const TaskCard = ({ task, taskList, delTask, completedTask }) => {
     taskList(updatedTask);
   };
 
-  // const handleTaskComplete = () => {
-  //   const updatedTask = { ...task, completed: true };
-
-  //   // Call the taskList function to update the task with the updatedTask
-  //   taskList(updatedTask);
-  // };
+ 
 
   // Delete Task
   const handleDelete = () => {
