@@ -37,31 +37,43 @@ const TaskGrids = ({ tasks }) => {
         {/* This is the latest task container*/}
         <Grid item xs={12} sx={{ width: "100%" }}>
         <Box
-  sx={{
-    borderRadius: "10px",
-    backgroundColor: "#E2D7F1",
-    width: "100%",
-    display: "flex",
-    flexDirection: "row", // Set direction to row
-    justifyContent: "space-between", // Space evenly between tasks
-    padding: "10px", // Add padding if necessary
-    alignItems: "center",
-    paddingTop: "20px",
-    overflowX: "hidden",
-    flexDirection: { xs: "column", md: "row" },
-    margin: "0 auto", // Center the box horizontally
-    maxWidth: "90%", // Adjust the max-width as needed for mobile devices
+
+    sx={{
+      border: "1px solid black",
+      marginTop: { xs: "20px", md: 0 },
+      borderRadius: "10px",
+      backgroundColor: "#E2D7F1",
+      width: '50%',
+    
   }}
 >
 
 
-    <h1 style={{ paddingLeft: "20px" }}>Latest Tasks</h1>
+    <h1 style={{ paddingLeft: "20px" }}>Daily Tasks</h1>
 
     {dailyTasks.map((task) => (
       <SmallTaskCard key={task.id} task={task} />
     ))}
   </Box>
-</Grid>
+</Grid> 
+<Grid item xs={12} md={6}> 
+       
+        <Box
+          sx={{
+            border: "1px solid black",
+            marginTop: { xs: "20px", md: 0 },
+            borderRadius: "10px",
+            backgroundColor: "#E2D7F1",
+            width: '50%',
+          }}
+        >
+          <h1 style={{ paddingLeft: "20px" }}>Weekly Tasks</h1>
+          {weeklyTasks.map((task) => (
+            <SmallTaskCard key={task.id} task={task} />
+          ))}
+        </Box>
+      </Grid> 
+
 
           <Grid
             item
@@ -81,11 +93,14 @@ const TaskGrids = ({ tasks }) => {
                 marginTop: { xs: "20px", md: 0 },
                 borderRadius: "7px",
                 padding: "20px",
-                border: "10px red solid",
+                border: "1px red solid",
               }}
             >
               <AddWeekNumber />
             </Box>
+           
+  
+
           </Grid>
         </Box>
       </div>
@@ -94,22 +109,3 @@ const TaskGrids = ({ tasks }) => {
 };
 
 export default TaskGrids;
-{
-  /* <Grid item xs={12} md={6}> 
-       <h1>Hello World</h1>
-        <Box
-          sx={{
-            border: "1px solid black",
-            marginTop: { xs: "20px", md: 0 },
-            borderRadius: "10px",
-            backgroundColor: "#E2D7F1",
-            width: '90%',
-          }}
-        >
-          <h1 style={{ paddingLeft: "20px" }}>Weekly</h1>
-          {weeklyTasks.map((task) => (
-            <SmallTaskCard key={task.id} task={task} />
-          ))}
-        </Box>
-      </Grid> */
-}
