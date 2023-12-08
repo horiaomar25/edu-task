@@ -42,6 +42,7 @@ const TaskHeader = () => {
     />
     <div style={{ textAlign: "center", flex: { xs: "none", md: "1" } }}>
       {/* Text content */}
+     { /*eslint-disable-next-line react/no-unescaped-entities*/}
       <h1>Today's Tasks</h1>
       <p>Check your Tasks</p>
     </div>
