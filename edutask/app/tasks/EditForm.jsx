@@ -113,8 +113,7 @@ const EditForm = ({ task, handleClose }) => {
             width: "100%",
             fontSize: "16px",
           }}
-          rows="4"
-          cols="50"
+         
           value={taskDescription}
           onChange={(e) => setTaskDescription(e.target.value)}
         ></textarea>

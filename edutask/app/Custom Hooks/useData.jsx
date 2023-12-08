@@ -52,7 +52,7 @@ const useData = () => {
     }
   };
 
-  // PATCH route to update Tasks
+  //Update Task
   const updateTask = async (taskId, updatedTaskData) => {
     try {
       const response = await fetch(`https://edutask-be.onrender.com/tasks/${taskId}`, {
@@ -121,7 +121,7 @@ const useData = () => {
     setTasks([...tasks, newTask]);
   };
 
-  // Delete Task
+
 
 
   return {

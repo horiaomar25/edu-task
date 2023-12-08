@@ -4,6 +4,7 @@ import Grid from "@mui/material/Grid";
 import TaskCard from "./TaskCard";
 import CompletedCard from "./CompletedCard";
 import useData from "../Custom Hooks/useData";
+import NewTaskCard from './NewTaskCard'
 
 // eslint-disable-next-line react/prop-types
 const TaskBoard = ({ tasks, taskList, delTask, completeTask}) => {
@@ -29,11 +30,14 @@ const TaskBoard = ({ tasks, taskList, delTask, completeTask}) => {
             sm={6}
             md={4}
             sx={{
-              padding: "20px",
+              padding: "10px",
               height: { xs: "auto", sm: "50%", md: "800px" }, // Responsive height for all screen sizes
               width: { xs: "100%", sm: "50%", md: "800px" }, // Responsive width for all screen sizes
               maxWidth: { xs: "100%", sm: "50%", md: "800px" }, // Max width for md screen
               boxSizing: "border-box", // Adds padding to the grid without changing width and height.
+             
+
+               
             }}
           >
             <h2 style={{ textAlign: "center" }}>Daily</h2>
@@ -41,7 +45,7 @@ const TaskBoard = ({ tasks, taskList, delTask, completeTask}) => {
             {/* Heading centered within each column  */}
 
             {dailyTasks.map((task) => (
-              <TaskCard
+              <NewTaskCard
                 key={task.id}
                 task={task}
                 taskList={taskList}
@@ -57,7 +61,7 @@ const TaskBoard = ({ tasks, taskList, delTask, completeTask}) => {
             sm={6}
             md={4}
             sx={{
-              padding: "20px",
+              padding: "0px",
               height: { xs: "auto", sm: "50%", md: "800px" }, // Responsive height
               width: { xs: "100%", sm: "50%", md: "800px" }, // Responsive width
               maxWidth: { xs: "100%", sm: "50%", md: "800px" }, // Max width for md screen
@@ -67,7 +71,7 @@ const TaskBoard = ({ tasks, taskList, delTask, completeTask}) => {
             <h2 style={{ textAlign: "center" }}>Weekly</h2>
 
             {weeklyTasks.map((task) => (
-              <TaskCard
+              <NewTaskCard
                 key={task.id}
                 task={task}
                 taskList={taskList}
