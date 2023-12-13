@@ -2,10 +2,6 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 
-
-
-
-
 const BigTaskCard = ({ task, handleClose }) => {
   const date = new Date(task.task_date);
   const options = { weekday: 'short', day: 'numeric', month: 'short' };
@@ -32,37 +28,30 @@ const BigTaskCard = ({ task, handleClose }) => {
         boxShadow: '0 2px, 4px,0',
         position: 'fixed',
         display: 'flex',
-       
-     
-        
-          flexDirection:{xs:'column', md:'column'},// Displaying items side by side
-          overflow: 'auto', // Enable scroll if content exceeds height
+        flexDirection: { xs: 'column', md: 'column' }, // Displaying items side by side
+        overflow: 'auto', // Enable scroll if content exceeds height
         wordWrap: 'break-word', // Wrap long words to prevent overflow
         whiteSpace: 'pre-wrap', // Maintain whitespace and wrap lines
-      
-          
       }}
     >
-      <div style={{ flex: 1 }}>
+      <div style={{ flex: 1, position: 'relative' }}>
+        <h1>{task.task_name}</h1>
         <button
-            onClick={handleClose}
-            id="close-button"
-            style={{
-              background: 'transparent',
-              border: 'none',
-              fontSize: '40px',
-              float: 'right',
-            }}
-          >
-            &times;
-          </button>
-        <div>
-          <h1>{task.task_name}</h1>
-         
-          
-          <hr />
-        </div>
-
+          onClick={handleClose}
+          id="close-button"
+          style={{
+            background: 'transparent',
+            border: 'none',
+            fontSize: '40px',
+            position: 'absolute',
+            top: '10px',
+            right: '10px',
+            cursor: 'pointer',
+          }}
+        >
+          &times;
+        </button>
+        <hr />
         <p>{task.task_description}</p>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Chip
@@ -76,18 +65,12 @@ const BigTaskCard = ({ task, handleClose }) => {
                 fontWeight: 'bold',
               },
             }}
-          /> 
-           <hr />
+          />
+          <hr />
         </div>
       </div>
-    
-
- 
-     
     </Box>
   );
 };
 
 export default BigTaskCard;
-
-    

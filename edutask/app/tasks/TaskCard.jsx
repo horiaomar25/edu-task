@@ -4,12 +4,8 @@ import CardContent from "@mui/material/CardContent";
 import * as React from "react";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import EditForm from "./EditForm";
-import { useState } from "react";
-import Modal from "@mui/material/Modal";
-import Alert from "@mui/material/Alert";
-import Slide from "@mui/material/Slide";
+
+
 import DropDownMenu from "./DropMenu";
 
 
@@ -19,47 +15,7 @@ const TaskCard = ({ task, taskList, delTask, completedTask }) => {
   const options = { weekday: 'short', day: 'numeric', month: 'short' };
   const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
 
-  // Open Edit Form Modal.
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const handleOpen = () => {
-    setModalOpen(true);
-  };
-
-  const handleClose = () => {
-    setModalOpen(false);
-  };
-
-  const handleTaskUpdate = () => {
-    // Pass the updated task to the parent component
-    onTaskUpdate(updatedTask);
-    setModalOpen(false); // Close the modal after updating
-    taskList(updatedTask);
-  };
-
-  // Delete Task
-  const handleDelete = () => {
-    // Implement deletion logic and pass task ID to delTask function
-    delTask(task.id);
-  };
-
-  // Setting State for Alert
-  const [alertOpen, setAlertOpen] = useState(false);
-
-  // Complete Task when Ticketing checkbox.
-  // Success Message when tick complete checkbox.
-  const handleTaskComplete = () => {
-    completedTask(task.id);
-    setAlertOpen(true); // Display the alert when the task is completed
-    setTimeout(() => {
-      setAlertOpen(false); // Close the alert after 5 seconds
-    }, 35000);
-  };
-
-  const handleCloseAlert = () => {
-    setAlertOpen(false); // Close the alert
-  };
-  
+ 
 
   return (
     <>
@@ -113,20 +69,6 @@ const TaskCard = ({ task, taskList, delTask, completedTask }) => {
         </CardContent>
     
 
-      <Slide direction="up" in={alertOpen} mountOnEnter unmountOnExit>
-        <Alert
-          severity="success"
-          onClose={handleCloseAlert}
-          sx={{
-            position: "fixed",
-            bottom: "20px",
-            left: "20px",
-            zIndex: 9999,
-          }}
-        >
-          This is a success alert — check it out!
-        </Alert>
-      </Slide>
     </>
   );
 };

@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid";
 import TaskCard from "./TaskCard";
 import CompletedCard from "./CompletedCard";
 import useData from "../Custom Hooks/useData";
-import NewTaskCard from './NewTaskCard'
+
 
 // eslint-disable-next-line react/prop-types
 const TaskBoard = ({ tasks, taskList, delTask, completeTask}) => {
@@ -30,7 +30,7 @@ const TaskBoard = ({ tasks, taskList, delTask, completeTask}) => {
             sm={6}
             md={4}
             sx={{
-              padding: "10px",
+              padding: "20px",
               height: { xs: "auto", sm: "50%", md: "800px" }, // Responsive height for all screen sizes
               width: { xs: "100%", sm: "50%", md: "800px" }, // Responsive width for all screen sizes
               maxWidth: { xs: "100%", sm: "50%", md: "800px" }, // Max width for md screen
@@ -61,7 +61,7 @@ const TaskBoard = ({ tasks, taskList, delTask, completeTask}) => {
             sm={6}
             md={4}
             sx={{
-              padding: "0px",
+              padding: "20px",
               height: { xs: "auto", sm: "50%", md: "800px" }, // Responsive height
               width: { xs: "100%", sm: "50%", md: "800px" }, // Responsive width
               maxWidth: { xs: "100%", sm: "50%", md: "800px" }, // Max width for md screen
