@@ -19,14 +19,16 @@ import Link from "next/link";
 import { useState } from "react";
 import Modal from "@mui/material/Modal";
 import TaskForm from "./tasks/TaskForm";
-import HomeIcon from '@mui/icons-material/Home';
-import TaskIcon from '@mui/icons-material/Task';
+import HomeIcon from "@mui/icons-material/Home";
+import TaskIcon from "@mui/icons-material/Task";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 
 const drawerWidth = 240;
 const navItems = [
-  { text: "Dashboard", icon:<HomeIcon/> },
-  { text: "Tasks", icon:<TaskIcon/>}
- 
+  { text: "Home", icon: <HomeIcon />, href: "/" },
+  { text: "Dashboard", icon: <DashboardIcon />, href: "/dashboard"},
+  { text: "Tasks", icon: <TaskIcon />, href: "/tasks" },
 ];
 
 const Navigation = (props) => {
@@ -47,29 +49,32 @@ const Navigation = (props) => {
     setMobileOpen((prevState) => !prevState);
   };
 
-
-
-
-
-
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <Box
+      onClick={handleDrawerToggle}
+      sx={{ textAlign: "center", margin: 0, padding: 0 }}
+    >
       <Typography variant="h6" sx={{ my: 2 }}>
         Edutask
       </Typography>
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-            {item.icon && <ListItem>{item.icon}</ListItem>}
-              <ListItemText primary={item.text} />
-            </ListItemButton>
-          </ListItem>
+          <ListItemButton key={item.text} href={item.href} sx={{ textAlign: "center", textDecoration: 'none', color: 'inherit' }} passHref>
+           
+              {item.icon && (
+                <ListItemAvatar sx={{ minWidth: "auto", marginRight: "8px" }}>
+                  {item.icon}
+                </ListItemAvatar>
+              )}
+              <ListItemText primary={item.text} sx={{ textDecoration: 'none' }} />
+            
+          </ListItemButton>
         ))}
       </List>
     </Box>
   );
+  
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
@@ -103,9 +108,14 @@ const Navigation = (props) => {
             </Box>
 
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
-              {navItems.map((item) => (
-                <Link key={item} href={`/${item.text.toLowerCase()}`} passHref>
-                  <Button sx={{ color: "#fff" }}>{item}</Button>
+              {navItems.map((item, index) => (
+                <Link key={item} href={item.href} passHref>
+                  <Button
+                    startIcon={item.icon} // start prop to add icon
+                    sx={{ color: "#fff", justifyContent: "flex-start" , mr: index !== navItems.length - 1 ? 2 : 0}}
+                  >
+                    {item.text}
+                  </Button>
                 </Link>
               ))}
             </Box>
@@ -130,7 +140,7 @@ const Navigation = (props) => {
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
             >
-              <TaskForm handleClose={handleClose}  />
+              <TaskForm handleClose={handleClose} />
             </Modal>
           </Toolbar>
         </AppBar>
@@ -157,7 +167,7 @@ const Navigation = (props) => {
         </nav>
 
         <Toolbar />
-       <h1>Hello World</h1>
+        <h1>Hello World</h1>
       </Box>
     </>
   );
