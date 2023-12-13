@@ -101,10 +101,22 @@ export default function DropDownMenu({ task, taskList, delTask, completedTask } 
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleOpenExpand}><OpenInFullIcon fontSize='small' sx={{margin: '5px'}}/>Open</MenuItem>
-        <MenuItem  onClick={handleOpen} ><EditIcon fontSize='small' sx={{margin:'5px'}}/>Edit</MenuItem>
-        <MenuItem onClick={handleDelete}><DeleteIcon fontSize='small' sx={{margin:'5px'}}/>Delete</MenuItem>
-        <MenuItem onClick={handleTaskComplete}><DoneIcon fontSize='small' sx={{margin:'5px'}}/> Complete</MenuItem>
+        <MenuItem onClick={() => { handleClose(); handleOpenExpand(); }}>
+    <OpenInFullIcon fontSize='small' sx={{ margin: '5px' }} />
+    Open
+  </MenuItem>
+  <MenuItem onClick={() => { handleClose(); handleOpen(); }}>
+    <EditIcon fontSize='small' sx={{ margin: '5px' }} />
+    Edit
+  </MenuItem>
+  <MenuItem onClick={() => { handleClose(); handleDelete(); }}>
+    <DeleteIcon fontSize='small' sx={{ margin: '5px' }} />
+    Delete
+  </MenuItem>
+  <MenuItem onClick={() => { handleClose(); handleTaskComplete(); }}>
+    <DoneIcon fontSize='small' sx={{ margin: '5px' }} />
+    Complete
+  </MenuItem>
       </Menu>
 
       <Slide direction="up" in={alertOpen} mountOnEnter unmountOnExit>

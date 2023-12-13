@@ -14,9 +14,18 @@ export default function Home() {
     <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", width: "500px"}}>
     <h2 style={{ fontSize: "50px"}}> Welcome to EduTask</h2>
     <p> A task manager that will helps teachers and teaching assistants keep track of tasks</p>
-    <Button  sx={{backgroundColor:"#8338ec", color: "white", width: "70%", borderRadius:"10px"}}>Dashboard</Button>
+    <Button  sx={{
+            backgroundColor: "#8338ec",
+            color: "white",
+            width: "70%",
+            borderRadius: "10px",
+            '&:hover': {
+              backgroundColor: "#6b2fbb", // Change the hover color to a different shade
+              color: "white", // Maintain the text color on hover
+            },
+          }}>Dashboard</Button>
     </div>
-    <Image src={logo} alt="illustration of using taskboard" width="500" style={{border: "solid 1px black", margin: "30px"}} />
+    <Image src={logo} alt="illustration of using taskboard" width="500" style={{border: "solid 1px black", margin: "30px", borderRadius:'50%'}} />
    </div>
     
      

@@ -10,6 +10,7 @@ import { useState } from "react";
 import Modal from "@mui/material/Modal";
 import Alert from "@mui/material/Alert";
 import Slide from "@mui/material/Slide";
+import DropDownMenu from "./DropMenu";
 
 
 const TaskCard = ({ task, taskList, delTask, completedTask }) => {
@@ -58,20 +59,21 @@ const TaskCard = ({ task, taskList, delTask, completedTask }) => {
   const handleCloseAlert = () => {
     setAlertOpen(false); // Close the alert
   };
-
-
+  
 
   return (
     <>
-      <div>
+   
         <CardContent
           sx={{
             borderRadius: "8px",
             boxShadow:
               "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
-            marginBottom: "20px",
+            marginBottom: "30px",
+            width: '100%'
           }}
         >
+
           <button
             style={{
               float: "right",
@@ -80,9 +82,8 @@ const TaskCard = ({ task, taskList, delTask, completedTask }) => {
               fontWeight: "600",
               fontSize: "15px",
             }}
-            onClick={handleDelete}
           >
-            X
+         <DropDownMenu task={task} taskList={taskList} delTask={delTask} completedTask={completedTask}/>
           </button>
 
           <Typography
@@ -93,52 +94,24 @@ const TaskCard = ({ task, taskList, delTask, completedTask }) => {
             {task.task_name}
           </Typography>
 
-          <Typography variant="body2">{task.task_description}</Typography>
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              flexDirection: "row",
-            }}
+          <Typography variant="body2"
+          sx={{marginBottom:'20px'}}
           >
+            {task.task_description}
+            </Typography>
+
+
+        
             <div style={{ display: "flex", alignItems: "center" }}>
               <Chip
-                label={`end: ${formattedDate}`}
+                label={ ` ${formattedDate}`}
                 size="small"
-                sx={{ marginTop: "2px", marginRight: "100px", backgroundColor: 'gray' }}
+                sx={{ marginTop: "2px", marginRight: "100px", backgroundColor: '#DBCDF0', '& .MuiChip-label': { // Selecting the Chip label using the default MuiChip-label class
+                  fontWeight: 'bold',}}} // Setting the font weight to bold }}
               />
-
-              <Button
-                size="small"
-                onClick={handleOpen}
-                sx={{ marginTop: "2px" }}
-              >
-                Edit
-              </Button>
-              <Modal
-                open={modalOpen}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-              >
-                <EditForm
-                  handleClose={handleClose}
-                  task={task}
-                  onTaskUpdate={handleTaskUpdate}
-                  style={{ marginLeft: "10px" }}
-                />
-              </Modal>
-
-              <input
-                type="checkbox"
-                style={{ marginLeft: "8px" }}
-                checked={task.completed}
-                onClick={handleTaskComplete}
-              />
-            </div>
           </div>
         </CardContent>
-      </div>
+    
 
       <Slide direction="up" in={alertOpen} mountOnEnter unmountOnExit>
         <Alert

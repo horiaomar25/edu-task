@@ -9,7 +9,7 @@ const TaskHeader = () => {
     component="section"
     sx={{
       p: 4,
-      width: { xs:' 90%', md: '50%', sm: '90%'}, // Set width to full for all screen sizes
+      width: { xs:' 90%', md: '95%', sm: '90%'}, // Set width to full for all screen sizes
       height: "auto",
       flexShrink: 0,
       borderRadius: "20px",
@@ -21,7 +21,7 @@ const TaskHeader = () => {
       flexDirection: { xs: "column", md: "row" },
       alignItems: "center", // Center vertically and horizontally
       gap: "20px",
-      margin: { xs: '30px' },
+      margin: { xs: '20px' },
       alignItems: 'center'
       
       
@@ -42,7 +42,7 @@ const TaskHeader = () => {
     />
     <div style={{ textAlign: "center", flex: { xs: "none", md: "1" } }}>
   
-      <h1>Today Tasks</h1>
+      <h1>This Week you have 6 Tasks</h1>
       <p>Check your Tasks</p>
     </div>
   </Box>

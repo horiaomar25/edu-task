@@ -45,7 +45,7 @@ const TaskBoard = ({ tasks, taskList, delTask, completeTask}) => {
             {/* Heading centered within each column  */}
 
             {dailyTasks.map((task) => (
-              <NewTaskCard
+              <TaskCard
                 key={task.id}
                 task={task}
                 taskList={taskList}
@@ -71,7 +71,7 @@ const TaskBoard = ({ tasks, taskList, delTask, completeTask}) => {
             <h2 style={{ textAlign: "center" }}>Weekly</h2>
 
             {weeklyTasks.map((task) => (
-              <NewTaskCard
+              <TaskCard
                 key={task.id}
                 task={task}
                 taskList={taskList}

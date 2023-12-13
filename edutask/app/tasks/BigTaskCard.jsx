@@ -1,10 +1,10 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Comments from './Comments';
-import FaceIcon from '@mui/icons-material/Face';
+
+
+
+
 
 const BigTaskCard = ({ task, handleClose }) => {
   const date = new Date(task.task_date);
@@ -27,7 +27,7 @@ const BigTaskCard = ({ task, handleClose }) => {
         borderRadius: '10px',
         zIndex: '10',
         maxWidth: '80%',
-        width: '900px',
+        width: '500px',
         height: '500px',
         boxShadow: '0 2px, 4px,0',
         position: 'fixed',
@@ -35,7 +35,7 @@ const BigTaskCard = ({ task, handleClose }) => {
        
      
         
-          flexDirection:{xs:'column', md:'row'},// Displaying items side by side
+          flexDirection:{xs:'column', md:'column'},// Displaying items side by side
           overflow: 'auto', // Enable scroll if content exceeds height
         wordWrap: 'break-word', // Wrap long words to prevent overflow
         whiteSpace: 'pre-wrap', // Maintain whitespace and wrap lines
@@ -66,7 +66,7 @@ const BigTaskCard = ({ task, handleClose }) => {
         <p>{task.task_description}</p>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Chip
-            label={`end: ${formattedDate}`}
+            label={`${formattedDate}`}
             size="small"
             sx={{
               marginTop: '2px',
@@ -82,32 +82,12 @@ const BigTaskCard = ({ task, handleClose }) => {
       </div>
     
 
-      <div style={{ flex: 1, marginLeft: '20px', display: 'flex', flexDirection: 'column' }}>
-        <h3>Comments</h3>
-         
-        <div style={{border:'2px solid black', padding:'15px', borderRadius:'8px', backgroundColor:'gray'}}
-
-        > 
-        <span><FaceIcon fontSize='small' sx={{marginBottom:'20px'}}/></span>
-       {/* eslint-disable-next-line react/no-unescaped-entities */}
-        Thinking of 'The Very Hungry Caterpillar' for our next story time! 🐛📖 </div>
-
-
-        {/* <Comments /> Render your comments component here */}
-
-        {/* Input field for comments
-        <TextField
-          id="comment-input"
-          label="Enter Comment"
-          variant="outlined"
-          style={{ marginTop: '10px' }}
-        />
-        <Button variant="contained" color="primary" onClick={handleCommentSubmit} style={{ marginTop: '10px' }}>
-          Submit
-        </Button> */}
-      </div>
+ 
+     
     </Box>
   );
 };
 
 export default BigTaskCard;
+
+    

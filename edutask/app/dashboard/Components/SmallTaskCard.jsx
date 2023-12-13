@@ -3,18 +3,55 @@ import Checkbox from '@mui/material/Checkbox';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import DoneIcon from '@mui/icons-material/Done';
+import Slide from "@mui/material/Slide";
+import Alert from "@mui/material/Alert";
+import { useState } from 'react';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-const SmallTaskCard = ({ task }) => {
+const SmallTaskCard = ({ task, completedTasks }) => {
+
+  const [alertOpen, setAlertOpen] = useState(false);
+
+
+  const handleTaskComplete = () => {
+    completedTasks(task.id);
+    setAlertOpen(true);
+    setTimeout(() => {
+      setAlertOpen(false);
   
+    }, 5000); // Adjust the time for alert display
+  };
+
+  const handleCloseAlert = () => {
+    setAlertOpen(false);
+  };
   return (
     <>
   
 
     <div style={{display: 'flex',  gap: '20px'}}>
-      <h3 style={{border: '1px solid black', padding: '10px'}}>{task.task_name}</h3>
+      <h3 style={{border: '1px solid black', padding: '5px', width:'100%', margin:'20px', borderRadius:'10px', backgroundColor:'#D9C3F9'}}>{task.task_name}      <Checkbox onClick={handleTaskComplete} {...label} sx={{float:'right'}} color="success" /></h3>
+
   
 </div>
+
+<Slide direction="up" in={alertOpen} mountOnEnter unmountOnExit>
+        <Alert
+          severity="success"
+          onClose={handleCloseAlert}
+          sx={{
+            position: "fixed",
+            bottom: "20px",
+            left: "20px",
+            zIndex: 9999,
+          }}
+        >
+         <span style={{ display: 'flex', alignItems: 'center' }}>
+    Completed 
+    <DoneIcon fontSize='small' sx={{ margin: '5px' }} /> </span>
+        </Alert>
+      </Slide>
     
   </>
 )
@@ -24,27 +61,3 @@ const SmallTaskCard = ({ task }) => {
 
 export default SmallTaskCard;  
 
- {/* <CardContent sx={{
-            borderRadius: "8px",
-            boxShadow:
-              "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
-            marginBottom: "20px", 
-            
-          }}>
-    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-   {task.task_date}
-    </Typography>
-    <Typography variant="h5" component="div">
-    {task.task_name}
-    </Typography>
-    <Typography sx={{ mb: 1.5 }} color="text.secondary">
-    {task.task_type}
-    </Typography>
-    <Typography variant="body2">
-     progress bar
-      <br />
-      {'"comments"'}
-    </Typography>
-  </CardContent>
-  <CardActions>
-  </CardActions>  */}

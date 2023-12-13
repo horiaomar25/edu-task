@@ -19,9 +19,15 @@ import Link from "next/link";
 import { useState } from "react";
 import Modal from "@mui/material/Modal";
 import TaskForm from "./tasks/TaskForm";
+import HomeIcon from '@mui/icons-material/Home';
+import TaskIcon from '@mui/icons-material/Task';
 
 const drawerWidth = 240;
-const navItems = ["Dashboard", "Tasks", "Resources"];
+const navItems = [
+  { text: "Dashboard", icon:<HomeIcon/> },
+  { text: "Tasks", icon:<TaskIcon/>}
+ 
+];
 
 const Navigation = (props) => {
   const { window } = props;
@@ -41,12 +47,9 @@ const Navigation = (props) => {
     setMobileOpen((prevState) => !prevState);
   };
 
-  const [tasks, setTasks] = useState([]);
 
-  // Function to update the task list
-  const updateTaskList = (newTask) => {
-    setTasks([...tasks, newTask]);
-  };
+
+
 
 
   const drawer = (
@@ -59,7 +62,8 @@ const Navigation = (props) => {
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
+            {item.icon && <ListItem>{item.icon}</ListItem>}
+              <ListItemText primary={item.text} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -100,7 +104,7 @@ const Navigation = (props) => {
 
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
               {navItems.map((item) => (
-                <Link key={item} href={`/${item.toLowerCase()}`} passHref>
+                <Link key={item} href={`/${item.text.toLowerCase()}`} passHref>
                   <Button sx={{ color: "#fff" }}>{item}</Button>
                 </Link>
               ))}
@@ -126,7 +130,7 @@ const Navigation = (props) => {
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
             >
-              <TaskForm handleClose={handleClose} updateTaskList={updateTaskList} />
+              <TaskForm handleClose={handleClose}  />
             </Modal>
           </Toolbar>
         </AppBar>
@@ -153,7 +157,7 @@ const Navigation = (props) => {
         </nav>
 
         <Toolbar />
-        {/* Your main content goes here */}
+       <h1>Hello World</h1>
       </Box>
     </>
   );
