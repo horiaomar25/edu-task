@@ -12,9 +12,9 @@ const TaskHeader = () => {
       width: { xs:' 90%', md: '95%', sm: '90%'}, // Set width to full for all screen sizes
       height: "auto",
       flexShrink: 0,
-      borderRadius: "20px",
-      background: "#FCFBFF",
-      border: "10px solid black",
+     
+     
+     
       margin: "30px",
       display: "flex",
       justifyContent: "center",
