@@ -2,6 +2,8 @@ import React from "react";
 import Image from "next/image";
 import HeaderPic from "../assets/dashboardtask.png";
 import Box from '@mui/system/Box';
+import Button from '@mui/material/Button';
+import Link from 'next/link';
 
 const TaskHeader = () => {
   return (
@@ -43,7 +45,22 @@ const TaskHeader = () => {
     <div style={{ textAlign: "center", flex: { xs: "none", md: "1" } }}>
   
       <h1>This Week you have 6 Tasks</h1>
-      <p>Check your Tasks</p>
+      <Link href="/tasks">
+                <Button
+                  sx={{
+                    backgroundColor: '#8338ec',
+                    color: 'white',
+                    width: '200px',
+                    borderRadius: '10px',
+                    '&:hover': {
+                      backgroundColor: '#6b2fbb',
+                      color: 'white',
+                    },
+                  }}
+                >
+                 See more
+                </Button>
+              </Link>
     </div>
   </Box>
   

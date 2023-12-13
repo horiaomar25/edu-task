@@ -76,6 +76,7 @@ const TaskForm = ({ handleClose }) => {
             height: "50px",
             width: "100%",
             fontSize: "16px",
+            
           }}
           label="Task name"
           variant="outlined"
@@ -106,6 +107,7 @@ const TaskForm = ({ handleClose }) => {
           rows="4"
           cols="50"
           value={taskDescription}
+          placeholder="Task Description"
           onChange={(e) => setTaskDescription(e.target.value)}
         ></textarea>
 
