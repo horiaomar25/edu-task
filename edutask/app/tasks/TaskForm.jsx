@@ -107,7 +107,7 @@ const TaskForm = ({ handleClose }) => {
           rows="4"
           cols="50"
           value={taskDescription}
-          placeholder="Task Description"
+         
           onChange={(e) => setTaskDescription(e.target.value)}
         ></textarea>
 
