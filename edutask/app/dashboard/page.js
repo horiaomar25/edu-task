@@ -9,12 +9,12 @@ import useData from '../Custom Hooks/useData'
 
 
 const Dashboard = () => {
-  const{ tasks, completeTask } = useData();
+  const{ tasks, completeTask, isLoading } = useData();
 
   
   return (
     <>
-  <TaskGrids tasks={tasks} completed={completeTask}/>
+  <TaskGrids tasks={tasks} completed={completeTask} isLoading={isLoading}/>
 
  
   </>
