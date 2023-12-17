@@ -3,11 +3,12 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import TaskCard from "./TaskCard";
 import CompletedCard from "./CompletedCard";
+import { Skeleton } from "@mui/material";
 
 
 
 // eslint-disable-next-line react/prop-types
-const TaskBoard = ({ tasks, taskList, delTask, completeTask}) => {
+const TaskBoard = ({ tasks, taskList, delTask, completeTask, isLoading}) => {
 
   const dailyTasks = tasks.filter(
     (task) => task.task_type === "Daily" && !task.completed);
@@ -15,6 +16,7 @@ const TaskBoard = ({ tasks, taskList, delTask, completeTask}) => {
     (task) => task.task_type === "Weekly" && !task.completed);
   const completedTasks = tasks.filter((task) => task.completed === true);
 
+ 
  
 
   return (
@@ -44,7 +46,22 @@ const TaskBoard = ({ tasks, taskList, delTask, completeTask}) => {
 
             {/* Heading centered within each column  */}
 
-            {dailyTasks.map((task) => (
+            {isLoading ? (
+         
+            Array.from({ length: 5 }).map((_, index) => (
+              <Skeleton  sx={{
+                borderRadius: "8px",
+              boxShadow:
+                "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
+              marginBottom: "30px",
+              width: '100%'}}
+              key={index} 
+              variant="rectangular" 
+              height={118} />
+            ))
+          ) : (
+            // Render TaskCards once data is fetched
+            dailyTasks.map((task) => (
               <TaskCard
                 key={task.id}
                 task={task}
@@ -52,7 +69,8 @@ const TaskBoard = ({ tasks, taskList, delTask, completeTask}) => {
                 delTask={delTask}
                 completedTask={completeTask}
               />
-            ))}
+            ))
+          )}
           </Grid>
           {/* Weekly Column */}
           <Grid
@@ -69,17 +87,32 @@ const TaskBoard = ({ tasks, taskList, delTask, completeTask}) => {
             }}
           >
             <h2 style={{ textAlign: "center" }}>Weekly</h2>
-
-            {weeklyTasks.map((task) => (
-              <TaskCard
-                key={task.id}
-                task={task}
-                taskList={taskList}
-                delTask={delTask}
-                completedTask={completeTask}
-              />
-            ))}
-          </Grid>
+            {isLoading ? (
+         
+         Array.from({ length: 5 }).map((_, index) => (
+           <Skeleton  sx={{
+             borderRadius: "8px",
+           boxShadow:
+             "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
+           marginBottom: "30px",
+           width: '100%'}}
+           key={index} 
+           variant="rectangular" 
+           height={118} />
+         ))
+       ) : (
+         // Render TaskCards once data is fetched
+         weeklyTasks.map((task) => (
+           <TaskCard
+             key={task.id}
+             task={task}
+             taskList={taskList}
+             delTask={delTask}
+             completedTask={completeTask}
+           />
+         ))
+       )}
+       </Grid>
           {/* Completed Column */}
           <Grid
             item

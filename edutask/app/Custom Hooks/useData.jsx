@@ -5,6 +5,7 @@ const useData = () => {
     // Create a new state variable, isFormOpen, and its setter function, setIsFormOpen.
   // 1. Create state to display/store the data
   const [tasks, setTasks] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   
 
@@ -40,6 +41,7 @@ const useData = () => {
 
   // 2. Fetching data from the database to display on the task board.
   const fetchTasks = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch("https://edutask-be.onrender.com/tasks");
       if (!response.ok) {
@@ -49,6 +51,8 @@ const useData = () => {
       setTasks(data.data);
     } catch (error) {
       console.error("Error fetching tasks:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -112,6 +116,7 @@ const useData = () => {
 
   // 3. This will hand the side effect of fetching data from the database.
   useEffect(() => {
+   
 
     fetchTasks()
 
@@ -130,7 +135,8 @@ const useData = () => {
     TaskList,
     delTask, 
     completeTask,
-    createTask
+    createTask,
+    isLoading,
   }
    
   
