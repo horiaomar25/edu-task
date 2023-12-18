@@ -22,12 +22,16 @@ const TaskForm = ({ handleClose }) => {
       task_date: formattedDueDate,
       task_type: taskType,
     });
+    
+
     // Clear form inputs after task creation
     setTaskName("");
     setTaskDescription("");
     setTaskDueDate("");
     setTaskType("");
   };
+
+
 
   return (
     <div
@@ -84,6 +88,7 @@ const TaskForm = ({ handleClose }) => {
           id="taskName"
           name="taskName"
           placeholder="Task Name"
+          required
           value={taskName}
           onChange={(e) => {
             setTaskName(e.target.value);
@@ -107,6 +112,7 @@ const TaskForm = ({ handleClose }) => {
           rows="4"
           cols="50"
           value={taskDescription}
+          required
          
           onChange={(e) => setTaskDescription(e.target.value)}
         ></textarea>
@@ -124,6 +130,7 @@ const TaskForm = ({ handleClose }) => {
           name="taskDueDate"
           placeholder="Task Due Date"
           value={taskDueDate}
+          required
           onChange={(e) => {
             const formattedDate = new Date(e.target.value)
               .toISOString()
@@ -149,6 +156,7 @@ const TaskForm = ({ handleClose }) => {
           id="select-type"
           name="task_type"
           value={taskType}
+          required
           onChange={(e) => setTaskType(e.target.value)}
         >
           <option value="" disabled selected>
