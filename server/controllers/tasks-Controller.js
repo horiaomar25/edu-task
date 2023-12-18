@@ -78,3 +78,17 @@ export async function completeTaskById(req, res){
 
   res.status(200).json({ status: "success", data: task });
 }
+
+// Task Count 
+
+export async function getTotalTasksCount(req, res) {
+  try {
+    const totalTasksCount = await tasksModel.countAllTasks();
+    
+    // Sending the count as a JSON response
+    res.status(200).json({ totalTasksCount });
+  } catch (error) {
+    // Handle errors if the count retrieval fails
+    res.status(404).json({ error: 'Error while fetching total tasks count' });
+  }
+}

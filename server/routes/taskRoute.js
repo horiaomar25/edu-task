@@ -8,7 +8,9 @@ tasksRoutes.get("/", taskController.getTasks);
 
 tasksRoutes.get("/:id", taskController.getDailyTaskById);
 
-tasksRoutes.get("tasks/:id", taskController.getWeeklyTaskById);
+tasksRoutes.get("/count", taskController.getTotalTasksCount);
+
+tasksRoutes.get("/:id", taskController.getWeeklyTaskById);
 
 tasksRoutes.post("/", taskController.createTask);
 
