@@ -114,6 +114,27 @@ const useData = () => {
     }
   };
 
+  const countTasks = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch("https://edutask-be.onrender.com/tasks/count");
+      if (!response.ok) {
+        throw new Error("Failed to fetch task count");
+      }
+      const data = await response.json();
+      console.log("Task count:", data.totalTasksCount);
+      // Set the task count retrieved from the backend to a state or use it as needed
+      // For example, setting it to a state variable
+      // setTaskCount(data.totalTasksCount);
+    } catch (error) {
+      console.error("Error fetching task count:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+
+  
   // 3. This will hand the side effect of fetching data from the database.
   useEffect(() => {
    
@@ -137,6 +158,7 @@ const useData = () => {
     completeTask,
     createTask,
     isLoading,
+    countTasks
   }
    
   

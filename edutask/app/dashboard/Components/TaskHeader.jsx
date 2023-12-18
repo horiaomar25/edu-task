@@ -4,8 +4,10 @@ import HeaderPic from "../assets/dashboardtask.png";
 import Box from '@mui/system/Box';
 import Button from '@mui/material/Button';
 import Link from 'next/link';
+import useData from "@/app/Custom Hooks/useData";
 
 const TaskHeader = () => {
+  const {  countTasks } = useData();
   return (
     <Box
     component="section"
@@ -44,7 +46,7 @@ const TaskHeader = () => {
     />
     <div style={{ textAlign: "center", flex: { xs: "none", md: "1" } }}>
   
-      <h1>This Week you have 6 Tasks</h1>
+      <h1>This Week you have {countTasks} Tasks</h1>
       <Link href="/tasks">
                 <Button
                   sx={{

@@ -23,6 +23,8 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.19",
+    "@playwright/test": "^1.40.1",
+    "@types/node": "^20.10.5",
     "eslint": "^8",
     "eslint-config-next": "^14.0.3"
   }

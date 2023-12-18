@@ -33,7 +33,7 @@ const TaskGrids = ({ tasks, completed, isLoading }) => {
               margin: '20px',
             }}
           >
-            <h1 style={{ paddingLeft: '20px' }}>Daily Tasks</h1>
+            <h2 style={{ paddingLeft: '20px' }}>Daily Tasks</h2>
             {isLoading ? (
          
          Array.from({ length: 5 }).map((_, index) => (
@@ -66,7 +66,7 @@ const TaskGrids = ({ tasks, completed, isLoading }) => {
               margin: '20px',
             }}
           >
-            <h1 style={{ padding: '20px', margin: 0 }}>Weekly Tasks</h1>
+            <h2 style={{ padding: '20px', margin: 0 }}>Weekly Tasks</h2>
             {isLoading ? (
          
          Array.from({ length: 5 }).map((_, index) => (
