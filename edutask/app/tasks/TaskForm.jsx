@@ -14,7 +14,7 @@ const TaskForm = ({ handleClose }) => {
   const [taskType, setTaskType] = useState("");
 
   const handleSubmit = (event) => {
-    // event.preventDefault();
+
     const formattedDueDate = new Date(taskDueDate);
     createTask({
       task_name: taskName,
@@ -22,6 +22,14 @@ const TaskForm = ({ handleClose }) => {
       task_date: formattedDueDate,
       task_type: taskType,
     });
+
+    // Check if any of the form fields are empty
+  if (!taskName || !taskDescription || !taskDueDate || !taskType) {
+    // Perform necessary actions when the form is incomplete
+    // For instance, showing an error message or preventing form submission
+    alert("Please fill in all fields");
+    return; // Prevent form submission if fields are incomplete
+  }
     
 
     // Clear form inputs after task creation
