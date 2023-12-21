@@ -9,7 +9,7 @@ export const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
 
-app.post('https://edutask-be.onrender.com/tasks', (req, res) => {
+app.post('http://localhost:3001/tasks/', (req, res) => {
     const { taskName, taskDescription, taskType } = req.body;
 // Validate and save the data to the database here
 
@@ -20,4 +20,3 @@ app.post('https://edutask-be.onrender.com/tasks', (req, res) => {
 app.use(cors())
 
 app.use("/tasks", tasksRoutes);
-// http://localhost:3001/tasks/

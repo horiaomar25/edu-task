@@ -83,12 +83,15 @@ export async function completeTaskById(req, res){
 
 export async function getTotalTasksCount(req, res) {
   try {
-    const totalTasksCount = await tasksModel.countAllTasks();
-    
-    // Sending the count as a JSON response
-    res.status(200).json({ totalTasksCount });
+      const totalTasksCount = await tasksModel.countAllTasks();
+      console.log('Total tasks count:', totalTasksCount);
+      
+      // Sending the count as a JSON response
+      res.status(200).json({ totalTasksCount });
   } catch (error) {
-    // Handle errors if the count retrieval fails
-    res.status(404).json({ error: 'Error while fetching total tasks count' });
+      console.error('Error while fetching total tasks count:', error);
+      
+      // Handle errors if the count retrieval fails
+      res.status(500).json({ error: 'Error while fetching total tasks count' });
   }
 }

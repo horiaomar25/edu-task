@@ -130,20 +130,23 @@ export async function completeTaskById(id){
 // Count all Tasks in the database
 
 export async function countAllTasks() {
-  const countQuery = 'SELECT COUNT(*) FROM tasks';
-
-  const countResult = await pool.query(countQuery);
-
-  // The count is present in the first row and first column of the result
-  return parseInt(countResult.rows[0].count, 10) || 0;
+  try {
+      const countQuery = 'SELECT COUNT(*) FROM tasks';
+      const countResult = await pool.query(countQuery);
+    
+      return parseInt(countResult.rows[0].count, 10) || 0;
+      
+  } catch (error) {
+      console.error("Error counting tasks:", error);
+      return 0;
+  }
 }
-
 
 
 
 
 // Example usage:
 // Get total number of tasks
-const totalTasks = await countAllTasks();
-console.log('Total tasks:', totalTasks);
+// const totalTasks = await countAllTasks();
+// console.log('Total tasks:', totalTasks);
 

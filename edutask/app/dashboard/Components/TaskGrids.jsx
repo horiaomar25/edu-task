@@ -69,13 +69,14 @@ const TaskGrids = ({ tasks, completed, isLoading }) => {
             <h2 style={{ padding: '20px', margin: 0 }}>Weekly Tasks</h2>
             {isLoading ? (
          
-         Array.from({ length: 5 }).map((_, index) => (
+         Array.from({ length: 3 }).map((_, index) => (
            <Skeleton  
             sx={{
              
               padding: '20px',
               width: '90%',
               margin: '20px',
+              border: '1px solid black',
               
              
           
