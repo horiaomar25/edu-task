@@ -3,9 +3,10 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import SmallTaskCard from "./SmallTaskCard";
-import AddWeekNumber from "./Calendar";
+
 import TaskHeader from "./TaskHeader";
 import { Skeleton } from "@mui/material";
+import Calendar from "./Calendar";
 
 const TaskGrids = ({ tasks, completed, isLoading }) => {
   const dailyTasks = tasks.filter((task) => task.task_type === "Daily").slice(0, 3);
@@ -31,12 +32,13 @@ const TaskGrids = ({ tasks, completed, isLoading }) => {
               backgroundColor: '#E2D7F1',
               width: '90%',
               margin: '20px',
+              padding: '20px',
             }}
           >
             <h2 style={{ paddingLeft: '20px' }}>Daily Tasks</h2>
             {isLoading ? (
          
-         Array.from({ length: 5 }).map((_, index) => (
+         Array.from({ length: 3 }).map((_, index) => (
            <Skeleton  
             sx={{
               border: '1px solid black',
@@ -60,10 +62,12 @@ const TaskGrids = ({ tasks, completed, isLoading }) => {
           <Box
             sx={{
             
-          
+              borderRadius: '10px',
+              border: '1px solid black',
               backgroundColor: '#E2D7F1',
               width: '90%',
               margin: '20px',
+              padding: '20px',
             }}
           >
             <h2 style={{ padding: '20px', margin: 0 }}>Weekly Tasks</h2>
@@ -101,7 +105,7 @@ const TaskGrids = ({ tasks, completed, isLoading }) => {
               margin: '20px',
             }}
           >
-            <AddWeekNumber />
+            <Calendar />
           </Box>
         </Grid>
 

@@ -48,7 +48,7 @@ const TaskBoard = ({ tasks, taskList, delTask, completeTask, isLoading}) => {
 
             {isLoading ? (
          
-            Array.from({ length: 5 }).map((_, index) => (
+            Array.from({ length: 1 }).map((_, index) => (
               <Skeleton  sx={{
                 borderRadius: "8px",
               boxShadow:
@@ -89,7 +89,7 @@ const TaskBoard = ({ tasks, taskList, delTask, completeTask, isLoading}) => {
             <h2 style={{ textAlign: "center" }}>Weekly</h2>
             {isLoading ? (
          
-         Array.from({ length: 5 }).map((_, index) => (
+         Array.from({ length: 1 }).map((_, index) => (
            <Skeleton  sx={{
              borderRadius: "8px",
            boxShadow:
@@ -128,13 +128,27 @@ const TaskBoard = ({ tasks, taskList, delTask, completeTask, isLoading}) => {
             }}
           >
             <h2 style={{ textAlign: "center" }}>Completed</h2>
-            {completedTasks.map((task) => (
-              <CompletedCard key={task.id} task={task} taskList={taskList} completedTask={completeTask} delTask={delTask} />
-            ))}
+            {isLoading ? (
+         
+         Array.from({ length: 1 }).map((_, index) => (
+           <Skeleton  sx={{
+             borderRadius: "8px",
+           boxShadow:
+             "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
+           marginBottom: "30px",
+           width: '100%'}}
+           key={index} 
+           variant="rectangular" 
+           height={118} />
+         ))
+        ) : completedTasks.map((task) => (
+          <CompletedCard key={task.id} task={task} taskList={taskList} completedTask={completeTask} delTask={delTask} />
+        ))
+        }
+            </Grid>
           </Grid>
-        </Grid>
-      </Box>
-    </>
+        </Box>
+      </>
   );
 };
 

@@ -28,6 +28,8 @@ const SmallTaskCard = ({ task, completedTasks }) => {
           style={{
             display: 'flex',
             gap: '20px',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           <h3
@@ -38,6 +40,10 @@ const SmallTaskCard = ({ task, completedTasks }) => {
               margin: '20px',
               borderRadius: '10px',
               backgroundColor: '#D9C3F9',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+          
             }}
           >
             {task.task_name}
