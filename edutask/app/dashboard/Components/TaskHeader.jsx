@@ -7,7 +7,9 @@ import Link from 'next/link';
 import useData from "@/app/Custom Hooks/useData";
 
 const TaskHeader = () => {
- 
+  const { tasks } = useData();
+  const taskCount = tasks.length;
+  console.log(taskCount);
   return (
     <Box
     component="section"
@@ -46,7 +48,7 @@ const TaskHeader = () => {
     />
     <div style={{ textAlign: "center", flex: { xs: "none", md: "1" } }}>
   
-      <h1>This Week you have  Tasks</h1>
+      <h1>This Week you have {taskCount}  Tasks</h1>
       <Link href="/tasks">
                 <Button
                   sx={{
