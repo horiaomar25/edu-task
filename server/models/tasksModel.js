@@ -145,8 +145,5 @@ export async function countAllTasks() {
 
 
 
-// Example usage:
-// Get total number of tasks
-// const totalTasks = await countAllTasks();
-// console.log('Total tasks:', totalTasks);
+
 

@@ -11,7 +11,7 @@ export async function createTask(req, res) {
   res.status(201).json({ status: "success", data: task });
 }
 
-export async function getDailyTaskById(req, res) {
+export async function getDailyTask(req, res) {
   const id = req.params.id;
   console.log(id)
   const task = await tasksModel.getDailyTaskById(id);

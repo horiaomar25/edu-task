@@ -6,7 +6,7 @@ export const tasksRoutes = express.Router();
 
 tasksRoutes.get("/", taskController.getTasks);
 
-tasksRoutes.get("/:id", taskController.getDailyTaskById);
+tasksRoutes.get("/:id", taskController.getDailyTask);
 
 tasksRoutes.get("/count", taskController.getTotalTasksCount);
 
