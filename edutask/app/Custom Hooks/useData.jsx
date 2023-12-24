@@ -141,6 +141,8 @@ const useData = () => {
 
     fetchTasks()
 
+    countTasks();
+
   }, []);
 
   const TaskList = (newTask) => {

@@ -38,11 +38,12 @@ const TaskGrids = ({ tasks, completed, isLoading }) => {
             sx={{
               border: '1px black solid',
               borderRadius: '7px',
-              padding: '30px',
+              padding: '40px',
               width: '90%',
               margin: '20px',
             }}
           >
+            <h2 style={{ margin: 0 }}>Calendar</h2>
             <Calendar />
           </Box>
         </Grid>
