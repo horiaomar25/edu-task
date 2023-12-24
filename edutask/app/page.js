@@ -25,14 +25,14 @@ export default function Home() {
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '20px',
+             
               textAlign: 'center', // Center the text
             }}
           >
             <h2 style={{ fontSize: '50px' }}> Welcome to EduTask</h2>
-            <p>
-              {' '}
-              A task manager that helps teachers and teaching assistants keep track of tasks
+            <p style={{ fontSize: '20px',paddingBottom:'30px'}}>
+          
+              A task manager that helps teaching assistants keep track of tasks
             </p>
             <div
               style={{
