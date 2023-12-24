@@ -127,20 +127,6 @@ export async function completeTaskById(id){
  
 }
 
-// Count all Tasks in the database
-
-export async function countAllTasks() {
-  try {
-      const countQuery = 'SELECT COUNT(*) FROM tasks';
-      const countResult = await pool.query(countQuery);
-    
-      return parseInt(countResult.rows[0].count, 10) || 0;
-      
-  } catch (error) {
-      console.error("Error counting tasks:", error);
-      return 0;
-  }
-}
 
 
 
