@@ -81,7 +81,10 @@ const TaskGrids = ({ tasks, completed, isLoading }) => {
                 ))
               ) : (
                 weeklyTasks.map((task) => (
-                  <SmallTaskCard key={task.id} task={task} completedTasks={completed} />
+                  <SmallTaskCard  key={task.id}
+                  task={task}
+                  completedTasks={completed}
+                  isCompleted={task.completed} />
                 ))
               )}
             </Box>
@@ -112,7 +115,10 @@ const TaskGrids = ({ tasks, completed, isLoading }) => {
                 ))
               ) : (
                 dailyTasks.map((task) => (
-                  <SmallTaskCard key={task.id} task={task} completedTasks={completed} />
+                  <SmallTaskCard  key={task.id}
+                  task={task}
+                  completedTasks={completed}
+                  isCompleted={task.completed}  />
                 ))
               )}
             </Box>

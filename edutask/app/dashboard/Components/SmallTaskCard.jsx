@@ -4,14 +4,14 @@ import DoneIcon from '@mui/icons-material/Done';
 import Slide from '@mui/material/Slide';
 import Alert from '@mui/material/Alert';
 
-const SmallTaskCard = ({ task, completedTasks }) => {
-  const [isCardVisible, setIsCardVisible] = useState(true);
+const SmallTaskCard = ({ task, completedTasks, isCompleted }) => {
   const [alertOpen, setAlertOpen] = useState(false);
+  const [hideTaskName, setHideTaskName] = useState(false);
 
   const handleTaskComplete = () => {
     completedTasks(task.id);
-    setIsCardVisible(false);
     setAlertOpen(true);
+    setHideTaskName(true); // Hide task name after completion
     setTimeout(() => {
       setAlertOpen(false);
     }, 5000); // Adjust the time for alert display
@@ -23,7 +23,7 @@ const SmallTaskCard = ({ task, completedTasks }) => {
 
   return (
     <>
-      <Slide direction="up" in={isCardVisible} mountOnEnter unmountOnExit>
+      <Slide direction="up" in={!hideTaskName && !isCompleted} mountOnEnter unmountOnExit>
         <div
           style={{
             display: 'flex',
@@ -32,28 +32,28 @@ const SmallTaskCard = ({ task, completedTasks }) => {
             justifyContent: 'center',
           }}
         >
-          <h3
-            style={{
-              border: '1px solid black',
-              padding: '5px',
-              width: '100%',
-              margin: '20px',
-              borderRadius: '10px',
-              backgroundColor: '#D9C3F9',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-          
-            }}
-          >
-            {task.task_name}
-            <Checkbox
-              onClick={handleTaskComplete}
-       
-              sx={{ float: 'right' }}
-              color="success"
-            />
-          </h3>
+          {!hideTaskName && !isCompleted && (
+            <h3
+              style={{
+                border: '1px solid black',
+                padding: '5px',
+                width: '100%',
+                margin: '20px',
+                borderRadius: '10px',
+                backgroundColor: '#D9C3F9',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              {task.task_name}
+              <Checkbox
+                onClick={handleTaskComplete}
+                sx={{ float: 'right' }}
+                color="success"
+              />
+            </h3>
+          )}
         </div>
       </Slide>
 
