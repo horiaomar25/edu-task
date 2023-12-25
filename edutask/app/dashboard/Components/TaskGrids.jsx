@@ -105,6 +105,7 @@ const TaskGrids = ({ tasks, completed, isLoading }) => {
                       width: '90%',
                       margin: '20px',
                       borderRadius: '10px',
+                      backgroundColor: '#E2D7F1',
                     }}
                     key={index}
                   />
