@@ -71,7 +71,7 @@ const TaskGrids = ({ tasks, completed, isLoading }) => {
                     sx={{
                       border: '1px solid black',
                       borderRadius: '10px',
-                      backgroundColor: '#E2D7F1',
+                  
                       width: '90%',
                       margin: '20px',
                       padding: '20px',
@@ -105,7 +105,7 @@ const TaskGrids = ({ tasks, completed, isLoading }) => {
                       width: '90%',
                       margin: '20px',
                       borderRadius: '10px',
-                      backgroundColor: '#E2D7F1',
+                    
                     }}
                     key={index}
                   />
