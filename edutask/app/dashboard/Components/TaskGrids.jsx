@@ -27,7 +27,7 @@ const TaskGrids = ({ tasks, completed, isLoading }) => {
             sx={{
               border: '1px black solid',
               borderRadius: '7px',
-              padding: '45px',
+              padding: '20px',
               width: '90%',
               margin: '20px',
             }}
@@ -38,7 +38,7 @@ const TaskGrids = ({ tasks, completed, isLoading }) => {
             sx={{
               border: '1px black solid',
               borderRadius: '7px',
-              padding: '40px',
+              padding: '20px',
               width: '90%',
               margin: '20px',
             }}
@@ -56,12 +56,14 @@ const TaskGrids = ({ tasks, completed, isLoading }) => {
           >
             <Box
               sx={{
-                border: '1px solid black',
-                borderRadius: '10px',
-                backgroundColor: '#E2D7F1',
+              
+                 backgroundColor: '#E2D7F1',
+                border: '1px black solid',
+                borderRadius: '7px',
+                padding: '20px',
                 width: '90%',
                 margin: '20px',
-                padding: '20px',
+              
               }}
             >
               <h2 style={{ padding: '20px', margin: 0 }}>Weekly Tasks</h2>
@@ -90,12 +92,13 @@ const TaskGrids = ({ tasks, completed, isLoading }) => {
             </Box>
             <Box
               sx={{
-                border: '1px solid black',
-                borderRadius: '10px',
                 backgroundColor: '#E2D7F1',
+                border: '1px black solid',
+                borderRadius: '7px',
+                padding: '20px',
                 width: '90%',
                 margin: '20px',
-                padding: '20px',
+                
               }}
             >
               <h2 style={{ paddingLeft: '20px' }}>Daily Tasks</h2>

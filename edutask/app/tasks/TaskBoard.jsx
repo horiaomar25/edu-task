@@ -44,8 +44,7 @@ const TaskBoard = ({ tasks, taskList, delTask, completeTask, isLoading}) => {
           >
             <h2 style={{ textAlign: "center" }}>Daily</h2>
 
-            {/* Heading centered within each column  */}
-
+          
             {isLoading ? (
          
             Array.from({ length: 1 }).map((_, index) => (
