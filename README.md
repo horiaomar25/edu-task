@@ -1,43 +1,42 @@
-# edu-task
 
-# Project Title
 
-Short project description
+# EduTask
 
-## Description
+EduTask helps teaching assistants manage their weekly and daily tasks easily.  It's easy to use and helps keep things organized, making work at school much simpler. With EduTask, teaching assistants can get more done and be more productive during the school week.
 
-A more detailed project description explaining its features and purpose.
+# Problem Statement
+"Teaching Assistant may find it diffcult to keep track of tasks and would like a useful management tool to track tasks"
 
 ## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Configuration](#configuration)
-- [Contributing](#contributing)
-- [Credits](#credits)
-- [License](#license)
+
 
 ## Installation
 
-Instructions on how to install the project. Include prerequisites and dependencies.
+To run this project locally, follow these steps:
 
+Clone the repository:
+
+```git clone <repository_url>```
+
+Install dependencies:
+
+```npm install```
+
+Start the server:
+
+Run the following command to start the server:
+
+```npm start```
+
+This will launch the application using node server/app.js.
 ## Usage
 
-How to use the project with code examples or instructions.
+https://www.youtube.com/embed/C9_1leIDqNg?si=EoJlBqYUNtGLPMks
 
-## Configuration
 
-Any configuration steps required for the project.
 
-## Contributing
 
-Guidelines for contributing to the project, reporting issues, or making pull requests.
-
-## Credits
-
-Credit to individuals, libraries, or resources that contributed to the project.
-
-## License
-
-Specify the license the project is released under.
 
