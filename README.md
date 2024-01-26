@@ -7,6 +7,9 @@ EduTask helps teaching assistants manage their weekly and daily tasks easily.  I
 # Problem Statement
 "Teaching Assistant may find it diffcult to keep track of tasks and would like a useful management tool to track tasks"
 
+# Solution
+
+
 ## Table of Contents
 
 - [Installation](#installation)
