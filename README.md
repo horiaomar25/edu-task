@@ -2,7 +2,8 @@
 
 # EduTask
 
-![EduTask Thumbnail (1)](https://github.com/horiaomar25/edu-task/assets/140801006/d24589d0-87bf-4bc5-9035-a0d27dc1acf7)
+
+![EduTask Thumbnail (1)](https://github.com/horiaomar25/edu-task/assets/140801006/084b0650-f25e-4d77-92e9-fc2d4b06ba45)
 
 EduTask helps teaching assistants manage their weekly and daily tasks easily.  It's easy to use and helps keep things organized, making work at school much simpler. With EduTask, teaching assistants can get more done and be more productive during the school week.
 
