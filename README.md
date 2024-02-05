@@ -20,15 +20,23 @@
 
 - [Usage](#usage)
 
-# Problem Statement
+## Problem Statement
 "Teaching Assistant may find it diffcult to keep track of tasks and would like a useful management tool to track of Daily and Weekly tasks."
 
-# Idea
+## Idea
 I'm a former teaching assistant, a lot of the schools that I worked with mostly use paper. In this case, it can be a risk to loose your task list. I created EduTask as a task management sytem to file tasks under Weekly and Daily tasks. For most teaching assistant, they are given daily and weekly target to meet. 
 
-# Solution
+## Solution
 A task management system that caters to Weekly and Daily tasks of a teaching assistant. It will store digitally to keep a copy of task in case a paper list is lost. 
 
+## Tech Stack
+- NextJS - Web framework
+- PostrgreSQL - Database
+- NodeJS - Server Enviroment
+- PlayWright - End to End Testing
+
+## Future Scope
+I am working on adding authenitication (user login). I would also to create a Resource page where you can save useful information like art activities for future use. 
 
 ## Installation
 
