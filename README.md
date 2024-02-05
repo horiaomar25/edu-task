@@ -11,13 +11,11 @@
 
 
 ## Table of Contents
-- [Problem Statement](#problemstatement)
-- [Idea/Solution](#idea/solution)
-- [Tech Stack](#techstack)
-- [Future Scope](#futurescope)
+- [Problem Statement](#problem)
+- [Idea/Solution](#idea)
+- [Tech Stack](#tech)
+- [Future Scope](#scope)
 - [Installation](#installation)
-
-
 - [Usage](#usage)
 
 ## Problem Statement
