@@ -7,14 +7,12 @@
 <div align=”center”> EduTask helps teaching assistants manage their weekly and daily tasks easily.  It's easy to use and helps keep things organized, making work at school much simpler. With EduTask, teaching assistants can get more done and be more productive during the school week.  </div> 
 
 
-
-
-
 ## Table of Contents
 - [Problem Statement](#problem)
 - [Idea/Solution](#idea)
 - [Tech Stack](#tech)
- - [Lessons](#lessons)
+- [Server/Dataabse](#tech)
+- [Lessons](#lessons)
 - [Future Scope](#scope)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -33,6 +31,9 @@ A task management system that caters to Weekly and Daily tasks of a teaching ass
 - PostrgreSQL - Database
 - NodeJS - Server Enviroment
 - PlayWright - End to End Testing
+
+## Server/Database
+The server was built with Node and Express. I used the MVC (Model-View-Controller) to build the server. 
 
 ## Lessons Learned
 - This project allowed me to learn more about NextJS 's client side and server side components. It is a very useful framework when building full stack applications in comparison to React.
