@@ -14,6 +14,7 @@
 - [Problem Statement](#problem)
 - [Idea/Solution](#idea)
 - [Tech Stack](#tech)
+ - [Lessons](#lessons)
 - [Future Scope](#scope)
 - [Installation](#installation)
 - [Usage](#usage)
