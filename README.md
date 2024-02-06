@@ -33,6 +33,11 @@ A task management system that caters to Weekly and Daily tasks of a teaching ass
 - NodeJS - Server Enviroment
 - PlayWright - End to End Testing
 
+## Lessons Learned
+- This project allowed me to learn more about NextJS 's client side and server side components. It is a very useful framework when building full stack applications in comparison to React.
+- MaterialUI components helped with speeding up the styling process. I was able to explore different components to find what I needed for my project. I realize that MaterialUI has a lot more to offer. I look forward to delving deeper into MaterialUI for future projects.
+  
+
 ## Future Scope
 I am working on adding authenitication (user login). I would also to create a Resource page where you can save useful information like art activities for future use. 
 
