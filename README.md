@@ -21,7 +21,7 @@
 "Teaching Assistant may find it diffcult to keep track of tasks and would like a useful management tool to track of Daily and Weekly tasks."
 
 ## Idea
-I'm a former teaching assistant, a lot of the schools that I worked with mostly use paper. In this case, it can be a risk to loose your task list. I created EduTask as a task management sytem to file tasks under Weekly and Daily tasks. For most teaching assistant, they are given daily and weekly target to meet. 
+I'm a former teaching assistant, a lot of the schools that I worked with mostly use paper. In this case, it can be a risk to loose your task list. I created EduTask as a task management sytem to file tasks under Weekly and Daily tasks. For most teaching assistant, they are given daily and weekly targets to meet. 
 
 ## Solution
 A task management system that caters to Weekly and Daily tasks of a teaching assistant. It will store digitally to keep a copy of task in case a paper list is lost. 
