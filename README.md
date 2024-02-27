@@ -33,7 +33,13 @@ A task management system that caters to Weekly and Daily tasks of a teaching ass
 - PlayWright - End to End Testing
 
 ## Server/Database
+Database 
+The database was built with PostgreSQL. This is the structure:
+
+![edutask table](https://github.com/horiaomar25/edu-task/assets/140801006/d460f08f-76e3-4b19-8ced-9bdb90081e46)
+
 The server was built with Node and Express. I used the MVC (Model-View-Controller) to build the server. 
+
 
 ## Lessons Learned
 - This project allowed me to learn more about NextJS 's client side and server side components. It is a very useful framework when building full stack applications in comparison to React.
