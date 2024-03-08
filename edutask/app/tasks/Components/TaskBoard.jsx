@@ -1,7 +1,7 @@
 "use client";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import TaskCard from "./TaskCard";
+import TaskCard from "../TaskCard";
 import CompletedCard from "./CompletedCard";
 import { Skeleton } from "@mui/material";
 

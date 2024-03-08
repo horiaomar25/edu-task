@@ -1,6 +1,6 @@
 
 import { test, expect } from '@playwright/test';
-import DropDownMenu from '@/app/tasks/DropMenu';
+import DropDownMenu from '@/app/tasks/Components/DropMenu';
 
 //test skeleton
 test('opening task menu', async function ({ page }){

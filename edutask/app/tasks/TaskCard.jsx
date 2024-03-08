@@ -6,7 +6,7 @@ import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
 
 
-import DropDownMenu from "./DropMenu";
+import DropDownMenu from "./Components/DropMenu";
 
 
 const TaskCard = ({ task, taskList, delTask, completedTask }) => {
