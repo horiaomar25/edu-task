@@ -7,14 +7,12 @@
 <div align=”center”> EduTask helps teaching assistants manage their weekly and daily tasks easily.  It's easy to use and helps keep things organized, making work at school much simpler. With EduTask, teaching assistants can get more done and be more productive during the school week.  </div> 
 
 
-
-
-
 ## Table of Contents
 - [Problem Statement](#problem)
 - [Idea/Solution](#idea)
 - [Tech Stack](#tech)
- - [Lessons](#lessons)
+- [Server/Dataabse](#tech)
+- [Lessons](#lessons)
 - [Future Scope](#scope)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -23,7 +21,7 @@
 "Teaching Assistant may find it diffcult to keep track of tasks and would like a useful management tool to track of Daily and Weekly tasks."
 
 ## Idea
-I'm a former teaching assistant, a lot of the schools that I worked with mostly use paper. In this case, it can be a risk to loose your task list. I created EduTask as a task management sytem to file tasks under Weekly and Daily tasks. For most teaching assistant, they are given daily and weekly target to meet. 
+I'm a former teaching assistant, a lot of the schools that I worked with mostly use paper. In this case, it can be a risk to loose your task list. I created EduTask as a task management sytem to file tasks under Weekly and Daily tasks. For most teaching assistant, they are given daily and weekly targets to meet. 
 
 ## Solution
 A task management system that caters to Weekly and Daily tasks of a teaching assistant. It will store digitally to keep a copy of task in case a paper list is lost. 
@@ -33,6 +31,15 @@ A task management system that caters to Weekly and Daily tasks of a teaching ass
 - PostrgreSQL - Database
 - NodeJS - Server Enviroment
 - PlayWright - End to End Testing
+
+## Server/Database
+Database 
+The database was built with PostgreSQL. This is the structure:
+
+![edutask table](https://github.com/horiaomar25/edu-task/assets/140801006/d460f08f-76e3-4b19-8ced-9bdb90081e46)
+
+The server was built with Node and Express. I used the MVC (Model-View-Controller) to build the server. 
+
 
 ## Lessons Learned
 - This project allowed me to learn more about NextJS 's client side and server side components. It is a very useful framework when building full stack applications in comparison to React.
