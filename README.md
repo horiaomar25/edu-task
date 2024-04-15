@@ -6,6 +6,9 @@
 
 <div align=”center”> EduTask helps teaching assistants manage their weekly and daily tasks easily.  It's easy to use and helps keep things organized, making work at school much simpler. With EduTask, teaching assistants can get more done and be more productive during the school week.  </div> 
 
+Watch a video demo of EduTask [here](https://www.youtube.com/embed/C9_1leIDqNg?si=EoJlBqYUNtGLPMks).
+
+
 
 ## Table of Contents
 - [Problem Statement](#problem)
@@ -76,9 +79,7 @@ Run the following command to start the server:
 ```npm start```
 
 This will launch the application using node server/app.js.
-## Usage
 
-https://www.youtube.com/embed/C9_1leIDqNg?si=EoJlBqYUNtGLPMks
 
 
 
