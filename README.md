@@ -35,6 +35,10 @@ A task management system that caters to Weekly and Daily tasks of a teaching ass
 - NodeJS - Server Enviroment
 - PlayWright - End to End Testing
 
+## Structure/Component Tree
+
+![Component Tree](https://github.com/horiaomar25/edu-task/assets/140801006/0765dbd2-f9f9-40a5-aeaf-9f5a68dc10a7)
+
 ## Server/Database
 Database 
 The database was built with PostgreSQL. This is the structure:
