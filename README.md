@@ -36,13 +36,15 @@ A task management system that caters to Weekly and Daily tasks of a teaching ass
 Database 
 The database was built with PostgreSQL. This is the structure:
 
-Column Name	Data Type	Description
-id	UUID	Primary key, automatically generated UUID
-task_name	TEXT	Name of the task
-task_description	TEXT	Description of the task
-task_date	DATE	Date associated with the task
-task_type	TEXT	Type of the task (e.g., work, personal)
-completed	BOOLEAN	Indicates whether the task is completed or not
+| Column Name       | Data Type   | Description                                   |
+|-------------------|-------------|-----------------------------------------------|
+| id                | UUID        | Primary key, automatically generated UUID     |
+| task_name         | TEXT        | Name of the task                              |
+| task_description  | TEXT        | Description of the task                       |
+| task_date         | DATE        | Date associated with the task                 |
+| task_type         | TEXT        | Type of the task (e.g., work, personal)       |
+| completed         | BOOLEAN     | Indicates whether the task is completed or not|
+
 
 The server was built with Node and Express. I used the MVC (Model-View-Controller) to build the server. 
 
