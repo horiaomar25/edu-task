@@ -59,7 +59,7 @@ The server was built with Node and Express. I used the MVC (Model-View-Controlle
 ## Lessons Learned
 - This project allowed me to learn more about NextJS 's client side and server side components. It is a very useful framework when building full stack applications in comparison to React.
 - MaterialUI components helped with speeding up the styling process. I was able to explore different components to find what I needed for my project. I realize that MaterialUI has a lot more to offer. I look forward to delving deeper into MaterialUI for future projects.
-- Just a update now coming back to this project, I would say that I have may have preference for other styling frameworks. I enjoyed using MaterialUI but I feel that other styling librabries such DaisyUI would have been easier to start with. This is just a personal preference. Overall, MaterialUI provides great styles. 
+- Just a update now coming back to this project, I would say that I have preference for other styling frameworks. I enjoyed using MaterialUI but I feel that other styling librabries such DaisyUI would have been easier to start with. This is just a personal preference. Overall, MaterialUI provides great styles. 
   
 
 ## Future Scope
