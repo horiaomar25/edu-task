@@ -49,7 +49,7 @@ The database was built with PostgreSQL. This is the structure:
 | task_name         | TEXT        | Name of the task                              |
 | task_description  | TEXT        | Description of the task                       |
 | task_date         | DATE        | Date associated with the task                 |
-| task_type         | TEXT        | Type of the task (e.g., work, personal)       |
+| task_type         | TEXT        | Type of the task (e.g., Daily, Weekly)       |
 | completed         | BOOLEAN     | Indicates whether the task is completed or not|
 
 
