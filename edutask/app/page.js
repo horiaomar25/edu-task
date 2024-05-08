@@ -5,9 +5,12 @@ import Image from 'next/image';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import Navigation from './Navigation';
 
 export default function Home() {
   return (
+    <>
+    <Navigation/>
     <Box
       style={{
         marginTop: '80px',
@@ -96,5 +99,6 @@ export default function Home() {
         </Grid>
       </Grid>
     </Box>
+    </>
   );
 }
