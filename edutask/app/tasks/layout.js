@@ -1,4 +1,6 @@
-import Navigation from "./Navigation";
+import Navigation from "../Navigation"
+
+
 
 export const metadata = {
   title: "EduTask",
@@ -9,9 +11,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Navigation />
-
+       <Navigation/>
+      
+     
+   
         {children}
+        
       </body>
     </html>
   );

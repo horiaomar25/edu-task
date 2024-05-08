@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from "@mui/material/Button";
 import {useState, useEffect} from 'react'
-import useData from '../../Custom Hooks/useData';
+import useData from '../../../Custom Hooks/useData';
 
 
 const EditForm = ({ task, handleClose }) => {

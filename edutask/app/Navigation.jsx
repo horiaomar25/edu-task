@@ -167,7 +167,7 @@ const Navigation = (props) => {
         </nav>
 
         <Toolbar />
-        <h1>Hello World</h1>
+     
       </Box>
     </>
   );
