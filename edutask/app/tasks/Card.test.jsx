@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
-import TaskCard from './TaskCard'; // Assuming this test file is in the same directory as TaskCard.js
+import TaskCard from '../../Components/TaskCard'; // Assuming this test file is in the same directory as TaskCard.js
 
 // ... (Mock props and describe block)
 
