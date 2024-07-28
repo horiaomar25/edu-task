@@ -1,9 +1,10 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { Box, Grid, Skeleton } from '@mui/material';
-import AccessibleTable from './TestTable';
+import AccessibleTable from './TaskTable';
 import SmallTaskCard from './SmallTaskCard';
 import Calendar from './Calendar';
+import TaskHeader from './TaskHeader';
 
 const TaskGrids = ({ tasks, isLoading }) => {
   const [completed, setCompleted] = useState([]);
@@ -34,16 +35,27 @@ const TaskGrids = ({ tasks, isLoading }) => {
         justifyContent: 'center',
         marginTop: '30px',
         alignItems: 'center',
+        padding:"20px"
       }}
     >
-      <Grid container spacing={2}>
+      <Box
+        sx={{
+          width: '97%',
+          borderRadius: '7px',
+          padding: '20px',
+          boxShadow: "rgba(6, 24, 44, 0.1) 0px 0px 0px 2px, rgba(6, 24, 44, 0.1) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
+        }}
+      >
+        <TaskHeader />
+      </Box>
+      <Grid container spacing={2} sx={{ marginTop: '20px' }}>
         <Grid item xs={12} md={6}>
           <Box
             sx={{
-              borderRadius: '7px',
               padding: '20px',
-              width: '90%',
-              margin: '20px',
+              width: '100%',
+              
+              borderRadius: '7px',
             }}
           >
             {isLoading || !isMounted ? (
@@ -52,8 +64,8 @@ const TaskGrids = ({ tasks, isLoading }) => {
                   sx={{
                     border: '1px solid black',
                     borderRadius: '10px',
-                    width: '90%',
-                    margin: '20px',
+                    width: '100%',
+                    margin: '20px 0',
                     padding: '20px',
                   }}
                   key={index}
@@ -63,96 +75,18 @@ const TaskGrids = ({ tasks, isLoading }) => {
               <AccessibleTable tasks={combinedTasks} completedTasks={handleCompletedTasks} />
             )}
           </Box>
-          <Box
-            sx={{
-              border: '1px black solid',
-              borderRadius: '7px',
-              padding: '20px',
-              width: '90%',
-              margin: '20px',
-            }}
-          >
-            <h2 style={{ margin: 0 }}>Calendar</h2>
-            <Calendar />
-          </Box>
         </Grid>
         <Grid item xs={12} md={6}>
           <Box
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
+              padding: '20px',
+              width: '97%',
+              boxShadow: "rgba(6, 24, 44, 0.1) 0px 0px 0px 2px, rgba(6, 24, 44, 0.1) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
+              borderRadius: '7px',
+              marginTop:"24px"
             }}
           >
-            <Box
-              sx={{
-                backgroundColor: '#E2D7F1',
-                border: '1px black solid',
-                borderRadius: '7px',
-                padding: '20px',
-                width: '90%',
-                margin: '20px',
-              }}
-            >
-              <h2 style={{ padding: '20px', margin: 0 }}>Weekly Tasks</h2>
-              {isLoading || !isMounted ? (
-                Array.from({ length: 3 }).map((_, index) => (
-                  <Skeleton
-                    sx={{
-                      border: '1px solid black',
-                      borderRadius: '10px',
-                      width: '90%',
-                      margin: '20px',
-                      padding: '20px',
-                    }}
-                    key={index}
-                  />
-                ))
-              ) : (
-                weeklyTasks.map((task) => (
-                  <SmallTaskCard
-                    key={task.id}
-                    task={task}
-                    completedTasks={handleCompletedTasks}
-                    isCompleted={task.completed}
-                  />
-                ))
-              )}
-            </Box>
-            <Box
-              sx={{
-                backgroundColor: '#E2D7F1',
-                border: '1px black solid',
-                borderRadius: '7px',
-                padding: '20px',
-                width: '90%',
-                margin: '20px',
-              }}
-            >
-              <h2 style={{ paddingLeft: '20px' }}>Daily Tasks</h2>
-              {isLoading || !isMounted ? (
-                Array.from({ length: 3 }).map((_, index) => (
-                  <Skeleton
-                    sx={{
-                      border: '1px solid black',
-                      padding: '20px',
-                      width: '90%',
-                      margin: '20px',
-                      borderRadius: '10px',
-                    }}
-                    key={index}
-                  />
-                ))
-              ) : (
-                dailyTasks.map((task) => (
-                  <SmallTaskCard
-                    key={task.id}
-                    task={task}
-                    completedTasks={handleCompletedTasks}
-                    isCompleted={task.completed}
-                  />
-                ))
-              )}
-            </Box>
+            <Calendar />
           </Box>
         </Grid>
       </Grid>
@@ -161,3 +95,4 @@ const TaskGrids = ({ tasks, isLoading }) => {
 };
 
 export default TaskGrids;
+

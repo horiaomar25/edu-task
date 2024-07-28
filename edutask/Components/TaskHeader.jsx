@@ -14,42 +14,32 @@ const TaskHeader = () => {
     <Box
       component="section"
       sx={{
-        p: 4,
-        width: { xs: " 90%", md: "95%", sm: "90%" }, // Set width to full for all screen sizes
+        width: { xs: "90%", md: "92%", sm: "90%" }, // Set width to full for all screen sizes
+ 
         height: "auto",
         flexShrink: 0,
-
-        margin: "30px",
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "center", // Center horizontally
         flexDirection: { xs: "column", md: "row" },
-        alignItems: "center", // Center vertically and horizontally
         gap: "20px",
         margin: { xs: "20px" },
-        alignItems: "center",
       }}
     >
-      <Image
-        src={HeaderPic}
-        alt="task"
-        height={200}
+      <Box
         style={{
-          border: "1px solid black",
-          borderRadius: "8px",
-          boxShadow:
-            "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
-          marginBottom: { xs: "20px", md: "0" },
+          display: "flex", // Make the content wrapper a flex container
+          flexDirection: "column",
+          alignItems: "center", // Center vertically and horizontally within the wrapper
+          flex: { xs: "none", md: "1" }, // Only set flex for medium screens and above
         }}
-      />
-      
-      <div style={{ textAlign: "center", flex: { xs: "none", md: "1" } }}>
+      >
         <h1>This Week you have {taskCount} Tasks</h1>
         <Link href="/tasks">
           <Button
             sx={{
               backgroundColor: "#8338ec",
               color: "white",
-              width: "200px",
+              width: "180px",
               borderRadius: "10px",
               "&:hover": {
                 backgroundColor: "#6b2fbb",
@@ -60,9 +50,10 @@ const TaskHeader = () => {
             See more
           </Button>
         </Link>
-      </div>
+      </Box>
     </Box>
   );
 };
 
 export default TaskHeader;
+

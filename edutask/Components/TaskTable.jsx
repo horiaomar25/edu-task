@@ -12,7 +12,7 @@ import Slide from '@mui/material/Slide';
 import Alert from '@mui/material/Alert';
 import DoneIcon from '@mui/icons-material/Done';
 
-export default function AccessibleTable({ tasks = [], completedTasks }) {
+export default function TaskTable({ tasks = [], completedTasks }) {
     const getTypeStyle = (taskType) => {
         switch (taskType) {
             case 'Daily':
@@ -40,7 +40,7 @@ export default function AccessibleTable({ tasks = [], completedTasks }) {
         setAlertOpen(false);
     };
 
- const firstSixTask = tasks.slice(0, 6);
+ const firstSixTask = tasks.slice(0, 4);
 
     return (
         <TableContainer component={Paper} style={{ overflowX: 'hidden' }}>
