@@ -22,9 +22,9 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.14.19",
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^5.16.5",
     "@playwright/test": "^1.40.1",
     "@types/node": "^20.10.5",
     "eslint": "^8",

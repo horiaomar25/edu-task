@@ -6,14 +6,28 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Navigation from './Navigation';
+import dashboardshot from "../assets/dashboardshot.png"
+import taskboardshot from "../assets/taskboardshot.png"
 
 export default function Home() {
   return (
     <>
       <Navigation />
-      <h1 style={{ fontSize: "7rem", textAlign: "center", fontWeight: "bold", marginTop: "1rem", marginBottom: "1rem", letterSpacing: "-0.02em" }}>
+      <h1 style={{ 
+        fontSize: "7rem", 
+        textAlign: "center", 
+        fontWeight: "bold", 
+        marginTop: "0.5rem", // Adjusted margin top to reduce space
+        marginBottom: "1rem", 
+        letterSpacing: "-0.02em" 
+      }}>
         Edu
-        <span style={{ paddingBottom: "1rem", background: "linear-gradient(to right, #8e24aa, #673ab7)", WebkitBackgroundClip: "text", color: "transparent" }}>
+        <span style={{ 
+          paddingBottom: "1rem", 
+          background: "linear-gradient(to right, #8e24aa, #673ab7)", 
+          WebkitBackgroundClip: "text", 
+          color: "transparent" 
+        }}>
           Task
         </span>
       </h1>
@@ -23,18 +37,19 @@ export default function Home() {
           justifyContent: 'center',
           gap: '20px',
           flexWrap: 'wrap',
-          marginBottom: '2rem', // Adjusted margin bottom to reduce space
+          marginBottom: '2rem',
         }}
       >
         <Link href="/dashboard">
           <Button
             sx={{
-              backgroundColor: '#8338ec',
-              color: 'white',
+              backgroundColor: 'none',
+              color: 'black',
+              border: "#8338ec 1px solid",
               width: '200px',
               borderRadius: '10px',
               '&:hover': {
-                backgroundColor: '#6b2fbb',
+                backgroundColor: '#8338ec',
                 color: 'white',
               },
             }}
@@ -45,12 +60,13 @@ export default function Home() {
         <Link href="/tasks">
           <Button
             sx={{
-              backgroundColor: '#8338ec',
-              color: 'white',
+              backgroundColor: 'none',
+              color: 'black',
+              border: "#8338ec 1px solid",
               width: '200px',
               borderRadius: '10px',
               '&:hover': {
-                backgroundColor: '#6b2fbb',
+                backgroundColor: '#8338ec',
                 color: 'white',
               },
             }}
@@ -78,6 +94,74 @@ export default function Home() {
           </Grid>
         </Grid>
       </Box>
+
+      <section style={{
+       
+        margin: "20px", 
+        padding: "20px"
+      }}>
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }} style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <Grid item xs={12} sm={6} md={6} container direction="column" justifyContent="center" alignItems="center">
+            <h2 style={{ 
+              fontSize: "4rem", 
+              textAlign: "center", 
+              fontWeight: "bold", 
+              marginTop: "1rem", 
+              marginBottom: "1rem", 
+              letterSpacing: "-0.02em" 
+            }}> 
+              Dashboard
+            </h2>
+            <p style={{ textAlign:"center" }}> Use the dashboard to view tasks </p>
+          </Grid>
+          <Grid item xs={12} sm={6} md={6} container justifyContent="center" alignItems="center">
+            <Image 
+              src={dashboardshot} 
+              alt="screenshot of dashboard" 
+              width={650}
+              style={{
+                borderRadius: "8px",
+                boxShadow: "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
+                marginBottom: { xs: "20px", md: "0" },
+              }} 
+            />
+          </Grid>
+        </Grid>
+      </section>
+
+      <section style={{
+  margin: "20px", 
+  padding: "20px"
+}}>
+  <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }} style={{ maxWidth: "1200px", margin: "0 auto" }}>
+    <Grid item xs={12} sm={6} md={6} container justifyContent="center" alignItems="center">
+      <Image 
+        src={taskboardshot} 
+        alt="screenshot of dashboard" 
+        width={650}
+        style={{
+          borderRadius: "8px",
+          boxShadow: "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
+          marginBottom: { xs: "20px", md: "0" },
+        }} 
+      />
+    </Grid>
+    <Grid item xs={12} sm={6} md={6} container direction="column" justifyContent="center" alignItems="center">
+      <h2 style={{ 
+        fontSize: "4rem", 
+        textAlign: "center", 
+        fontWeight: "bold", 
+        marginTop: "1rem", 
+        marginBottom: "1rem", 
+        letterSpacing: "-0.02em" 
+      }}> 
+        TaskBoard
+      </h2>
+      <p style={{ textAlign:"center" }}> Use the dashboard to view tasks </p>
+    </Grid>
+  </Grid>
+</section>
+
     </>
   );
 }
