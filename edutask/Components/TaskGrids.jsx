@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Grid, Skeleton } from '@mui/material';
 import AccessibleTable from './TaskTable';
-import SmallTaskCard from './SmallTaskCard';
+
 import Calendar from './Calendar';
 import TaskHeader from './TaskHeader';
 
