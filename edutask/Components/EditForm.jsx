@@ -1,46 +1,43 @@
-import React from 'react'
+import React, { useState, useEffect, forwardRef } from 'react';
 import Button from "@mui/material/Button";
-import {useState, useEffect} from 'react'
-import useData from '../Custom Hooks/useData';
+import useData from '../Hooks/useData';
 
+const EditForm = forwardRef(function EditForm({ task, handleClose }, ref) {
+  const { updateTask } = useData();
 
-const EditForm = ({ task, handleClose }) => {
-  const{updateTask} = useData();
-  
   const [taskName, setTaskName] = useState(task.task_name || "");
   const [taskDescription, setTaskDescription] = useState(task.task_description || "");
   const [taskDueDate, setTaskDueDate] = useState(task.task_date || "");
   const [taskType, setTaskType] = useState(task.task_type || "");
-  
-  
-    // PATCH request taken from the useData (custom hook).
-    async function handleSubmit(event) {
-    
-    
-      const formattedDueDate = new Date(taskDueDate);
-    
-      try {
-        const taskId = task.id; // Assuming task.id holds the identifier of the task to update
-    
-        // Update the task using the updateTask function from the useData hook
-        await updateTask(taskId, {
-          task_name: taskName,
-          task_description: taskDescription,
-          task_date: formattedDueDate,
-          task_type: taskType,
-        });
-    
-        // Close the form after the update is successful
-        handleClose();
-      } catch (error) {
-        console.error("Error:", error);
-      }
+
+  // PATCH request taken from the useData (custom hook).
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const formattedDueDate = new Date(taskDueDate);
+
+    try {
+      const taskId = task.id; // Assuming task.id holds the identifier of the task to update
+
+      // Update the task using the updateTask function from the useData hook
+      await updateTask(taskId, {
+        task_name: taskName,
+        task_description: taskDescription,
+        task_date: formattedDueDate,
+        task_type: taskType,
+      });
+
+      // Close the form after the update is successful
+      handleClose();
+    } catch (error) {
+      console.error("Error:", error);
     }
-    
-    
-    return (
-        <>
-        <div
+  }
+
+  return (
+    <div
+      ref={ref}
+      data-testid="edit-form"
+      tabIndex="-1"
       style={{
         backgroundColor: "white",
         top: "50%",
@@ -54,6 +51,7 @@ const EditForm = ({ task, handleClose }) => {
         width: "500px",
         boxShadow: "0 2px, 4px,0",
         position: "fixed",
+      
       }}
     >
       <div
@@ -113,7 +111,6 @@ const EditForm = ({ task, handleClose }) => {
             width: "100%",
             fontSize: "16px",
           }}
-         
           value={taskDescription}
           onChange={(e) => setTaskDescription(e.target.value)}
         ></textarea>
@@ -136,7 +133,6 @@ const EditForm = ({ task, handleClose }) => {
               .toISOString()
               .split("T")[0];
             setTaskDueDate(formattedDate);
-           
           }}
         />
 
@@ -192,8 +188,7 @@ const EditForm = ({ task, handleClose }) => {
         </Button>
       </form>
     </div>
-        </>
-    )
-}
+  );
+});
 
-export default EditForm
+export default EditForm;

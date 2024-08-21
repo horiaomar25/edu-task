@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --coverage",
-    "test:watch": "jest --watchAll"
+    "test": "jest --verbose",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@date-io/dayjs": "^2.17.0",
@@ -26,6 +26,8 @@
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^5.16.5",
     "@playwright/test": "^1.40.1",
+    "@testing-library/jest-dom": "^6.4.8",
+    "@testing-library/react": "^16.0.0",
     "@types/node": "^20.10.5",
     "eslint": "^8",
     "eslint-config-next": "^14.0.3",

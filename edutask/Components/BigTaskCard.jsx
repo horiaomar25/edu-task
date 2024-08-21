@@ -7,13 +7,12 @@ const BigTaskCard = ({ task, handleClose }) => {
   const options = { weekday: 'short', day: 'numeric', month: 'short' };
   const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
 
-  const handleCommentSubmit = () => {
-    // Implement the logic to handle comment submission here
-  };
 
   return (
     <Box
+    data-testid="big-task-card"
       sx={{
+        
         backgroundColor: 'white',
         top: '50%',
         left: '50%',
@@ -25,7 +24,7 @@ const BigTaskCard = ({ task, handleClose }) => {
         maxWidth: '80%',
         width: '500px',
         height: '500px',
-        boxShadow: '0 2px, 4px,0',
+        boxShadow: '0 2, 4,0',
         position: 'fixed',
         display: 'flex',
         flexDirection: { xs: 'column', md: 'column' }, // Displaying items side by side
@@ -39,6 +38,7 @@ const BigTaskCard = ({ task, handleClose }) => {
         <button
           onClick={handleClose}
           id="close-button"
+          data-testid="close-button"
           style={{
             background: 'transparent',
             border: 'none',

@@ -1,10 +1,9 @@
+"use client"
 import React from "react";
-import Image from "next/image";
-import HeaderPic from "../assets/dashboardtask.png";
 import Box from "@mui/system/Box";
 import Button from "@mui/material/Button";
 import Link from "next/link";
-import useData from "@/Custom Hooks/useData";
+import useData from "../Hooks/useData";
 
 const TaskHeader = () => {
   const { tasks } = useData();

@@ -84,13 +84,13 @@ export default function Home() {
           <Grid item xs={12} sm={6} md={4}>
             <Box sx={{ border: "2px solid black", borderRadius: "10px", width: "100%", height: "200px", position: "relative", backgroundColor: "#8e24aa" }}>
               <span style={{ border: "1px solid black", width: "100%", height: "2px", display: "block", position: "absolute", top: "10%" }}></span>
-              <h5 style={{ textAlign: "center", marginTop: "50%", color: "white", transform: "translateY(-50%)" }}>Daily</h5>
+            
             </Box>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <Box sx={{ border: "2px solid black", borderRadius: "10px", width: "100%", height: "200px", position: "relative", backgroundColor: "#8e24aa" }}>
               <span style={{ border: "1px solid black", width: "100%", height: "2px", display: "block", position: "absolute", top: "10%" }}></span>
-              <h5 style={{ textAlign: "center", marginTop: "50%", color: "white", transform: "translateY(-50%)" }}>Weekly</h5> 
+               
             </Box>  
           </Grid>
         </Grid>

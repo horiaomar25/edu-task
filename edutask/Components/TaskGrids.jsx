@@ -62,7 +62,7 @@ const TaskGrids = ({ tasks, isLoading }) => {
               Array.from({ length: 6 }).map((_, index) => (
                 <Skeleton
                   sx={{
-                    border: '1px solid black',
+                    
                     borderRadius: '10px',
                     width: '100%',
                     margin: '20px 0',
@@ -81,7 +81,7 @@ const TaskGrids = ({ tasks, isLoading }) => {
             sx={{
               padding: '20px',
               width: '97%',
-              boxShadow: "rgba(6, 24, 44, 0.1) 0px 0px 0px 2px, rgba(6, 24, 44, 0.1) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
+              
               borderRadius: '7px',
               marginTop:"24px"
             }}
@@ -95,4 +95,3 @@ const TaskGrids = ({ tasks, isLoading }) => {
 };
 
 export default TaskGrids;
-
