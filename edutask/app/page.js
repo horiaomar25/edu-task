@@ -37,9 +37,7 @@ export default function Home() {
         alignItems: 'center',
         gap: '20px',
         marginBottom: '2rem',
-        '@media (min-width: 600px)': {
-          flexDirection: 'row',
-        }
+        flexDirection: 'column',
       }}>
         <Link href="/dashboard">
           <Button

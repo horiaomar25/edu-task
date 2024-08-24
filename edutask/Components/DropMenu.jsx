@@ -70,19 +70,21 @@ export default function DropMenu({ task, taskList, delTask, completedTask } ) {
   };
 
   return (
-    <div>
-      <MoreVertIcon
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        aria-label="More options"
-        onClick={handleClick}
-        tabIndex="0" // Make the icon focusable
-        role="button"
-        onKeyDown={(e) => e.key === 'Enter' && handleClick(e)} // Handle Enter key for opening menu
-        data-testid="more-options-icon"
-      />
+   
+      <>
+      <button
+ data-testid="more-options-button"
+  aria-controls={open ? 'basic-menu' : undefined} // Indicates the menu is controlled by the button using state. if menu is not open it is defined as undefined.
+  aria-haspopup="true" // Indicates the button opens a menu
+  aria-expanded={open ? 'true' : undefined} // Indicates the menu is open
+  aria-label="More options for the task" // Descriptive label for screen readers
+  onClick={handleClick}
+  onKeyDown={(e) => e.key === 'Enter' && handleClick(e)} // Handle Enter key for opening menu
+  
+  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }} // Remove default button styles
+>
+  <MoreVertIcon tabIndex="-1" /> {/* Ensure the icon itself is not focusable */}
+</button>
       
       <Menu
         anchorEl={anchorEl}
@@ -90,25 +92,37 @@ export default function DropMenu({ task, taskList, delTask, completedTask } ) {
         onClose={handleClose}
         aria-label="basic-menu"
       >
-        <MenuItem  data-testid="menu-item-open" onClick={() => { handleClose(); handleOpenExpand(); }}>
+        <MenuItem data-testid="menu-item-open" onClick={() => { handleClose(); handleOpenExpand(); } }>
           <OpenInFullIcon fontSize='small' sx={{ margin: '5px' }} />
           Open
         </MenuItem>
-        <MenuItem data-testid="menu-item-edit" onClick={() => { handleClose(); handleOpen(); }}>
+        <MenuItem data-testid="menu-item-edit" onClick={() => { handleClose(); handleOpen(); } }>
           <EditIcon fontSize='small' sx={{ margin: '5px' }} />
           Edit
         </MenuItem>
-        <MenuItem data-testid="menu-item-delete" onClick={() => { handleClose(); handleDelete(); }}>
+        <MenuItem data-testid="menu-item-delete" onClick={() => { handleClose(); handleDelete(); } }>
           <DeleteIcon fontSize='small' sx={{ margin: '5px' }} />
           Delete
         </MenuItem>
-        <MenuItem data-testid="menu-item-complete" onClick={() => { handleClose(); handleTaskComplete(); }}>
+        <MenuItem data-testid="menu-item-complete" onClick={() => { handleClose(); handleTaskComplete(); } }>
           <DoneIcon fontSize='small' sx={{ margin: '5px' }} />
           Complete
         </MenuItem>
-      </Menu>
+        <MenuItem data-testid="menu-item-close" onClick={() => { handleClose(); } }>
+          <button
 
-      <Slide direction="up" in={alertOpen} mountOnEnter unmountOnExit>
+            id="close-button"
+            style={{
+              background: "transparent",
+              border: "none",
+              fontSize: "20px",
+            }}
+          >
+            &times;
+          </button>
+          Close Menu
+        </MenuItem>
+      </Menu><Slide direction="up" in={alertOpen} mountOnEnter unmountOnExit>
         <Alert
           severity="success"
           onClose={handleCloseAlert}
@@ -122,38 +136,38 @@ export default function DropMenu({ task, taskList, delTask, completedTask } ) {
           aria-live="assertive" // Indicate that this is important for screen readers
         >
           <span style={{ display: 'flex', alignItems: 'center' }}>
-            Completed 
+            Completed
             <DoneIcon fontSize='small' sx={{ margin: '5px' }} />
           </span>
         </Alert>
       </Slide>
-
+      
       <Modal
         open={modalOpen}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        aria-labelledby="edit-form-modal-title"
+        aria-describedby="edit-task"
         aria-modal="true" // Indicates a modal dialog for screen readers
         keepMounted={false} // Focus handling
+        data-testid="edit-form-modal"
       >
         <EditForm
           handleClose={handleEditClose}
           task={task}
-          onTaskUpdate={handleTaskUpdate}
-        />
+          onTaskUpdate={handleTaskUpdate} />
       </Modal>
-
       <Modal
         open={expandOpen}
         onClose={handleCloseExpand}
         aria-labelledby="big-task-card"
         aria-describedby="task-details"
+        data-testid="big-task-modal"
       >
         <BigTaskCard
           handleClose={handleCloseExpand}
-          task={task}
-        />
+          task={task} />
       </Modal>
-    </div>
+      </>
+    
   );
 }

@@ -12,7 +12,7 @@ import Slide from '@mui/material/Slide';
 import Alert from '@mui/material/Alert';
 import DoneIcon from '@mui/icons-material/Done';
 
-export default function TaskTable({ tasks = [], completedTasks }) {
+export default function DashBoardTable({ tasks = [], completedTasks }) {
     const getTypeStyle = (taskType) => {
         switch (taskType) {
             case 'Daily':

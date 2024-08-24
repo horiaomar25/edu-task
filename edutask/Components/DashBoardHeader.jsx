@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import Link from "next/link";
 import useData from "../Hooks/useData";
 
-const TaskHeader = () => {
+const DashBoardHeader = () => {
   const { tasks } = useData();
   const taskCount = tasks.length;
 
@@ -54,5 +54,5 @@ const TaskHeader = () => {
   );
 };
 
-export default TaskHeader;
+export default DashBoardHeader;
 

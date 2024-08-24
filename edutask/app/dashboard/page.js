@@ -1,24 +1,25 @@
-"use client"
-import React from 'react'
-import TaskGrids from '../../Components/TaskGrids'
-import useData from '../../Hooks/useData'
-
-
-
-
-
+"use client";
+import React, { useEffect, useState } from 'react';
+import DashBoardGrid from '../../Components/DashBoardGrid';
+import useData from '../../Hooks/useData';
 
 const Dashboard = () => {
-  const{ tasks, completeTask, isLoading } = useData();
+  const { tasks, completeTask, isLoading } = useData();
+  const [isClient, setIsClient] = useState(false);
 
-  
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null; // or a loading spinner, or some placeholder content
+  }
+
   return (
-    <>
-  <TaskGrids tasks={tasks} completed={completeTask} isLoading={isLoading}/>
+    
+      <DashBoardGrid tasks={tasks} />
+    
+  );
+};
 
- 
-  </>
-  )
-}
-
-export default Dashboard
+export default Dashboard;

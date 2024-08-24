@@ -1,12 +1,11 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { Box, Grid, Skeleton } from '@mui/material';
-import AccessibleTable from './TaskTable';
-
+import DashBoardTable from './DashBoardTable';
 import Calendar from './Calendar';
-import TaskHeader from './TaskHeader';
+import DashBoardHeader from './DashBoardHeader';
 
-const TaskGrids = ({ tasks, isLoading }) => {
+const DashboardGrid = ({ tasks, isLoading }) => {
   const [completed, setCompleted] = useState([]);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -33,9 +32,8 @@ const TaskGrids = ({ tasks, isLoading }) => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        marginTop: '30px',
         alignItems: 'center',
-        padding:"20px"
+        padding: "20px"
       }}
     >
       <Box
@@ -46,7 +44,7 @@ const TaskGrids = ({ tasks, isLoading }) => {
           boxShadow: "rgba(6, 24, 44, 0.1) 0px 0px 0px 2px, rgba(6, 24, 44, 0.1) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
         }}
       >
-        <TaskHeader />
+        <DashBoardHeader />
       </Box>
       <Grid container spacing={2} sx={{ marginTop: '20px' }}>
         <Grid item xs={12} md={6}>
@@ -54,7 +52,6 @@ const TaskGrids = ({ tasks, isLoading }) => {
             sx={{
               padding: '20px',
               width: '100%',
-              
               borderRadius: '7px',
             }}
           >
@@ -62,7 +59,6 @@ const TaskGrids = ({ tasks, isLoading }) => {
               Array.from({ length: 6 }).map((_, index) => (
                 <Skeleton
                   sx={{
-                    
                     borderRadius: '10px',
                     width: '100%',
                     margin: '20px 0',
@@ -72,7 +68,7 @@ const TaskGrids = ({ tasks, isLoading }) => {
                 />
               ))
             ) : (
-              <AccessibleTable tasks={combinedTasks} completedTasks={handleCompletedTasks} />
+              <DashBoardTable tasks={combinedTasks} completedTasks={handleCompletedTasks} />
             )}
           </Box>
         </Grid>
@@ -81,9 +77,8 @@ const TaskGrids = ({ tasks, isLoading }) => {
             sx={{
               padding: '20px',
               width: '97%',
-              
               borderRadius: '7px',
-              marginTop:"24px"
+              marginTop: "24px"
             }}
           >
             <Calendar />
@@ -94,4 +89,4 @@ const TaskGrids = ({ tasks, isLoading }) => {
   );
 };
 
-export default TaskGrids;
+export default DashboardGrid;

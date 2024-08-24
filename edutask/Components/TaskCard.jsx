@@ -1,15 +1,13 @@
 "use client";
-
 import CardContent from "@mui/material/CardContent";
 import * as React from "react";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
-
-
 import DropDownMenu from "./DropMenu";
 
 
 const TaskCard = ({ task, taskList, delTask, completedTask }) => {
+ 
   const date = new Date(task.task_date);
   // Get the date in a formatted string (YYYY-MM-DD)
   const options = { weekday: 'short', day: 'numeric', month: 'short' };

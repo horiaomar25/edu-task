@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 
-const BigTaskCard = ({ task, handleClose }) => {
+const BigTaskCard = forwardRef(({ task, handleClose }, ref) => {
+  let formattedDate = 'Invalid date';
   const date = new Date(task.task_date);
-  const options = { weekday: 'short', day: 'numeric', month: 'short' };
-  const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
 
+  if (date && date.toString() !== 'Invalid Date') {
+    formattedDate = date.toISOString().split('T')[0];
+  }
 
   return (
     <Box
-    data-testid="big-task-card"
+      ref={ref}
+      tabIndex={-1}
+      data-testid="big-task-card" // Add this line
       sx={{
-        
         backgroundColor: 'white',
         top: '50%',
         left: '50%',
@@ -24,10 +27,10 @@ const BigTaskCard = ({ task, handleClose }) => {
         maxWidth: '80%',
         width: '500px',
         height: '500px',
-        boxShadow: '0 2, 4,0',
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)', // Corrected box shadow value
         position: 'fixed',
         display: 'flex',
-        flexDirection: { xs: 'column', md: 'column' }, // Displaying items side by side
+        flexDirection: 'column', // Displaying items in a column
         overflow: 'auto', // Enable scroll if content exceeds height
         wordWrap: 'break-word', // Wrap long words to prevent overflow
         whiteSpace: 'pre-wrap', // Maintain whitespace and wrap lines
@@ -55,7 +58,7 @@ const BigTaskCard = ({ task, handleClose }) => {
         <p>{task.task_description}</p>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Chip
-            label={`${formattedDate}`}
+            label={` ${formattedDate}`}
             size="small"
             sx={{
               marginTop: '2px',
@@ -66,11 +69,13 @@ const BigTaskCard = ({ task, handleClose }) => {
               },
             }}
           />
-          <hr />
         </div>
       </div>
     </Box>
   );
-};
+});
+
+// Assign a display name for easier debugging
+BigTaskCard.displayName = 'BigTaskCard';
 
 export default BigTaskCard;

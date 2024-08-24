@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect, forwardRef } from 'react';
 import Button from "@mui/material/Button";
 import useData from '../Hooks/useData';
@@ -36,7 +37,7 @@ const EditForm = forwardRef(function EditForm({ task, handleClose }, ref) {
   return (
     <div
       ref={ref}
-      data-testid="edit-form"
+      data-testid="edit-form-component"
       tabIndex="-1"
       style={{
         backgroundColor: "white",
@@ -65,7 +66,8 @@ const EditForm = forwardRef(function EditForm({ task, handleClose }, ref) {
         <h1>Edit Task</h1>
         <button
           onClick={handleClose}
-          id="close-button"
+          data-testid="close-button"
+
           style={{
             background: "transparent",
             border: "none",

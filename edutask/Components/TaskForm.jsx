@@ -1,12 +1,9 @@
 import Button from "@mui/material/Button";
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import useData from "../Hooks/useData";
 
-const TaskForm = ({ handleClose }) => {
-  // POST request for Form Data to be sent to the server
+const TaskForm = forwardRef(({ handleClose }, ref) => {
   const { createTask } = useData();
-
-  // useState for each input field of the form to send a POST request to the server.
 
   const [taskName, setTaskName] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
@@ -14,6 +11,12 @@ const TaskForm = ({ handleClose }) => {
   const [taskType, setTaskType] = useState("");
 
   const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (!taskName || !taskDescription || !taskDueDate || !taskType) {
+      alert("Please fill in all fields");
+      return;
+    }
 
     const formattedDueDate = new Date(taskDueDate);
     createTask({
@@ -23,26 +26,15 @@ const TaskForm = ({ handleClose }) => {
       task_type: taskType,
     });
 
-    // Check if any of the form fields are empty
-  if (!taskName || !taskDescription || !taskDueDate || !taskType) {
-    // Perform necessary actions when the form is incomplete
-    // For instance, showing an error message or preventing form submission
-    alert("Please fill in all fields");
-    return; // Prevent form submission if fields are incomplete
-  }
-    
-
-    // Clear form inputs after task creation
     setTaskName("");
     setTaskDescription("");
     setTaskDueDate("");
     setTaskType("");
   };
 
-
-
   return (
     <div
+      ref={ref}
       style={{
         backgroundColor: "white",
         top: "50%",
@@ -54,19 +46,21 @@ const TaskForm = ({ handleClose }) => {
         zIndex: "10",
         maxWidth: "80%",
         width: "500px",
-        boxShadow: "0 2px, 4px,0",
+        boxShadow: "0 2px 4px 0",
         position: "fixed",
       }}
+      role="dialog"
+      aria-labelledby="form-title"
     >
       <div
         style={{
           display: "flex",
-          padding: "5px ",
+          padding: "5px",
           justifyContent: "space-between",
           alignItems: "center",
         }}
       >
-        <h1>Add Task</h1>
+        <h1 id="form-title">Add Task</h1>
         <button
           onClick={handleClose}
           id="close-button"
@@ -75,6 +69,7 @@ const TaskForm = ({ handleClose }) => {
             border: "none",
             fontSize: "30px",
           }}
+          aria-label="Close"
         >
           &times;
         </button>
@@ -84,24 +79,17 @@ const TaskForm = ({ handleClose }) => {
         <label htmlFor="taskName">Task Name</label>
         <input
           style={{
-            width: "400px",
-            height: "50px",
             width: "100%",
+            height: "50px",
             fontSize: "16px",
-            
           }}
-          label="Task name"
-          variant="outlined"
           type="text"
           id="taskName"
           name="taskName"
           placeholder="Task Name"
           required
           value={taskName}
-          onChange={(e) => {
-            setTaskName(e.target.value);
-            console.log("taskName:", e.target.value); // Log the updated taskName
-          }}
+          onChange={(e) => setTaskName(e.target.value)}
         />
 
         <label
@@ -112,16 +100,15 @@ const TaskForm = ({ handleClose }) => {
         </label>
         <textarea
           style={{
-            width: "400px",
-            height: "50px",
             width: "100%",
             fontSize: "16px",
           }}
           rows="4"
-          cols="50"
-          value={taskDescription}
+          id="taskDescription"
+          name="taskDescription"
+          placeholder="Task Description"
           required
-         
+          value={taskDescription}
           onChange={(e) => setTaskDescription(e.target.value)}
         ></textarea>
 
@@ -132,19 +119,18 @@ const TaskForm = ({ handleClose }) => {
           Task Due Date
         </label>
         <input
-          style={{ width: "400px", height: "50px", width: "100%" }}
+          style={{ width: "100%", height: "50px" }}
           type="date"
           id="taskDueDate"
           name="taskDueDate"
           placeholder="Task Due Date"
-          value={taskDueDate}
           required
+          value={taskDueDate}
           onChange={(e) => {
             const formattedDate = new Date(e.target.value)
               .toISOString()
               .split("T")[0];
             setTaskDueDate(formattedDate);
-            console.log("Formatted Date:", formattedDate);
           }}
         />
 
@@ -152,48 +138,25 @@ const TaskForm = ({ handleClose }) => {
           htmlFor="taskType"
           style={{ display: "block", marginTop: "1em" }}
         >
-          Task Type:
+          Task Type
         </label>
         <select
           style={{
-            width: "400px",
-            height: "40px",
             width: "100%",
+            height: "40px",
             marginBottom: "15px",
           }}
-          id="select-type"
-          name="task_type"
-          value={taskType}
+          id="taskType"
+          name="taskType"
           required
+          value={taskType}
           onChange={(e) => setTaskType(e.target.value)}
         >
-          <option value="" disabled selected>
+          <option value="" disabled>
             Select Task Type
           </option>
-          <option
-            style={{
-              width: "400px",
-              height: "40px",
-              width: "100%",
-              marginBottom: "15px",
-            }}
-            value="Daily"
-            id="daily"
-          >
-            Daily
-          </option>
-          <option
-            style={{
-              width: "400px",
-              height: "40px",
-              width: "100%",
-              marginBottom: "15px",
-            }}
-            value="Weekly"
-            id="weekly"
-          >
-            Weekly
-          </option>
+          <option value="Daily">Daily</option>
+          <option value="Weekly">Weekly</option>
         </select>
 
         <Button sx={{ float: "right" }} type="submit" variant="outlined">
@@ -202,6 +165,8 @@ const TaskForm = ({ handleClose }) => {
       </form>
     </div>
   );
-};
+});
+
+TaskForm.displayName = "TaskForm";
 
 export default TaskForm;
