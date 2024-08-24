@@ -129,6 +129,7 @@ const Navigation = (props) => {
                 color: "#fff",
               }}
               variant="outlined"
+              data-testid="create-task-button"
             >
               {" "}
               Create Task +{" "}

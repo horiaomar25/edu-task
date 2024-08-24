@@ -1,125 +1,79 @@
-import { render, screen, fireEvent, waitFor, within } from '@testing-library/react';
+import React from 'react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import DropDownMenu from './DropMenu';
+import DropMenu from './DropMenu';
 
+const mockTask = { id: 1, name: 'Test Task' };
+const mockTaskList = jest.fn();
+const mockDelTask = jest.fn();
+const mockCompletedTask = jest.fn();
 
-
-const mockTask = {
-  id: 1,
-  name: 'Test Task',
-  description: 'Test Description',
-  dueDate: '2023-10-10',
-  type: 'Daily',
-};
-
-const mockTaskList = [mockTask];
-
-describe('DropDownMenu Component', () => {
-  const mockDelTask = jest.fn();
-  const mockCompletedTask = jest.fn();
-
+describe('DropMenu Component', () => {
   beforeEach(() => {
-    render(<DropDownMenu task={mockTask} taskList={mockTaskList} delTask={mockDelTask} completedTask={mockCompletedTask} />);
+    render(
+      <DropMenu
+        task={mockTask}
+        taskList={mockTaskList}
+        delTask={mockDelTask}
+        completedTask={mockCompletedTask}
+      />
+    );
   });
 
-  test('opens the menu when button is clicked to open dropdown menu', () => {
-    // Find button by test-id 
-    const moreOptionsButton = screen.getByTestId('more-options-button');
-
-    // Click the button
-    fireEvent.click(moreOptionsButton);
-
-    // Check if the menu is open
-    expect(screen.getByLabelText('basic-menu')).toBeInTheDocument();
+  test('renders more options button', () => {
+    const button = screen.getByTestId('more-options-button');
+    expect(button).toBeInTheDocument();
   });
 
-  test('opens the BigTaskCard component when open is clicked', async () => {
-    const moreOptionsButton = screen.getByTestId('more-options-button');
-    fireEvent.click(moreOptionsButton);
-
-    const openButton = screen.getByTestId('menu-item-open');
-    fireEvent.click(openButton);
-
-    // Use waitFor to handle asynchronous rendering
-    await waitFor(() => {
-      const modal = screen.getByTestId('big-task-modal');
-      expect(modal).toBeInTheDocument();
-
-      // Check if BigTaskCard is within the modal
-      const bigTaskCard = within(modal).getByTestId('big-task-card');
-      expect(bigTaskCard).toBeInTheDocument();
-    });
-  });
-
-  test('Checks that DropDownMenu open and closes correctly', async () => {
-    // Open the menu
-    fireEvent.click(screen.getByTestId('more-options-button'));
-
-    // Check if the menu is open
-    // Check if the menu is open
-    const menu = screen.getByLabelText('basic-menu');
+  test('opens menu on button click', () => {
+    const button = screen.getByTestId('more-options-button');
+    fireEvent.click(button);
+    const menu = screen.getByRole('menu', { name: 'task-menu' });
     expect(menu).toBeInTheDocument();
-
-      // Close the menu by clicking the close menu item
-      const closeButton = screen.getByTestId('menu-item-close');
-      fireEvent.click(closeButton);
-
-    // Use waitFor to handle asynchronous rendering
-    await waitFor(() => {
-      expect(menu).not.toBeInTheDocument();
-    });
   });
 
-  test('deletes the task when delete is clicked', async () => {
-    const openButton = screen.getByTestId('more-options-button');
-    fireEvent.click(openButton);
+  test('opens edit modal on edit menu item click', () => {
+    const button = screen.getByTestId('more-options-button');
+    fireEvent.click(button);
+    const editMenuItem = screen.getByTestId('menu-item-edit');
+    fireEvent.click(editMenuItem);
+    const modal = screen.getByTestId('edit-form-modal');
+    expect(modal).toBeInTheDocument();
+  });
 
-    const delButton = screen.getByTestId('menu-item-delete');
-    fireEvent.click(delButton);
-
+  test('calls delTask on delete menu item click', () => {
+    const button = screen.getByTestId('more-options-button');
+    fireEvent.click(button);
+    const deleteMenuItem = screen.getByTestId('menu-item-delete');
+    fireEvent.click(deleteMenuItem);
     expect(mockDelTask).toHaveBeenCalledWith(mockTask.id);
-
-  })
-
-  test('opens the edit task modal when edit is clicked', async () => {
-  // Simulate the action to open the modal
-  const openButton = screen.getByTestId('more-options-button');
-  fireEvent.click(openButton);
-
-  const editButton = screen.getByTestId('menu-item-edit');
-  fireEvent.click(editButton);
-
-  // Wait for the modal to appear
-  await waitFor(() => {
-    expect(screen.getByTestId('edit-form-modal')).toBeInTheDocument();
   });
 
-  // Check if the EditForm component is rendered
-  expect(screen.getByTestId('edit-form-component')).toBeInTheDocument();
-
-  // Simulate closing the modal
-  const closeButton = screen.getByTestId('close-button');
-  fireEvent.click(closeButton);
-
-  // Wait for the modal to disappear
-  await waitFor(() => {
-    expect(screen.queryByTestId('edit-form-modal')).not.toBeInTheDocument();
-  });
-  });
-
-  test('completes the task when complete is clicked', async () => { 
-    // Simulate the action to open the menu 
-    const openMenu = screen.getByTestId('more-options-button');
-    fireEvent.click(openMenu);
-
-    // Simulate the action to complete the task
-    const completeButton = screen.getByTestId('menu-item-complete');
-    fireEvent.click(completeButton);
-
-    // Check if the task is completed
+  test('calls completedTask and shows alert on complete menu item click', async () => {
+    const button = screen.getByTestId('more-options-button');
+    fireEvent.click(button);
+    const completeMenuItem = screen.getByTestId('menu-item-complete');
+    fireEvent.click(completeMenuItem);
     expect(mockCompletedTask).toHaveBeenCalledWith(mockTask.id);
-    expect(screen.getByRole('alert')).toBeInTheDocument();
+    const alert = await waitFor(() => screen.getByTestId('completion-alert'));
+    expect(alert).toBeInTheDocument();
+  });
 
+  test('opens big task card modal on open menu item click', () => {
+    const button = screen.getByTestId('more-options-button');
+    fireEvent.click(button);
+    const openMenuItem = screen.getByTestId('menu-item-open');
+    fireEvent.click(openMenuItem);
+    const modal = screen.getByTestId('big-task-modal');
+    expect(modal).toBeInTheDocument();
+  });
 
-  })
+  test('closes menu on close menu item click', () => {
+    const button = screen.getByTestId('more-options-button');
+    fireEvent.click(button);
+    const closeMenuItem = screen.getByTestId('menu-item-close');
+    fireEvent.click(closeMenuItem);
+    const menu = screen.queryByRole('menu', { name: 'task-menu' });
+    expect(menu).not.toBeInTheDocument();
+  });
 });

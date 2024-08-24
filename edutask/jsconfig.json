@@ -2,7 +2,7 @@
   "compilerOptions": {
     "paths": {
       "@/Components*": ["./Components*"],
-      "@/CustomHooks/*": ["./CustomHooks*"]
+      "@/CustomHooks/*": ["../Hooks*"]
     }
   },
   "exclude": ["node_modules", ".next"]
