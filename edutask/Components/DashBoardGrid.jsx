@@ -44,7 +44,17 @@ const DashboardGrid = ({ tasks, isLoading }) => {
           boxShadow: "rgba(6, 24, 44, 0.1) 0px 0px 0px 2px, rgba(6, 24, 44, 0.1) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
         }}
       >
-        <DashBoardHeader />
+        {isLoading || !isMounted ? (
+          <Skeleton
+            sx={{
+              borderRadius: '7px',
+              width: '100%',
+              height: '60px', // Adjust height to match the height of DashBoardHeader
+            }}
+          />
+        ) : (
+          <DashBoardHeader />
+        )}
       </Box>
       <Grid container spacing={2} sx={{ marginTop: '20px' }}>
         <Grid item xs={12} md={6}>
@@ -81,7 +91,17 @@ const DashboardGrid = ({ tasks, isLoading }) => {
               marginTop: "24px"
             }}
           >
-            <Calendar />
+            {isLoading || !isMounted ? (
+              <Skeleton
+                sx={{
+                  borderRadius: '7px',
+                  width: '100%',
+                  height: '400px', // Adjust height to match the height of the Calendar component
+                }}
+              />
+            ) : (
+              <Calendar />
+            )}
           </Box>
         </Grid>
       </Grid>
