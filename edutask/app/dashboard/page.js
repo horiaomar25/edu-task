@@ -17,7 +17,7 @@ const Dashboard = () => {
 
   return (
     
-      <DashBoardGrid tasks={tasks} />
+      <DashBoardGrid tasks={tasks} isLoading={isLoading} completeTask={completeTask} />
     
   );
 };

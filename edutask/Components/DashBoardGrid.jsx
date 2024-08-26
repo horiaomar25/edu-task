@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { Box, Grid, Skeleton } from '@mui/material';
+import { Box, Grid, Skeleton, Typography } from '@mui/material';
 import DashBoardTable from './DashBoardTable';
 import Calendar from './Calendar';
 import DashBoardHeader from './DashBoardHeader';
@@ -36,6 +36,9 @@ const DashboardGrid = ({ tasks, isLoading }) => {
         padding: "20px"
       }}
     >
+      {isLoading || !isMounted ? (
+        <Typography variant="h6" sx={{ marginBottom: '20px' }}>Loading...</Typography>
+      ) : null}
       <Box
         sx={{
           width: '97%',
