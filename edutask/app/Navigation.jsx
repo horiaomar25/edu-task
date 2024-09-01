@@ -18,12 +18,12 @@ import Button from "@mui/material/Button";
 import Link from "next/link";
 import { useState } from "react";
 import Modal from "@mui/material/Modal";
-import TaskForm from "@/components/TaskForm";
+import TaskForm from "../components/TaskForm";
 import HomeIcon from "@mui/icons-material/Home";
 import TaskIcon from "@mui/icons-material/Task";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import useData from "@/hooks/useData";
+import useData from "../hooks/useData";
 
 const drawerWidth = 240;
 const navItems = [
