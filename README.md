@@ -15,6 +15,7 @@ Watch a video demo of EduTask [here](https://www.youtube.com/embed/C9_1leIDqNg?s
 - [Idea/Solution](#idea)
 - [Tech Stack](#tech)
 - [Server/Dataabse](#tech)
+- [Testing/Accessibility](#tech)
 - [Lessons](#lessons)
 - [Future Scope](#scope)
 - [Installation](#installation)
@@ -37,7 +38,7 @@ A task management system that caters to Weekly and Daily tasks of a teaching ass
 
 ## Structure/Component Tree
 
-![Component Tree](https://github.com/horiaomar25/edu-task/assets/140801006/0765dbd2-f9f9-40a5-aeaf-9f5a68dc10a7)
+![Screenshot 2024-09-01 215606](https://github.com/user-attachments/assets/b388e078-434f-4299-8122-2db4394f40c8)
 
 ## Server/Database
 Database 
@@ -54,6 +55,10 @@ The database was built with PostgreSQL. This is the structure:
 
 
 The server was built with Node and Express. I used the MVC (Model-View-Controller) to build the server. 
+
+## Testing/Accessibility
+Unit Test done with Jest. So far have achieve 93% coverage on component. I am continuing to work on this.
+End to End Testing done in Playwright for each page to make sure the navigation is working on the website. 
 
 
 ## Lessons Learned
