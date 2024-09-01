@@ -18,7 +18,7 @@ import Button from "@mui/material/Button";
 import Link from "next/link";
 import { useState } from "react";
 import Modal from "@mui/material/Modal";
-import TaskForm from "../components/TaskForm";
+import TaskForm from "@/components/TaskForm";
 import HomeIcon from "@mui/icons-material/Home";
 import TaskIcon from "@mui/icons-material/Task";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
