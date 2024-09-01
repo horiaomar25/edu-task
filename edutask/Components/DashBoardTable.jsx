@@ -43,7 +43,8 @@ export default function DashBoardTable({ tasks = [], completedTasks }) {
  const firstSixTask = tasks.slice(0, 4);
 
     return (
-        <TableContainer component={Paper} style={{ overflowX: 'hidden' }}>
+        <div data-testid="dashboard-table">
+        <TableContainer component={Paper} style={{ overflowX: 'hidden' }}  >
             <Table sx={{ minWidth: 620 }} aria-label="caption table">
                 <caption>A basic table example with a caption</caption>
                 <TableHead>
@@ -103,5 +104,6 @@ export default function DashBoardTable({ tasks = [], completedTasks }) {
                 </Alert>
             </Slide>
         </TableContainer>
+        </div>
     );
 }

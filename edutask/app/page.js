@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid';
 import Navigation from './Navigation';
 import dashboardshot from "../assets/dashboardshot.png";
 import taskboardshot from "../assets/taskboardshot.png";
-import AboutSection from '@/Components/AboutSection';
+
 import information from "../assets/information.png";
 
 export default function Home() {
@@ -41,6 +41,8 @@ export default function Home() {
       }}>
         <Link href="/dashboard">
           <Button
+          role='button'
+          data-testid='dashboard-button'
             sx={{
               backgroundColor: 'none',
               color: 'black',
@@ -58,6 +60,8 @@ export default function Home() {
         </Link>
         <Link href="/tasks">
           <Button
+          role='button'
+          data-testid='tasks-button'
             sx={{
               backgroundColor: 'none',
               color: 'black',

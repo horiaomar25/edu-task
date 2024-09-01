@@ -1,11 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import TaskBoard from "../../Components/TaskBoard";
-import useData from "../../Hooks/useData";
+import TaskBoard from "../../components/TaskBoard";
+import useData from "../../hooks/useData";
 
 const Tasks = () => {
-  const { tasks, TaskList, delTask, completeTask, isLoading } = useData();
+  const { tasks,delTask, completeTask, isLoading, createTask } = useData();
   const [isClient, setIsClient] = useState(false);
+  const[closed, setClosed] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
@@ -15,14 +16,20 @@ const Tasks = () => {
     return null; // or a loading spinner, or some placeholder content
   }
 
+  const handleClose = () => {
+    setClosed(true);
+  };
+
   return (
     <>
       <TaskBoard
         tasks={tasks}
-        taskList={TaskList}
+       
         delTask={delTask}
         completeTask={completeTask}
         isLoading={isLoading}
+        createTask={createTask}
+        handleClose={handleClose}
       />
     </>
   );

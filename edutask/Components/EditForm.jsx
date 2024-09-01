@@ -1,6 +1,6 @@
 import React, { useState, forwardRef } from 'react';
 import Button from "@mui/material/Button";
-import  useData  from '../Hooks/useData'; // Ensure this path is correct
+import  useData  from '../hooks/useData'; // Ensure this path is correct
 
 const EditForm = forwardRef(function EditForm({ task, handleClose, onTaskUpdate }, ref) {
   const { updateTask } = useData();
@@ -11,7 +11,7 @@ const EditForm = forwardRef(function EditForm({ task, handleClose, onTaskUpdate 
   const [taskType, setTaskType] = useState(task.task_type || "");
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+
     const formattedDueDate = new Date(taskDueDate).toISOString(); // Ensure date is properly formatted
 
     try {

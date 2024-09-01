@@ -5,9 +5,12 @@ import Typography from "@mui/material/Typography";
 import DropDownMenu from "./DropMenu";
 
 const TaskCard = ({ task, delTask, completedTask }) => {
+  let formattedDate = 'Invalid date';
   const date = new Date(task.task_date);
-  const options = { weekday: 'short', day: 'numeric', month: 'short' };
-  const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
+
+  if (date && date.toString() !== 'Invalid Date') {
+    formattedDate = date.toISOString().split('T')[0];
+  }
 
   return (
     <CardContent

@@ -18,11 +18,12 @@ import Button from "@mui/material/Button";
 import Link from "next/link";
 import { useState } from "react";
 import Modal from "@mui/material/Modal";
-import TaskForm from "../Components/TaskForm";
+import TaskForm from "../components/TaskForm";
 import HomeIcon from "@mui/icons-material/Home";
 import TaskIcon from "@mui/icons-material/Task";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import useData from "@/hooks/useData";
 
 const drawerWidth = 240;
 const navItems = [
@@ -36,6 +37,7 @@ const Navigation = (props) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   // Create a new state variable, isFormOpen, and its setter function, setIsFormOpen.
   const [modalOpen, setModalOpen] = useState(false);
+  const { createTask } = useData();
 
   const handleOpen = () => {
     setModalOpen(true);
@@ -141,7 +143,7 @@ const Navigation = (props) => {
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
             >
-              <TaskForm handleClose={handleClose} />
+              <TaskForm handleClose={handleClose} createTask={createTask} />
             </Modal>
           </Toolbar>
         </AppBar>

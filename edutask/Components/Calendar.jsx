@@ -5,7 +5,8 @@ import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 
 export default function Calendar() {
   return (
-    <section style={{ border: "solid black 0.5px", borderRadius: "10px", width: "100%"}}>
+    <div data-testid="calendar">
+    <section style={{ border: "solid black 0.5px", borderRadius: "10px", width: "100%"}} >
     <LocalizationProvider
       dateAdapter={AdapterDayjs}
       localeText={{
@@ -26,5 +27,6 @@ export default function Calendar() {
       />
     </LocalizationProvider>
     </section>
+    </div>
   );
 }

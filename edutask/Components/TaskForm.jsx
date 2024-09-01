@@ -1,37 +1,35 @@
 import React, { useState, forwardRef } from 'react';
 import Button from "@mui/material/Button";
-import useData from "../Hooks/useData";
+import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
 
-const TaskForm = forwardRef(({ handleClose }, ref) => {
-  const { createTask } = useData();
-
+const TaskForm = forwardRef(({ createTask, handleClose }, ref) => {
   const [taskName, setTaskName] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [taskDueDate, setTaskDueDate] = useState("");
   const [taskType, setTaskType] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
+  const handleSubmit = async (event) => {
+    
     if (!taskName || !taskDescription || !taskDueDate || !taskType) {
       alert("Please fill in all fields");
       return;
     }
 
     const formattedDueDate = new Date(taskDueDate).toISOString();
-
-    createTask({
-      task_name: taskName,
-      task_description: taskDescription,
-      task_date: formattedDueDate,
-      task_type: taskType,
-    });
-
-    // Clear form fields
-    setTaskName("");
-    setTaskDescription("");
-    setTaskDueDate("");
-    setTaskType("");
+    
+    try {
+      await createTask({
+        task_name: taskName,
+        task_description: taskDescription,
+        task_date: formattedDueDate,
+        task_type: taskType,
+        completed: false,
+      });
+      handleClose();
+    } catch (error) {
+      console.error("Failed to create task:", error);
+    }
   };
 
   return (
@@ -78,75 +76,55 @@ const TaskForm = forwardRef(({ handleClose }, ref) => {
           &times;
         </button>
       </div>
-
       <form onSubmit={handleSubmit} data-testid="create-task-form">
-        <div style={{ marginBottom: "1em" }}>
-          <label htmlFor="taskName">Task Name</label>
-          <input
-            data-testid="task-name-input"
-            type="text"
-            id="taskName"
-            name="taskName"
-            placeholder="Task Name"
-            required
-            value={taskName}
-            onChange={(e) => setTaskName(e.target.value)}
-            style={{ width: "100%", height: "50px", fontSize: "16px", padding: "0.5em" }}
-          />
-        </div>
-
-        <div style={{ marginBottom: "1em" }}>
-          <label htmlFor="taskDescription">Task Description</label>
-          <textarea
-            data-testid="task-description-input"
-            id="taskDescription"
-            name="taskDescription"
-            placeholder="Task Description"
-            required
-            value={taskDescription}
-            onChange={(e) => setTaskDescription(e.target.value)}
-            style={{ width: "100%", fontSize: "16px", padding: "0.5em" }}
-            rows="4"
-          />
-        </div>
-
-        <div style={{ marginBottom: "1em" }}>
-          <label htmlFor="taskDueDate">Task Due Date</label>
-          <input
-            data-testid="task-due-date-input"
-            type="date"
-            id="taskDueDate"
-            name="taskDueDate"
-            placeholder="Task Due Date"
-            required
-            value={taskDueDate}
-            onChange={(e) => setTaskDueDate(e.target.value)}
-            style={{ width: "100%", height: "50px" }}
-          />
-        </div>
-
-        <div style={{ marginBottom: "1em" }}>
-          <label htmlFor="taskType">Task Type</label>
-          <select
-            data-testid="task-type-select"
-            id="taskType"
-            name="taskType"
-            required
-            value={taskType}
-            onChange={(e) => setTaskType(e.target.value)}
-            style={{ width: "100%", height: "40px" }}
-          >
-            <option value="" disabled>Select Task Type</option>
-            <option value="Daily">Daily</option>
-            <option value="Weekly">Weekly</option>
-          </select>
-        </div>
-
+        <TextField
+          data-testid="task-name-input"
+          label="Task Name"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          value={taskName}
+          onChange={(e) => setTaskName(e.target.value)}
+        />
+        <TextField
+          data-testid="task-description-input"
+          label="Task Description"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          multiline
+          rows={4}
+          value={taskDescription}
+          onChange={(e) => setTaskDescription(e.target.value)}
+        />
+        <TextField
+          data-testid="task-due-date-input"
+          label="Task Due Date"
+          type="date"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          InputLabelProps={{ shrink: true }}
+          value={taskDueDate}
+          onChange={(e) => setTaskDueDate(e.target.value)}
+        />
+        <TextField
+          data-testid="task-type-select"
+          label="Task Type"
+          select
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          value={taskType}
+          onChange={(e) => setTaskType(e.target.value)}
+        >
+          <MenuItem value="Daily">Daily</MenuItem>
+          <MenuItem value="Weekly">Weekly</MenuItem>
+        </TextField>
         <Button
-          sx={{ float: "right" }}
+          sx={{ float: "right", mt: 2 }}
           type="submit"
           variant="outlined"
-          data-testid="submit-button"
         >
           Add Task
         </Button>

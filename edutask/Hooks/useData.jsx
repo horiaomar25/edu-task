@@ -1,43 +1,17 @@
-import React, { useState, useEffect } from "react";
-
-// Utility function to handle API requests
-const apiRequest = async (url, method = "GET", body = null) => {
-  try {
-    const options = {
-      method,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
-    if (body) {
-      options.body = JSON.stringify(body);
-    }
-
-    const response = await fetch(url, options);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    return await response.json();
-  } catch (error) {
-    console.error(`Error with ${method} request to ${url}:`, error);
-    throw error;
-  }
-};
+import { useState, useEffect } from "react";
+import apiRequest from "../utils/apiRequest";
 
 const useData = () => {
   const [tasks, setTasks] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch all tasks
   const fetchTasks = async () => {
     setIsLoading(true);
+    setError(null);
     try {
-      const data = await apiRequest("https://edutask-be.onrender.com/tasks");
-      setTasks(data.data || []);
+      const response = await apiRequest("https://edutask-be.onrender.com/tasks", "GET");
+      setTasks(response.data);
     } catch (error) {
       setError("Failed to fetch tasks");
     } finally {
@@ -45,41 +19,47 @@ const useData = () => {
     }
   };
 
-  // Create a new task
-  const createTask = async (task) => {
+  const createTask = async (newTask) => {
+    setError(null);
     try {
-      await apiRequest("https://edutask-be.onrender.com/tasks", "POST", task);
-      fetchTasks();
+      const response = await apiRequest("https://edutask-be.onrender.com/tasks", "POST", newTask);
+      setTasks((prevTasks) => [...prevTasks, response.data]);
     } catch (error) {
       setError("Failed to create task");
     }
   };
 
-  // Update an existing task
-  const updateTask = async (taskId, updatedTaskData) => {
+  const updateTask = async (taskId, updatedTask) => {
+    setError(null);
     try {
-      await apiRequest(`https://edutask-be.onrender.com/tasks/${taskId}`, "PATCH", updatedTaskData);
-      fetchTasks();
+      await apiRequest(`https://edutask-be.onrender.com/tasks/${taskId}`, "PUT", updatedTask);
+      setTasks((prevTasks) =>
+        prevTasks.map((task) => (task.id === taskId ? { ...task, ...updatedTask } : task))
+      );
     } catch (error) {
       setError(`Failed to update task with ID: ${taskId}`);
     }
   };
 
-  // Delete a task
   const delTask = async (taskId) => {
+    setError(null);
     try {
       await apiRequest(`https://edutask-be.onrender.com/tasks/${taskId}`, "DELETE");
-      fetchTasks();
+      setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
     } catch (error) {
       setError(`Failed to delete task with ID: ${taskId}`);
     }
   };
 
-  // Mark a task as complete
   const completeTask = async (taskId) => {
+    setError(null);
     try {
       await apiRequest(`https://edutask-be.onrender.com/tasks/${taskId}`, "PUT");
-      fetchTasks();
+      setTasks((prevTasks) =>
+        prevTasks.map((task) =>
+          task.id === taskId ? { ...task, completed: true } : task
+        )
+      );
     } catch (error) {
       setError(`Failed to complete task with ID: ${taskId}`);
     }

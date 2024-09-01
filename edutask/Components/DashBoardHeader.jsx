@@ -3,13 +3,14 @@ import React from "react";
 import Box from "@mui/system/Box";
 import Button from "@mui/material/Button";
 import Link from "next/link";
-import useData from "../Hooks/useData";
+import useData from "../hooks/useData";
 
 const DashBoardHeader = () => {
   const { tasks } = useData();
   const taskCount = tasks.length;
 
   return (
+    <div data-testid="dashboard-header">
     <Box
       component="section"
       sx={{
@@ -23,6 +24,7 @@ const DashBoardHeader = () => {
         gap: "20px",
         margin: { xs: "20px" },
       }}
+     
     >
       <Box
         style={{
@@ -35,6 +37,8 @@ const DashBoardHeader = () => {
         <h1>This Week you have {taskCount} Tasks</h1>
         <Link href="/tasks">
           <Button
+          role="button"
+          data-testid="see-more-button"
             sx={{
               backgroundColor: "#8338ec",
               color: "white",
@@ -51,6 +55,7 @@ const DashBoardHeader = () => {
         </Link>
       </Box>
     </Box>
+    </div>
   );
 };
 

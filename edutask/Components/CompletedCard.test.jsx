@@ -1,10 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import DashboardGrid from './DashboardGrid';
+import TaskBoard from './TaskBoard';
 import DashBoardTable from './DashBoardTable';
 import Calendar from './Calendar';
 import DashBoardHeader from './DashBoardHeader';
+import { Task } from '@mui/icons-material';
 
 // Mock child components
 jest.mock('./DashBoardTable', () => () => <div data-testid="dashboard-table" />);
@@ -20,21 +21,21 @@ const mockTasks = [
   { id: 6, task_name: 'Task 6', task_type: 'Weekly', completed: true },
 ];
 
-describe('DashboardGrid Component', () => {
-  test('renders DashboardGrid component', () => {
-    render(<DashboardGrid tasks={mockTasks} isLoading={false} />);
-    expect(screen.getByTestId('dashboard-header')).toBeInTheDocument();
-    expect(screen.getByTestId('dashboard-table')).toBeInTheDocument();
-    expect(screen.getByTestId('calendar')).toBeInTheDocument();
+describe('TaskBoard Component', () => {
+  test('renders TaskBoard component', () => {
+    render(<TaskBoard tasks={mockTasks} isLoading={false} />);
+    expect(screen.getByTestId('weekly-task')).toBeInTheDocument();
+    expect(screen.getByTestId('daily-task')).toBeInTheDocument();
+    expect(screen.getByTestId('completed-task')).toBeInTheDocument();
   });
 
   test('displays loading skeletons when isLoading is true', () => {
-    render(<DashboardGrid tasks={mockTasks} isLoading={true} />);
+    render(<TaskBoard tasks={mockTasks} isLoading={true} />);
     expect(screen.getAllByTestId('skeleton')).toHaveLength(3);
   });
 
   test('filters and displays daily and weekly tasks', () => {
-    render(<DashboardGrid tasks={mockTasks} isLoading={false} />);
+    render(<TaskBoard tasks={mockTasks} isLoading={false} />);
     const dailyTasks = mockTasks.filter(task => task.task_type === 'Daily').slice(0, 3);
     const weeklyTasks = mockTasks.filter(task => task.task_type === 'Weekly').slice(0, 3);
 
@@ -48,7 +49,7 @@ describe('DashboardGrid Component', () => {
   });
 
   test('updates completed tasks state', () => {
-    render(<DashboardGrid tasks={mockTasks} isLoading={false} />);
+    render(<TaskBoard tasks={mockTasks} isLoading={false} />);
     const completedTasks = mockTasks.filter(task => task.completed).map(task => task.id);
 
     completedTasks.forEach(taskId => {

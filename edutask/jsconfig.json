@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
-      "@/Components*": ["./Components*"],
-      "@/CustomHooks/*": ["../Hooks*"]
+      "@/components/*": ["./components/*"],
+      "@/hooks/*": ["./hooks/*"]
     }
-  },
-  "exclude": ["node_modules", ".next"]
+  }
 }
