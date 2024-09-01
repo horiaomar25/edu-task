@@ -62,6 +62,7 @@ Unit Test done with Jest. So far have achieve 93% coverage on component. I am co
 
 ### End to End Testing with Playwright
 End to End Testing done in Playwright for each page to make sure the navigation is working on the website. 
+![Screenshot 2024-09-01 230630](https://github.com/user-attachments/assets/ebcaf8bb-ecda-45e0-a099-5a3d8a845823)
 
 
 ## Lessons Learned
