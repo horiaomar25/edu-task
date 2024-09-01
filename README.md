@@ -15,7 +15,7 @@ Watch a video demo of EduTask [here](https://www.youtube.com/embed/C9_1leIDqNg?s
 - [Idea/Solution](#idea)
 - [Tech Stack](#tech)
 - [Server/Dataabse](#tech)
-- [Testing/Accessibility](#tech)
+- [Unit/E2E Testing](#tech)
 - [Lessons](#lessons)
 - [Future Scope](#scope)
 - [Installation](#installation)
