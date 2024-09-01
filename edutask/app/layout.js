@@ -1,4 +1,4 @@
-import Navigation from "../components/Navigation";
+import Navigation from "../Components/Navigation";
 
 export const metadata = {
   title: "EduTask",

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Navigation from '../components/Navigation';
+import Navigation from '../Components/Navigation';
 import dashboardshot from "../assets/dashboardshot.png";
 import taskboardshot from "../assets/taskboardshot.png";
 
