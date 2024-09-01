@@ -11,11 +11,11 @@ Watch a video demo of EduTask [here](https://www.youtube.com/embed/C9_1leIDqNg?s
 
 
 ## Table of Contents
-- [Problem Statement](#problem)
-- [Idea/Solution](#idea)
-- [Tech Stack](#tech)
-- [Server/Dataabse](#tech)
-- [Testing/Accessibility](#tech)
+- [Problem Statement](#problemstatement)
+- [Idea/Solution](#idea/solution)
+- [Tech Stack](#techstack)
+- [Server/Database](#server/database)
+- [Testing/Accessibility](#testing/accessibility)
 - [Lessons](#lessons)
 - [Future Scope](#scope)
 - [Installation](#installation)
