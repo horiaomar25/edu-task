@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import DashBoardHeader from './DashBoardHeader';
-import useData from '../hooks/useData';
+import useData from '../Hooks/useData';
 
 // Mock useData hook
 jest.mock('../Hooks/useData');
