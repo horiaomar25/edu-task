@@ -11,11 +11,11 @@ Watch a video demo of EduTask [here](https://www.youtube.com/embed/C9_1leIDqNg?s
 
 
 ## Table of Contents
-- [Problem Statement](#problemstatement)
-- [Idea/Solution](#idea/solution)
-- [Tech Stack](#techstack)
-- [Server/Database](#server/database)
-- [Testing/Accessibility](#testing/accessibility)
+- [Problem Statement](#problem)
+- [Idea/Solution](#idea)
+- [Tech Stack](#tech)
+- [Server/Dataabse](#tech)
+- [Unit/E2E Testing](#tech)
 - [Lessons](#lessons)
 - [Future Scope](#scope)
 - [Installation](#installation)
@@ -57,8 +57,12 @@ The database was built with PostgreSQL. This is the structure:
 The server was built with Node and Express. I used the MVC (Model-View-Controller) to build the server. 
 
 ## Testing/Accessibility
+### Unit Testing with Jest
 Unit Test done with Jest. So far have achieve 93% coverage on component. I am continuing to work on this.
+
+### End to End Testing with Playwright
 End to End Testing done in Playwright for each page to make sure the navigation is working on the website. 
+![Screenshot 2024-09-01 230630](https://github.com/user-attachments/assets/b854c4d1-7585-44b6-84c9-fef97beca82a)
 
 
 ## Lessons Learned
