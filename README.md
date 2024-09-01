@@ -57,7 +57,10 @@ The database was built with PostgreSQL. This is the structure:
 The server was built with Node and Express. I used the MVC (Model-View-Controller) to build the server. 
 
 ## Testing/Accessibility
+### Unit Testing with Jest
 Unit Test done with Jest. So far have achieve 93% coverage on component. I am continuing to work on this.
+
+### End to End Testing with Playwright
 End to End Testing done in Playwright for each page to make sure the navigation is working on the website. 
 
 
