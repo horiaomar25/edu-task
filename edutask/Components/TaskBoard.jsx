@@ -6,7 +6,7 @@ import CompletedCard from "./CompletedCard";
 import { Skeleton } from "@mui/material";
 
 // eslint-disable-next-line react/prop-types
-const TaskBoard = ({ tasks, createTask, delTask, completeTask, isLoading }) => {
+const TaskBoard = ({ tasks,delTask, completeTask, isLoading }) => {
   const dailyTasks = tasks.filter(
     (task) => task.task_type === "Daily" && !task.completed
   );

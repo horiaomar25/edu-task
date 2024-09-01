@@ -37,7 +37,7 @@ const DashboardGrid = ({ tasks, isLoading }) => {
       }}
     >
       {isLoading || !isMounted ? (
-        <Typography variant="h6" sx={{ marginBottom: '20px' }}>Loading...</Typography>
+        <Typography  data-testid="loading-heading" variant="h6" sx={{ marginBottom: '20px' }}>Loading...</Typography>
       ) : null}
       <Box
         sx={{

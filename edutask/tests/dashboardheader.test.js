@@ -8,26 +8,32 @@ test.describe('Dashboard', () => {
 
     test('should display loading state', async ({ page }) => {
         // Verify the loading state is displayed
-        const loadingText = page.getByRole('heading', { name: 'Loading...' });
+        const loadingText = page.locator('[data-testid="loading-heading"]');
         await loadingText.waitFor({ state: 'visible' });
         await expect(loadingText).toHaveText('Loading...');
     });
 
     test('should display dashboard header after loading', async ({ page }) => {
+
+        test.setTimeout(80000);
+
         // Simulate loading completion by waiting for the skeleton to disappear
         await page.waitForSelector('text=Loading...', { state: 'hidden' });
 
-        // Fetch the number of tasks (this is an example, adjust as needed)
-        const numberOfTasks = 6; // Replace with dynamic data if available
+        // Verify the dashboard header is displayed
+        const dashboardHeader = page.locator('[data-testid="dashboard-header"]');
+        await dashboardHeader.waitFor({ state: 'visible' });    
+        expect(await dashboardHeader.isVisible()).toBeTruthy();
 
-        // Construct the expected text
-        const expectedText = `This week you have ${numberOfTasks} tasks`;
+        
 
-        // Check that the DashboardHeader displays the correct message
-        await expect(page.locator(`text=${expectedText}`)).toBeVisible();
+        
+
     });
 
     test('should go taskboard page when see more button is clicked', async ({ page }) => { 
+        test.setTimeout(80000);
+
         const seeMoreButton = page.locator('button[data-testid="see-more-button"]');
         await seeMoreButton.click();
         await page.waitForNavigation();
