@@ -1,9 +1,10 @@
+// jsconfig.json or tsconfig.json
 {
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["./components/*"],
-      "@/hooks/*": ["./hooks/*"]
+      "components/*": ["components/*"],
+      "hooks/*": ["hooks/*"]
     }
   }
 }
