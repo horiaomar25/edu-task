@@ -4,6 +4,8 @@ import Image from 'next/image';
 import scribble from '../assets/scribble.png';
 import hero from '../assets/hero.jpg';
 import background from '../assets/backgroundimage.png'; 
+import Link from 'next/link';
+import { Button } from '@mui/material';
 
 
 const HeroSection = () => {
@@ -52,8 +54,57 @@ const HeroSection = () => {
           <Image src={scribble} alt="scribble" width={380} height={20} />
         </Box>
       </Typography>
+
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row', lg: 'column' },
+          alignItems: 'center',
+          gap: '20px',
+          marginTop: '20px',
+        }}
+      >
+        <Link href="/dashboard">
+          <Button
+            role="button"
+            data-testid="dashboard-button"
+            sx={{
+              backgroundColor: 'none',
+              color: 'black',
+              border: '#8338ec 1px solid',
+              width: { xs: '100%', sm: '200px' }, // Responsive width
+              borderRadius: '10px',
+              '&:hover': {
+                backgroundColor: '#8338ec',
+                color: 'white',
+              },
+            }}
+          >
+            Dashboard 
+          </Button>
+        </Link>
+        <Link href="/tasks">
+          <Button
+            role="button"
+            data-testid="tasks-button"
+            sx={{
+              backgroundColor: 'none',
+              color: 'black',
+              border: '#8338ec 1px solid',
+              width: { xs: '100%', sm: '200px' }, // Responsive width
+              borderRadius: '10px',
+              '&:hover': {
+                backgroundColor: '#8338ec',
+                color: 'white',
+              },
+            }}
+          >
+            Tasks
+          </Button>
+        </Link>
+      </Box>
       
-      <Image src={hero} alt="heroimage"  quality={100} width={500} style={{ marginTop: '20px' }} />
+      <Image src={hero} alt="heroimage"  quality={100} width={500} style={{ marginTop: 'px' }} />
     </Box>
   );
 };
