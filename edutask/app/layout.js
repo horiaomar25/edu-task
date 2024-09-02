@@ -1,4 +1,5 @@
 import Navigation from "../Components/Navigation";
+import "./globals.css";
 
 export const metadata = {
   title: "EduTask",
@@ -10,7 +11,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Navigation />
-
         {children}
       </body>
     </html>
