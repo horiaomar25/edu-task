@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import { useState, useEffect } from "react"
 
@@ -12,7 +13,7 @@ const useData = () => {
   // Create Task - POST method
   const createTask = async (task) => {
     try {
-      const response = await fetch("https://edutask-be.onrender.com/tasks", {
+      const response = await fetch("https://edutask-api-ukvej.ondigitalocean.app/tasks", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -43,7 +44,7 @@ const useData = () => {
   const fetchTasks = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("https://edutask-be.onrender.com/tasks");
+      const response = await fetch("https://edutask-api-ukvej.ondigitalocean.app/tasks");
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
@@ -59,7 +60,7 @@ const useData = () => {
   //Update Task
   const updateTask = async (taskId, updatedTaskData) => {
     try {
-      const response = await fetch(`https://edutask-be.onrender.com/tasks/${taskId}`, {
+      const response = await fetch(`https://edutask-api-ukvej.ondigitalocean.app/tasks/${taskId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -81,7 +82,7 @@ const useData = () => {
   // Delete Task
   const delTask = async (taskId) => {
     try {
-      const response = await fetch(`https://edutask-be.onrender.com/tasks/${taskId}`, {
+      const response = await fetch(`https://edutask-api-ukvej.ondigitalocean.app/tasks/${taskId}`, {
         method: "DELETE",
       });
 
@@ -99,7 +100,7 @@ const useData = () => {
   // Complete Task - PUT method
   const completeTask = async (taskId) => {
     try {
-      const response = await fetch(`https://edutask-be.onrender.com/tasks/${taskId}`, {
+      const response = await fetch(`https://edutask-api-ukvej.ondigitalocean.app/tasks/${taskId}`, {
         method: "PUT", // Assuming PUT method is used for updating tasks
       });
 
