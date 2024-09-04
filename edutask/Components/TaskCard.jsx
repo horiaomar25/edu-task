@@ -14,6 +14,7 @@ const TaskCard = ({ task, delTask, completedTask }) => {
 
   return (
     <CardContent
+    data-testid="task-card"
       sx={{
         borderRadius: "8px",
         boxShadow:
@@ -35,6 +36,7 @@ const TaskCard = ({ task, delTask, completedTask }) => {
       </button>
 
       <Typography
+      data-testid="task-name-heading"
         variant="h5"
         component="div"
         sx={{ marginBottom: "10px" }}

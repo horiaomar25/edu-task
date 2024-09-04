@@ -3,7 +3,7 @@ import { Typography, Box } from '@mui/material';
 import Image from 'next/image';
 import scribble from '../assets/scribble.png';
 import hero from '../assets/hero.jpg';
-import background from '../assets/backgroundimage.png'; 
+import background from '../assets/backgroundimage.png';
 import Link from 'next/link';
 import { Button } from '@mui/material';
 
@@ -26,16 +26,14 @@ const HeroSection = () => {
     >
       <Typography
         variant="h1"
+        data-testid="hero-heading"
         sx={{
           fontSize: '2.5rem',
           textAlign: 'center',
           fontWeight: 'extrabold',
           margin: '0.5rem 0',
           letterSpacing: '-0.02em',
-        marginTop: '-20px', // Move the Box up by 20px
-
-          
-          
+          marginTop: '-20px', // Move the Box up by 20px
         }}
       >
         Task Management for Teaching Assistants:
@@ -44,6 +42,8 @@ const HeroSection = () => {
         <br />
         Easier
         <Box
+          // Box is considered a container in Material-UI
+          data-testid="scribble-image-container"
           sx={{
             display: 'flex',
             justifyContent: 'center',
@@ -51,7 +51,7 @@ const HeroSection = () => {
             paddingTop: '0', // Ensure no padding at the top
           }}
         >
-          <Image src={scribble} alt="scribble" width={380} height={20} />
+          <Image src={scribble} alt="scribble-graphic" width={380} height={20}  />
         </Box>
       </Typography>
 
@@ -80,7 +80,7 @@ const HeroSection = () => {
               },
             }}
           >
-            Dashboard 
+            Dashboard
           </Button>
         </Link>
         <Link href="/tasks">
@@ -103,8 +103,8 @@ const HeroSection = () => {
           </Button>
         </Link>
       </Box>
-      
-      <Image src={hero} alt="heroimage"  quality={100} width={500} style={{ marginTop: 'px' }} />
+
+      <Image src={hero} alt="heroimage" quality={100} width={500} style={{ marginTop: 'px' }} />
     </Box>
   );
 };

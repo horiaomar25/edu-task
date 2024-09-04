@@ -125,6 +125,7 @@ const TaskForm = forwardRef(({ createTask, handleClose }, ref) => {
           sx={{ float: "right", mt: 2 }}
           type="submit"
           variant="outlined"
+          data-testid="add-task-button"
         >
           Add Task
         </Button>

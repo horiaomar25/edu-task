@@ -1,44 +1,54 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Homepage', () => {
+test.describe('HomePage', () => {
 
     test.beforeEach(async ({ page }) => {
         // Navigate to the homepage before each test
-        await page.goto('http://localhost:3000/');
+        await page.goto('https://edu-task-horias-projects-dc29575b.vercel.app/');
     });
 
-    test('should display correct heading', async ({ page }) => {
+    test('should display task management heading', async ({ page }) => {
         // Verify the main heading on the homepage
-        await expect(page.locator('h1')).toHaveText('EduTask');
+        const heading = page.locator('[data-testid="hero-heading"]');
+        await expect(heading).toBeVisible();
+        await expect(heading).toHaveText(/Task Management for Teaching Assistants:\s*Make School Life\s*Easier/);
     });
 
-    test('should display dashboard button', async ({ page }) => {
-        // Verify the Dashboard button is visible
-        const dashboardButton = page.locator('button[data-testid="dashboard-button"]');
-        await dashboardButton.waitFor({ state: 'visible' });
+    test('scribble graphic  is displayed', async ({ page }) => {
+        const scribbleImageContainer = page.locator('[data-testid="scribble-image-container"]');
+        // Make sure the container is displayed so we can access the image element
+        await expect(scribbleImageContainer).toBeVisible();
+
+        // NOTE: In Next.js Image component which renders an <img> element underneath , you
+        // can't directly add the data-testid attribute to the <Image> component.
+        // Make sure to add the data-testid attribute to the parent container of the Image component.
+
+        // Inside the container, locate the img element
+        const scribbleImage = scribbleImageContainer.locator('img');
+        // Make sure the image is displayed
+        await expect(scribbleImage).toBeVisible();
+        await expect(scribbleImage).toHaveAttribute('alt', 'scribble-graphic');
+    });
+
+    test('should display the Dashboard Button and Tasks Button', async ({ page }) => {
+        // locate the dashboard button 
+        const dashboardButton = page.locator('[data-testid="dashboard-button"]');
+        const taskButton = page.locator('[data-testid="tasks-button"]');
         await expect(dashboardButton).toBeVisible();
-    });
-
-    test('should display task button', async ({ page }) => {
-        // Verify the Tasks button is visible
-        const taskButton = page.locator('button[data-testid="tasks-button"]');
-        await taskButton.waitFor({ state: 'visible' });
         await expect(taskButton).toBeVisible();
-    });
+    })
 
-    test('dashboard button should navigate to dashboard page', async ({ page }) => {
-        // Click the Dashboard button and verify navigation
-        const dashboardButton = page.locator('button[data-testid="dashboard-button"]');
-        await dashboardButton.click();
-        await page.waitForNavigation(); // Wait for navigation to complete
-        await expect(page.locator('button[data-testid="see-more-button"]')).toBeVisible(); // Replace with actual locator on the dashboard page
-    });
+    test('should navigate to the dashboard page when the Dashboard button is clicked', async ({ page }) => {
+        const dashboardButton = page.locator('[data-testid="dashboard-button"]');
+        await expect(dashboardButton).toBeEnabled();
+        await dashboardButton.click({ waitNavigation: true });
+        await expect(page).toHaveURL('https://edu-task-horias-projects-dc29575b.vercel.app/tasks/dashboard');
+    })
 
-    test('task button should navigate to task page', async ({ page }) => {
-        // Click the Tasks button and verify navigation
-        const taskButton = page.locator('button[data-testid="tasks-button"]');
-        await taskButton.click();
-        await page.waitForNavigation(); // Wait for navigation to complete
-        expect(page.url()).toBe('http://localhost:3000/tasks');
-    });
-});
+    test('should navigate to the taskboard when the Tasks button is clicked', async ({ page }) => {
+        const tasksButton = page.locator('[data-testid="tasks-button"]');
+        await expect(tasksButton).toBeEnabled();
+        await tasksButton.click({ waitNavigation: true });
+        await expect(page).toHaveURL('https://edu-task-horias-projects-dc29575b.vercel.app/tasks')
+    })
+}); 
