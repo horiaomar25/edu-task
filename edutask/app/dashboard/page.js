@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import DashBoardGrid from 'components/DashBoardGrid';
+import DashBoardGrid from '../../components/DashBoardGrid';
 import useData from "../../hooks/useData";
 
 const Dashboard = () => {
