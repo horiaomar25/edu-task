@@ -5,7 +5,7 @@ import DashBoardTable from './DashBoardTable';
 import Calendar from './Calendar';
 import DashBoardHeader from './DashBoardHeader';
 
-const DashboardGrid = ({ tasks, isLoading }) => {
+const DashBoardGrid = ({ tasks, isLoading }) => {
   const [completed, setCompleted] = useState([]);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -112,4 +112,4 @@ const DashboardGrid = ({ tasks, isLoading }) => {
   );
 };
 
-export default DashboardGrid;
+export default DashBoardGrid;

@@ -2,7 +2,7 @@
 import React from 'react'
 import { useState, useEffect } from "react"
 
-const useData = () => {
+const UseData = () => {
     // Create a new state variable, isFormOpen, and its setter function, setIsFormOpen.
   // 1. Create state to display/store the data
   const [tasks, setTasks] = useState([]);
@@ -149,4 +149,4 @@ console.log(tasks)
   
 }
 
-export default useData
+export default UseData
