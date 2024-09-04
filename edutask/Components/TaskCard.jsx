@@ -4,7 +4,7 @@ import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
 import DropDownMenu from "./DropMenu";
 
-const TaskCard = ({ task, delTask, completedTask }) => {
+const TaskCard = ({ task, delTask, completedTask,updatedTask }) => {
   let formattedDate = 'Invalid date';
   const date = new Date(task.task_date);
 
@@ -32,7 +32,7 @@ const TaskCard = ({ task, delTask, completedTask }) => {
           fontSize: "15px",
         }}
       >
-        <DropDownMenu task={task} delTask={delTask} completedTask={completedTask} />
+        <DropDownMenu task={task} delTask={delTask} completedTask={completedTask} updatedTask={updatedTask} />
       </button>
 
       <Typography

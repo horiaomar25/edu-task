@@ -8,7 +8,7 @@ import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
+
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -23,12 +23,12 @@ import HomeIcon from "@mui/icons-material/Home";
 import TaskIcon from "@mui/icons-material/Task";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import useData from "../Hooks/useData";
+import useData from "../hooks/useData";
 
 const drawerWidth = 240;
 const navItems = [
   { text: "Home", icon: <HomeIcon />, href: "/" },
-  { text: "Dashboard", icon: <DashboardIcon />, href: "/dashboard"},
+  { text: "Dashboard", icon: <DashboardIcon />, href: "/dashboard" },
   { text: "Tasks", icon: <TaskIcon />, href: "/tasks" },
 ];
 
@@ -63,20 +63,20 @@ const Navigation = (props) => {
       <List>
         {navItems.map((item) => (
           <ListItemButton key={item.text} href={item.href} sx={{ textAlign: "center", textDecoration: 'none', color: 'inherit' }} passHref>
-           
-              {item.icon && (
-                <ListItemAvatar sx={{ minWidth: "auto", marginRight: "8px" }}>
-                  {item.icon}
-                </ListItemAvatar>
-              )}
-              <ListItemText primary={item.text} sx={{ textDecoration: 'none' }} />
-            
+
+            {item.icon && (
+              <ListItemAvatar sx={{ minWidth: "auto", marginRight: "8px" }}>
+                {item.icon}
+              </ListItemAvatar>
+            )}
+            <ListItemText primary={item.text} sx={{ textDecoration: 'none' }} />
+
           </ListItemButton>
         ))}
       </List>
     </Box>
   );
-  
+
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
@@ -114,7 +114,7 @@ const Navigation = (props) => {
                 <Link key={item} href={item.href} passHref>
                   <Button
                     startIcon={item.icon} // start prop to add icon
-                    sx={{ color: "#fff", justifyContent: "flex-start" , mr: index !== navItems.length - 1 ? 2 : 0}}
+                    sx={{ color: "#fff", justifyContent: "flex-start", mr: index !== navItems.length - 1 ? 2 : 0 }}
                   >
                     {item.text}
                   </Button>
@@ -170,7 +170,7 @@ const Navigation = (props) => {
         </nav>
 
         <Toolbar />
-     
+
       </Box>
     </>
   );

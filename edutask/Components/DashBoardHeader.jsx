@@ -3,7 +3,7 @@ import React from "react";
 import Box from "@mui/system/Box";
 import Button from "@mui/material/Button";
 import Link from "next/link";
-import useData from "../Hooks/useData";
+import useData from "../hooks/useData";
 
 const DashBoardHeader = () => {
   const { tasks } = useData();

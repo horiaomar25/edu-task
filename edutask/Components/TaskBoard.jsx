@@ -6,7 +6,7 @@ import CompletedCard from "./CompletedCard";
 import { Skeleton } from "@mui/material";
 
 // eslint-disable-next-line react/prop-types
-const TaskBoard = ({ tasks,delTask, completeTask, isLoading }) => {
+const TaskBoard = ({ tasks, taskList, delTask, completeTask, isLoading }) => {
   const dailyTasks = tasks.filter(
     (task) => task.task_type === "Daily" && !task.completed
   );
@@ -57,10 +57,9 @@ const TaskBoard = ({ tasks,delTask, completeTask, isLoading }) => {
                   <TaskCard
                     key={task.id}
                     task={task}
-                  
+                    taskList={taskList}
                     delTask={delTask}
                     completedTask={completeTask}
-                    data-testid="daily-task"
                   />
                 ))}
           </Grid>
@@ -99,10 +98,9 @@ const TaskBoard = ({ tasks,delTask, completeTask, isLoading }) => {
                   <TaskCard
                     key={task.id}
                     task={task}
-                  
+                    taskList={taskList}
                     delTask={delTask}
                     completedTask={completeTask}
-                    data-testid="weekly-task"
                   />
                 ))}
           </Grid>
@@ -134,17 +132,15 @@ const TaskBoard = ({ tasks,delTask, completeTask, isLoading }) => {
                     key={index}
                     variant="rectangular"
                     height={118}
-                    data-testid="skeleton"
                   />
                 ))
               : completedTasks.map((task) => (
                   <CompletedCard
                     key={task.id}
                     task={task}
-                  
+                    taskList={taskList}
                     completedTask={completeTask}
                     delTask={delTask}
-                    data-testid="completed-task"
                   />
                 ))}
           </Grid>

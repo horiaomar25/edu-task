@@ -1,45 +1,38 @@
-import React, { useState, forwardRef } from 'react';
+import React, { useState } from 'react';
 import Button from "@mui/material/Button";
-import  useData  from '../Hooks/useData'; // Ensure this path is correct
+import useData from '../hooks/useData';
 
-const EditForm = forwardRef(function EditForm({ task, handleClose, onTaskUpdate }, ref) {
+const EditForm = ({ task, handleClose }) => {
   const { updateTask } = useData();
-
+  
   const [taskName, setTaskName] = useState(task.task_name || "");
   const [taskDescription, setTaskDescription] = useState(task.task_description || "");
   const [taskDueDate, setTaskDueDate] = useState(task.task_date || "");
   const [taskType, setTaskType] = useState(task.task_type || "");
-
-  const handleSubmit = async (event) => {
-
-    const formattedDueDate = new Date(taskDueDate).toISOString(); // Ensure date is properly formatted
+  
+  async function handleSubmit(event) {
+   
 
     try {
-      await updateTask(task.id, {
+      const taskId = task.id; // Assuming task.id holds the identifier of the task to update
+    
+      // Update the task using the updateTask function from the useData hook
+      await updateTask(taskId, {
         task_name: taskName,
         task_description: taskDescription,
-        task_date: formattedDueDate,
+        task_date: taskDueDate,
         task_type: taskType,
       });
-
-      onTaskUpdate({
-        id: task.id,
-        task_name: taskName,
-        task_description: taskDescription,
-        task_date: formattedDueDate,
-        task_type: taskType,
-      });
-
+    
+      // Close the form after the update is successful
       handleClose();
     } catch (error) {
-      console.error("Error updating task:", error);
+      console.error("Error:", error);
     }
-  };
-
+  }
+  
   return (
     <div
-      ref={ref}
-      data-testid="edit-form-component"
       style={{
         backgroundColor: "white",
         top: "50%",
@@ -66,19 +59,18 @@ const EditForm = forwardRef(function EditForm({ task, handleClose, onTaskUpdate 
         <h1>Edit Task</h1>
         <button
           onClick={handleClose}
-          data-testid="close-button"
+          id="close-button"
           style={{
             background: "transparent",
             border: "none",
             fontSize: "30px",
-            cursor: "pointer",
           }}
         >
           &times;
         </button>
       </div>
 
-      <form onSubmit={handleSubmit} role='form'>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="taskName">Task Name</label>
         <input
           style={{ width: "100%", height: "50px", fontSize: "16px" }}
@@ -89,17 +81,20 @@ const EditForm = forwardRef(function EditForm({ task, handleClose, onTaskUpdate 
           onChange={(e) => setTaskName(e.target.value)}
         />
 
-        <label htmlFor="taskDescription" style={{ display: "block", marginTop: "1em" }}>Task Description</label>
+        <label htmlFor="taskDescription" style={{ display: "block", marginTop: "1em" }}>
+          Task Description
+        </label>
         <textarea
-          style={{ width: "100%", height: "50px", fontSize: "16px" }}
+          style={{ width: "100%", height: "100px", fontSize: "16px" }}
           id="taskDescription"
           name="taskDescription"
-          placeholder="Task Description"
           value={taskDescription}
           onChange={(e) => setTaskDescription(e.target.value)}
         />
 
-        <label htmlFor="taskDueDate" style={{ display: "block", marginTop: "1em" }}>Task Due Date</label>
+        <label htmlFor="taskDueDate" style={{ display: "block", marginTop: "1em" }}>
+          Task Due Date
+        </label>
         <input
           style={{ width: "100%", height: "50px" }}
           type="date"
@@ -109,11 +104,13 @@ const EditForm = forwardRef(function EditForm({ task, handleClose, onTaskUpdate 
           onChange={(e) => setTaskDueDate(e.target.value)}
         />
 
-        <label htmlFor="taskType" style={{ display: "block", marginTop: "1em" }}>Task Type:</label>
+        <label htmlFor="taskType" style={{ display: "block", marginTop: "1em" }}>
+          Task Type
+        </label>
         <select
           style={{ width: "100%", height: "40px", marginBottom: "15px" }}
-          id="taskType"
-          name="taskType"
+          id="select-type"
+          name="task_type"
           value={taskType}
           onChange={(e) => setTaskType(e.target.value)}
         >
@@ -122,17 +119,12 @@ const EditForm = forwardRef(function EditForm({ task, handleClose, onTaskUpdate 
           <option value="Weekly">Weekly</option>
         </select>
 
-        <Button
-          sx={{ float: "right" }}
-          type="submit"
-          variant="outlined"
-          data-testid="save-button"
-        >
+        <Button sx={{ float: "right" }} type="submit" variant="outlined">
           Save
         </Button>
       </form>
     </div>
   );
-});
+};
 
 export default EditForm;

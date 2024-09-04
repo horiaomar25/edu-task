@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -13,132 +14,150 @@ import Alert from "@mui/material/Alert";
 import Slide from "@mui/material/Slide";
 import { useState } from 'react';
 
-export default function DropMenu({ task, taskList, delTask, completedTask }) {
-  const [anchorEl, setAnchorEl] = useState(null);
+
+export default function DropDownMenu({ task, taskList, delTask, completedTask } ) {
+    // State to toggle dropdown menu on Taskcard
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+
+      // State to Open Edit Form Modal.
   const [modalOpen, setModalOpen] = useState(false);
-  const [alertOpen, setAlertOpen] = useState(false);
-  const [expandOpen, setExpandOpen] = useState(false);
 
-  const open = Boolean(anchorEl);
+ 
 
-  const handleClick = (event) => setAnchorEl(event.currentTarget);
-  const handleClose = () => setAnchorEl(null);
-  const handleOpen = () => setModalOpen(true);
-  const handleCloseModal = () => setModalOpen(false);
-  const handleAlertOpen = () => setAlertOpen(true);
-  const handleAlertClose = () => setAlertOpen(false);
-  const handleExpandOpen = () => setExpandOpen(true);
-  const handleExpandClose = () => setExpandOpen(false);
+  const handleOpen = () => {
+    setModalOpen(true);
+  };
 
-  const handleTaskUpdate = (updatedTask) => {
+  const handleEditClose = () => {
+    setModalOpen(false);
+  };
+
+  const handleTaskUpdate = () => {
+    // Pass the updated task to the parent component
+    onTaskUpdate(updatedTask);
+    setModalOpen(false); // Close the modal after updating
     taskList(updatedTask);
-    handleCloseModal();
   };
 
+  // Delete Task
   const handleDelete = () => {
+    // Implement deletion logic and pass task ID to delTask function
     delTask(task.id);
-    handleClose();
   };
 
+  // Setting State for Alert
+  const [alertOpen, setAlertOpen] = useState(false);
+
+  // Complete Task when Ticketing checkbox.
+  // Success Message when tick complete checkbox.
   const handleTaskComplete = () => {
     completedTask(task.id);
-    handleClose();
-    handleAlertOpen();
-    setTimeout(handleAlertClose, 10000);
+    setAlertOpen(true); // Display the alert when the task is completed
+    setTimeout(() => {
+      setAlertOpen(false); // Close the alert after 5 seconds
+    }, 10000);
   };
 
+  const handleCloseAlert = () => {
+    setAlertOpen(false); // Close the alert
+  };
+
+ // State to open close BigTaskCard
+  const[expandOpen, setExpandOpen]= useState(false)
+
+  // To toggle the open and close of BigTaskCard
+  const handleOpenExpand = () => {
+   setExpandOpen(true)
+
+  }
+
+  const handleCloseExpand = () => {
+    setExpandOpen(false)
+  }
+
   return (
-    <>
-      <button
-        data-testid="more-options-button"
+    <div>
+      <MoreVertIcon
+        id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
-        aria-label="More options for the task"
         onClick={handleClick}
-        onKeyDown={(e) => e.key === 'Enter' && handleClick(e)}
-        style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
-      >
-        <MoreVertIcon tabIndex="-1" />
-      </button>
-
+      />
+      
       <Menu
+        id="basic-menu"
         anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
+        open={open}
         onClose={handleClose}
-        aria-label="task-menu"
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
       >
-        <MenuItem data-testid="menu-item-open" onClick={() => { handleClose(); handleExpandOpen(); }}>
-          <OpenInFullIcon fontSize='small' sx={{ margin: '5px' }} />
-          Open
-        </MenuItem>
-        <MenuItem data-testid="menu-item-edit" onClick={() => { handleClose(); handleOpen(); }}>
-          <EditIcon fontSize='small' sx={{ margin: '5px' }} />
-          Edit
-        </MenuItem>
-        <MenuItem data-testid="menu-item-delete" onClick={() => { handleClose(); handleDelete(); }}>
-          <DeleteIcon fontSize='small' sx={{ margin: '5px' }} />
-          Delete
-        </MenuItem>
-        <MenuItem data-testid="menu-item-complete" onClick={() => { handleClose(); handleTaskComplete(); }}>
-          <DoneIcon fontSize='small' sx={{ margin: '5px' }} />
-          Complete
-        </MenuItem>
-        <MenuItem data-testid="menu-item-close" onClick={handleClose}>
-          <button
-            id="close-button"
-            style={{ background: "transparent", border: "none", fontSize: "20px" }}
-          >
-            &times;
-          </button>
-          Close Menu
-        </MenuItem>
+        <MenuItem onClick={() => { handleClose(); handleOpenExpand(); }}>
+    <OpenInFullIcon fontSize='small' sx={{ margin: '5px' }} />
+    Open
+  </MenuItem>
+  <MenuItem onClick={() => { handleClose(); handleOpen(); }}>
+    <EditIcon fontSize='small' sx={{ margin: '5px' }} />
+    Edit
+  </MenuItem>
+  <MenuItem onClick={() => { handleClose(); handleDelete(); }}>
+    <DeleteIcon fontSize='small' sx={{ margin: '5px' }} />
+    Delete
+  </MenuItem>
+  <MenuItem onClick={() => { handleClose(); handleTaskComplete(); }}>
+    <DoneIcon fontSize='small' sx={{ margin: '5px' }} />
+    Complete
+  </MenuItem>
       </Menu>
 
       <Slide direction="up" in={alertOpen} mountOnEnter unmountOnExit>
         <Alert
           severity="success"
-          onClose={handleAlertClose}
-          sx={{ position: "fixed", bottom: "20px", left: "20px", zIndex: 9999 }}
-          role="alert"
-          aria-live="assertive"
-          data-testid="completion-alert"
+          onClose={handleCloseAlert}
+          sx={{
+            position: "fixed",
+            bottom: "20px",
+            left: "20px",
+            zIndex: 9999,
+          }}
         >
-          <span style={{ display: 'flex', alignItems: 'center' }}>
-            Completed
-            <DoneIcon fontSize='small' sx={{ margin: '5px' }} />
-          </span>
+         <span style={{ display: 'flex', alignItems: 'center' }}>
+    Completed 
+    <DoneIcon fontSize='small' sx={{ margin: '5px' }} /> </span>
         </Alert>
       </Slide>
 
       <Modal
-        open={modalOpen}
-        onClose={handleCloseModal}
-        aria-labelledby="edit-form-modal-title"
-        aria-describedby="edit-task"
-        aria-modal="true"
-        keepMounted={false}
-        data-testid="edit-form-modal"
-      >
-        <EditForm
-          handleClose={handleCloseModal}
-          task={task}
-          onTaskUpdate={handleTaskUpdate}
-        />
-      </Modal>
+                open={modalOpen}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <EditForm
+                  handleClose={handleEditClose}
+                  task={task}
+                  onTaskUpdate={handleTaskUpdate}
+                  style={{ marginLeft: "10px" }}
+                />
+              </Modal>
 
-      <Modal
-        open={expandOpen}
-        onClose={handleExpandClose}
-        aria-labelledby="big-task-card"
-        aria-describedby="task-details"
-        data-testid="big-task-modal"
-      >
-        <BigTaskCard
-          handleClose={handleExpandClose}
-          task={task}
-        />
-      </Modal>
-    </>
+              <Modal open={expandOpen}>
+
+     <BigTaskCard
+     handleClose={handleCloseExpand}
+     task={task}
+     
+     />
+</Modal>
+    </div>
   );
 }
