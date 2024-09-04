@@ -1,8 +1,8 @@
 import React from 'react';
-import Navigation from '../components/Navigation';
-import HeroSection from '../components/HeroSection';
-import Features from '../components/Features';
-import About from '../components/About';
+import Navigation from '../Components/Navigation';
+import HeroSection from '../Components/HeroSection';
+import Features from '../Components/Features';
+import About from '../Components/About';
 import "./globals.css";
 
 

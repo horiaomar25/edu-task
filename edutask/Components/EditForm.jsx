@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from "@mui/material/Button";
-import useData from '../hooks/useData';
+import useData from '../Hooks/useData';
 
 const EditForm = ({ task, handleClose }) => {
   const { updateTask } = useData();

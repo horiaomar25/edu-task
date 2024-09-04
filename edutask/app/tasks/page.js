@@ -1,7 +1,7 @@
 "use client"
 import React from "react";
-import TaskBoard from "../../components/TaskBoard";
-import useData from "../../hooks/useData";
+import TaskBoard from "../../Components/TaskBoard";
+import useData from "../../Hooks/useData";
 
 const Tasks = () => {
   const { tasks, TaskList, delTask, completeTask, isLoading } = useData();
