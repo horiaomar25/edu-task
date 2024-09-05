@@ -15,21 +15,23 @@ import Slide from "@mui/material/Slide";
 import { useState } from 'react';
 
 
-export default function DropDownMenu({ task, taskList, delTask, completedTask } ) {
-    // State to toggle dropdown menu on Taskcard
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event) => {
-      setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
+export default function DropDownMenu({ task, taskList, delTask, completedTask }) {
+  // State to toggle dropdown menu on Taskcard
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
-      // State to Open Edit Form Modal.
+  // State to Open Edit Form Modal.
   const [modalOpen, setModalOpen] = useState(false);
 
- 
+
 
   const handleOpen = () => {
     setModalOpen(true);
@@ -69,12 +71,12 @@ export default function DropDownMenu({ task, taskList, delTask, completedTask } 
     setAlertOpen(false); // Close the alert
   };
 
- // State to open close BigTaskCard
-  const[expandOpen, setExpandOpen]= useState(false)
+  // State to open close BigTaskCard
+  const [expandOpen, setExpandOpen] = useState(false)
 
   // To toggle the open and close of BigTaskCard
   const handleOpenExpand = () => {
-   setExpandOpen(true)
+    setExpandOpen(true)
 
   }
 
@@ -91,7 +93,7 @@ export default function DropDownMenu({ task, taskList, delTask, completedTask } 
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       />
-      
+
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
@@ -102,21 +104,21 @@ export default function DropDownMenu({ task, taskList, delTask, completedTask } 
         }}
       >
         <MenuItem onClick={() => { handleClose(); handleOpenExpand(); }}>
-    <OpenInFullIcon fontSize='small' sx={{ margin: '5px' }} />
-    Open
-  </MenuItem>
-  <MenuItem onClick={() => { handleClose(); handleOpen(); }}>
-    <EditIcon fontSize='small' sx={{ margin: '5px' }} />
-    Edit
-  </MenuItem>
-  <MenuItem onClick={() => { handleClose(); handleDelete(); }}>
-    <DeleteIcon fontSize='small' sx={{ margin: '5px' }} />
-    Delete
-  </MenuItem>
-  <MenuItem onClick={() => { handleClose(); handleTaskComplete(); }}>
-    <DoneIcon fontSize='small' sx={{ margin: '5px' }} />
-    Complete
-  </MenuItem>
+          <OpenInFullIcon fontSize='small' sx={{ margin: '5px' }} />
+          Open
+        </MenuItem>
+        <MenuItem onClick={() => { handleClose(); handleOpen(); }}>
+          <EditIcon fontSize='small' sx={{ margin: '5px' }} />
+          Edit
+        </MenuItem>
+        <MenuItem onClick={() => { handleClose(); handleDelete(); }}>
+          <DeleteIcon fontSize='small' sx={{ margin: '5px' }} />
+          Delete
+        </MenuItem>
+        <MenuItem onClick={() => { handleClose(); handleTaskComplete(); }}>
+          <DoneIcon fontSize='small' sx={{ margin: '5px' }} />
+          Complete
+        </MenuItem>
       </Menu>
 
       <Slide direction="up" in={alertOpen} mountOnEnter unmountOnExit>
@@ -130,34 +132,34 @@ export default function DropDownMenu({ task, taskList, delTask, completedTask } 
             zIndex: 9999,
           }}
         >
-         <span style={{ display: 'flex', alignItems: 'center' }}>
-    Completed 
-    <DoneIcon fontSize='small' sx={{ margin: '5px' }} /> </span>
+          <span style={{ display: 'flex', alignItems: 'center' }}>
+            Completed
+            <DoneIcon fontSize='small' sx={{ margin: '5px' }} /> </span>
         </Alert>
       </Slide>
 
       <Modal
-                open={modalOpen}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-              >
-                <EditForm
-                  handleClose={handleEditClose}
-                  task={task}
-                  onTaskUpdate={handleTaskUpdate}
-                  style={{ marginLeft: "10px" }}
-                />
-              </Modal>
+        open={modalOpen}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <EditForm
+          handleClose={handleEditClose}
+          task={task}
+          onTaskUpdate={handleTaskUpdate}
+          style={{ marginLeft: "10px" }}
+        />
+      </Modal>
 
-              <Modal open={expandOpen}>
+      <Modal open={expandOpen}>
 
-     <BigTaskCard
-     handleClose={handleCloseExpand}
-     task={task}
-     
-     />
-</Modal>
+        <BigTaskCard
+          handleClose={handleCloseExpand}
+          task={task}
+
+        />
+      </Modal>
     </div>
   );
 }
