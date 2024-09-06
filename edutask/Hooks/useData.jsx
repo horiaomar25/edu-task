@@ -3,12 +3,10 @@ import React from 'react'
 import { useState, useEffect } from "react"
 
 const UseData = () => {
-    // Create a new state variable, isFormOpen, and its setter function, setIsFormOpen.
+  // Create a new state variable, isFormOpen, and its setter function, setIsFormOpen.
   // 1. Create state to display/store the data
   const [tasks, setTasks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  
 
   // Create Task - POST method
   const createTask = async (task) => {
@@ -32,13 +30,12 @@ const UseData = () => {
 
       const newTask = await response.json();
 
-      
       fetchTasks();
     } catch (error) {
       console.error("Error updating task:", error);
     }
   }
-  
+
 
   // 2. Fetching data from the database to display on the task board.
   const fetchTasks = async () => {
@@ -71,7 +68,6 @@ const UseData = () => {
       if (!response.ok) {
         throw new Error(`Failed to update task with ID: ${taskId}`);
       }
-
       // Fetch updated tasks after successful update
       fetchTasks();
     } catch (error) {
@@ -89,7 +85,6 @@ const UseData = () => {
       if (!response.ok) {
         throw new Error(`Failed to delete task with ID: ${taskId}`);
       }
-
       // Fetch updated tasks after successful deletion
       fetchTasks();
     } catch (error) {
@@ -103,11 +98,9 @@ const UseData = () => {
       const response = await fetch(`https://edutask-api-ukvej.ondigitalocean.app/tasks/${taskId}`, {
         method: "PUT", // Assuming PUT method is used for updating tasks
       });
-
       if (!response.ok) {
         throw new Error(`Failed to complete task with ID: ${taskId}`);
       }
-
       // Fetch updated tasks after successful completion
       fetchTasks();
     } catch (error) {
@@ -115,38 +108,29 @@ const UseData = () => {
     }
   };
 
-
-
-  
   // 3. This will hand the side effect of fetching data from the database.
   useEffect(() => {
-   
-
     fetchTasks()
-
-   
-
   }, []);
-console.log(tasks)
-  const TaskList = (newTask) => {
+
+  // newTask is the newly created task to be passed into the exsisting tasks. 
+  const taskList = (newTask) => {
+    // creates a new array that appends the newTask to the exsisting data.
+    // PURPOSE: adds a new task without fetching all tasks from the server. This allows the new task to be displayed immediately after creation 
     setTasks([...tasks, newTask]);
   };
-
-
-
 
   return {
     tasks,
     updateTask,
-    TaskList,
-    delTask, 
+    taskList,
+    delTask,
     completeTask,
     createTask,
     isLoading,
- 
+
   }
-   
-  
+
 }
 
 export default UseData

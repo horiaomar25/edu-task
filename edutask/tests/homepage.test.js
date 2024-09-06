@@ -42,7 +42,7 @@ test.describe('HomePage', () => {
         const dashboardButton = page.locator('[data-testid="dashboard-button"]');
         await expect(dashboardButton).toBeEnabled();
         await dashboardButton.click({ waitNavigation: true });
-        await expect(page).toHaveURL('https://edu-task-horias-projects-dc29575b.vercel.app/tasks/dashboard');
+        await expect(page).toHaveURL('https://edu-task-horias-projects-dc29575b.vercel.app/dashboard');
     })
 
     test('should navigate to the taskboard when the Tasks button is clicked', async ({ page }) => {

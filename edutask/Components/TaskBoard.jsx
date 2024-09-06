@@ -1,4 +1,5 @@
 "use client";
+import { useTaskContext } from "../Context/TaskContext";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import TaskCard from "./TaskCard";
@@ -6,7 +7,9 @@ import CompletedCard from "./CompletedCard";
 import { Skeleton } from "@mui/material";
 
 // eslint-disable-next-line react/prop-types
-const TaskBoard = ({ tasks, taskList, delTask, completeTask, isLoading }) => {
+const TaskBoard = () => {
+  const { tasks, taskList, delTask, completeTask, isLoading } = useTaskContext();
+
   const dailyTasks = tasks.filter(
     (task) => task.task_type === "Daily" && !task.completed
   );
@@ -57,9 +60,8 @@ const TaskBoard = ({ tasks, taskList, delTask, completeTask, isLoading }) => {
                   <TaskCard
                     key={task.id}
                     task={task}
-                    taskList={taskList}
-                    delTask={delTask}
-                    completedTask={completeTask}
+                
+                    
                   />
                 ))}
           </Grid>
@@ -98,9 +100,7 @@ const TaskBoard = ({ tasks, taskList, delTask, completeTask, isLoading }) => {
                   <TaskCard
                     key={task.id}
                     task={task}
-                    taskList={taskList}
-                    delTask={delTask}
-                    completedTask={completeTask}
+                    
                   />
                 ))}
           </Grid>
@@ -138,9 +138,7 @@ const TaskBoard = ({ tasks, taskList, delTask, completeTask, isLoading }) => {
                   <CompletedCard
                     key={task.id}
                     task={task}
-                    taskList={taskList}
-                    completedTask={completeTask}
-                    delTask={delTask}
+                    
                   />
                 ))}
           </Grid>

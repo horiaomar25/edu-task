@@ -3,8 +3,10 @@ import CardContent from "@mui/material/CardContent";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
 import DropDownMenu from "./DropMenu";
+import { useTaskContext } from "../Context/TaskContext";
 
-const TaskCard = ({ task, delTask, completedTask,updatedTask }) => {
+const TaskCard = ({ task}) => {
+  const { delTask, completeTask, updateTask } = useTaskContext();
   let formattedDate = 'Invalid date';
   const date = new Date(task.task_date);
 
@@ -32,7 +34,7 @@ const TaskCard = ({ task, delTask, completedTask,updatedTask }) => {
           fontSize: "15px",
         }}
       >
-        <DropDownMenu task={task} delTask={delTask} completedTask={completedTask} updatedTask={updatedTask} />
+        <DropDownMenu task={task} delTask={delTask} completedTask={completeTask} updatedTask={updateTask} />
       </button>
 
       <Typography

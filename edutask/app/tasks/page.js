@@ -1,10 +1,11 @@
 "use client"
 import React from "react";
 import TaskBoard from "../../Components/TaskBoard";
-import UseData from "../../Hooks/useData";
+import { useTaskContext } from "../../Context/TaskContext"; // Import the custom hook to use the context
 
 const Tasks = () => {
-  const { tasks, TaskList, delTask, completeTask, isLoading } = UseData();
+  // Use the custom hook to access context data and methods
+  const { tasks, taskList, delTask, completeTask, isLoading } = useTaskContext();
 
   return (
     <>
@@ -12,7 +13,7 @@ const Tasks = () => {
     
         <TaskBoard
           tasks={tasks}
-          taskList={TaskList}
+          taskList={taskList}
           delTask={delTask}
           completeTask={completeTask}
           isLoading={isLoading}

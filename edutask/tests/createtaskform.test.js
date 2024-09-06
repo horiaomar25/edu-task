@@ -67,7 +67,7 @@ test.describe('Create Task Form', () => {
         await expect(taskCard).toBeVisible();  // Double-check that the task card is visible
 
         // Use getByRole to locate the heading and wait for it to be visible
-        const taskCardHeading = page.getByRole('heading', { name: 'Test task' }).first();
+        const taskCardHeading = page.getByRole('heading', { name: 'Test task' })
         await taskCardHeading.waitFor({ state: 'visible', timeout: 60000 });
         await expect(taskCardHeading).toHaveText('Test task');  // Verifies the heading text
 

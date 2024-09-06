@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Button from "@mui/material/Button";
 import useData from '../Hooks/useData';
+import { useTaskContext } from "../Context/TaskContext"; 
 
 const EditForm = ({ task, handleClose }) => {
-  const { updateTask } = useData();
+  const { updateTask } = useTaskContext(); // Use context to get functions
   
   const [taskName, setTaskName] = useState(task.task_name || "");
   const [taskDescription, setTaskDescription] = useState(task.task_description || "");

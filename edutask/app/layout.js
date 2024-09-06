@@ -1,4 +1,5 @@
 import Navigation from "../Components/Navigation";
+import { TaskProvider } from "../Context/TaskContext";
 import "./globals.css";
 
 export const metadata = {
@@ -10,8 +11,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        <TaskProvider>
         <Navigation />
         {children}
+        </TaskProvider>
       </body>
     </html>
   );
