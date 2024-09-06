@@ -1,8 +1,14 @@
+"use client"
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useTaskContext } from "../Context/TaskContext";
 
-const CompletedCard = ({task, delTask}) => {
+
+const CompletedCard = ({task}) => {
+  const { delTask } = useTaskContext();
+
+ 
   // Delete Task
   const handleDelete = () => {
     // Implement deletion logic and pass task ID to delTask function
@@ -42,9 +48,9 @@ const CompletedCard = ({task, delTask}) => {
             fontWeight: "600",
             fontSize: "15px",
           }}
-          onClick={handleDelete}
+          
         >
-          <DeleteIcon fontSize='small' sx={{ margin: '5px' }} />
+          <DeleteIcon fontSize='small' sx={{ margin: '5px' }}onClick={handleDelete} />
         </button>
       </div>
     </CardContent>
