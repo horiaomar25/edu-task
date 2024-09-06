@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -12,18 +11,20 @@ import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import BigTaskCard from './BigTaskCard';
 import Alert from "@mui/material/Alert";
 import Slide from "@mui/material/Slide";
+import { useTaskContext } from "../Context/TaskContext";
 import { useState } from 'react';
 
 
-export default function DropDownMenu({ task, taskList, delTask, completedTask }) {
+export default function DropDownMenu({ task }) {
+  const { delTask, completeTask } = useTaskContext(); // Use context to get functions
   // State to toggle dropdown menu on Taskcard
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -41,12 +42,7 @@ export default function DropDownMenu({ task, taskList, delTask, completedTask })
     setModalOpen(false);
   };
 
-  const handleTaskUpdate = () => {
-    // Pass the updated task to the parent component
-    onTaskUpdate(updatedTask);
-    setModalOpen(false); // Close the modal after updating
-    taskList(updatedTask);
-  };
+
 
   // Delete Task
   const handleDelete = () => {
@@ -60,7 +56,7 @@ export default function DropDownMenu({ task, taskList, delTask, completedTask })
   // Complete Task when Ticketing checkbox.
   // Success Message when tick complete checkbox.
   const handleTaskComplete = () => {
-    completedTask(task.id);
+    completeTask(task.id);
     setAlertOpen(true); // Display the alert when the task is completed
     setTimeout(() => {
       setAlertOpen(false); // Close the alert after 5 seconds
@@ -147,7 +143,7 @@ export default function DropDownMenu({ task, taskList, delTask, completedTask })
         <EditForm
           handleClose={handleEditClose}
           task={task}
-          onTaskUpdate={handleTaskUpdate}
+
           style={{ marginLeft: "10px" }}
         />
       </Modal>
