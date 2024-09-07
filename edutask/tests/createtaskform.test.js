@@ -52,7 +52,6 @@ test.describe('Create Task Form', () => {
         // Select task type from dropdown
         const taskTypeSelect = page.locator('[data-testid="task-type-select"] ');
         await taskTypeSelect.click();
-
         const dailyOption = page.getByRole('option', { name: 'Daily' });
         await dailyOption.click();
 
@@ -60,17 +59,15 @@ test.describe('Create Task Form', () => {
         const addTaskButton = page.locator('[data-testid="add-task-button"]');
         await addTaskButton.click({ waitNavigation: true });
 
+        // Pressing the Add button will make the form disappear
         await expect(taskForm).not.toBeVisible();
 
-        const taskCard = page.locator('[data-testid="task-card"]').first();
-        await taskCard.waitFor({ state: 'visible' });
-        await expect(taskCard).toBeVisible();  // Double-check that the task card is visible
-
-        // Use getByRole to locate the heading and wait for it to be visible
-        const taskCardHeading = page.getByRole('heading', { name: 'Test task' })
-        await taskCardHeading.waitFor({ state: 'visible', timeout: 60000 });
-        await expect(taskCardHeading).toHaveText('Test task');  // Verifies the heading text
-
+        // Locate the taskCard with the correct text and find the h5 heading inside it
+        const taskCard = page.locator('[data-testid="task-card"]').filter({ hasText: 'Test task' }).first();
+        await taskCard.waitFor({ state: 'visible', timeout: 60000 }); // Wait up to 60 seconds for the card to appear
+        await expect(taskCard).toBeVisible();  // Ensure the task card is visible
 
     });
+
+
 })

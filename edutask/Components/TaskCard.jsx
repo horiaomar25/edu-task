@@ -2,6 +2,7 @@ import React from "react";
 import CardContent from "@mui/material/CardContent";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
+import { Button } from "@mui/material";
 import DropDownMenu from "./DropMenu";
 import { useTaskContext } from "../Context/TaskContext";
 
@@ -25,7 +26,7 @@ const TaskCard = ({ task}) => {
         width: '100%'
       }}
     >
-      <button
+      <Button
         style={{
           float: "right",
           border: "none",
@@ -35,12 +36,12 @@ const TaskCard = ({ task}) => {
         }}
       >
         <DropDownMenu task={task} delTask={delTask} completedTask={completeTask} updatedTask={updateTask} />
-      </button>
+      </Button>
 
       <Typography
       data-testid="task-name-heading"
         variant="h5"
-        component="div"
+        
         sx={{ marginBottom: "10px" }}
       >
         {task.task_name}

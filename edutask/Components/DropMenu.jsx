@@ -83,7 +83,7 @@ export default function DropDownMenu({ task }) {
   return (
     <div>
       <MoreVertIcon
-        id="basic-button"
+       data-testid="more-options-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
@@ -107,11 +107,11 @@ export default function DropDownMenu({ task }) {
           <EditIcon fontSize='small' sx={{ margin: '5px' }} />
           Edit
         </MenuItem>
-        <MenuItem onClick={() => { handleClose(); handleDelete(); }}>
+        <MenuItem onClick={() => { handleClose(); handleDelete();  }} data-testid="delete-task-button">
           <DeleteIcon fontSize='small' sx={{ margin: '5px' }} />
           Delete
         </MenuItem>
-        <MenuItem onClick={() => { handleClose(); handleTaskComplete(); }}>
+        <MenuItem onClick={() => { handleClose(); handleTaskComplete(); }} data-testid="mark-complete-button">
           <DoneIcon fontSize='small' sx={{ margin: '5px' }} />
           Complete
         </MenuItem>

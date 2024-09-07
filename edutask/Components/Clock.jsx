@@ -16,6 +16,7 @@ const Clock = () => {
 
   return (
     <Box
+    data-testid="dashboard-clock"
       sx={{
         backgroundColor: 'black', // Slightly opaque black background
         color: 'white',           // White text color for contrast

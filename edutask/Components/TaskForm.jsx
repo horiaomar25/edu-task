@@ -2,6 +2,7 @@ import React, { useState, forwardRef } from 'react';
 import Button from "@mui/material/Button";
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
+import { Box } from '@mui/material';
 
 const TaskForm = forwardRef(({ createTask, handleClose }, ref) => {
   const [taskName, setTaskName] = useState("");
@@ -33,9 +34,11 @@ const TaskForm = forwardRef(({ createTask, handleClose }, ref) => {
   };
 
   return (
-    <div
+    <Box
+    data-testid="task-form"
+    variant="section"
       ref={ref}
-      data-testid="task-form"
+      
       style={{
         backgroundColor: "white",
         padding: "3em 2em",
@@ -53,7 +56,8 @@ const TaskForm = forwardRef(({ createTask, handleClose }, ref) => {
       role="dialog"
       aria-labelledby="form-title"
     >
-      <div
+      <Box
+      variant="div"
         style={{
           display: "flex",
           justifyContent: "space-between",
@@ -75,7 +79,7 @@ const TaskForm = forwardRef(({ createTask, handleClose }, ref) => {
         >
           &times;
         </button>
-      </div>
+      </Box>
       <form onSubmit={handleSubmit} data-testid="create-task-form">
         <TextField
           data-testid="task-name-input"
@@ -130,7 +134,7 @@ const TaskForm = forwardRef(({ createTask, handleClose }, ref) => {
           Add Task
         </Button>
       </form>
-    </div>
+    </Box>
   );
 });
 
