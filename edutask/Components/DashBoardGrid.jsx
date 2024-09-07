@@ -4,6 +4,7 @@ import { Box, Grid, Skeleton, Typography } from '@mui/material';
 import DashBoardTable from './DashBoardTable';
 import Calendar from './Calendar';
 import DashBoardHeader from './DashBoardHeader';
+import Clock from './Clock';
 
 const DashBoardGrid = ({ tasks, isLoading }) => {
   const [completed, setCompleted] = useState([]);
@@ -11,17 +12,14 @@ const DashBoardGrid = ({ tasks, isLoading }) => {
 
   useEffect(() => {
     setIsMounted(true);
-    setCompleted(tasks.filter(task => task.completed).map(task => task.id));
+    setCompleted(tasks.filter((task) => task.completed).map((task) => task.id));
   }, [tasks]);
 
   const handleCompletedTasks = (taskId) => {
     setCompleted((prev) => [...prev, taskId]);
   };
 
-  const dailyTasks = tasks.filter((task) => task.task_type === "Daily").slice(0, 3);
-  const weeklyTasks = tasks.filter((task) => task.task_type === "Weekly").slice(0, 3);
-
-  const combinedTasks = tasks.map(task => ({
+  const combinedTasks = tasks.map((task) => ({
     ...task,
     completed: completed.includes(task.id),
   }));
@@ -33,39 +31,79 @@ const DashBoardGrid = ({ tasks, isLoading }) => {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: "20px"
+        padding: '20px',
+        width: '100%',
       }}
     >
+      {/* Display loading message */}
       {isLoading || !isMounted ? (
-        <Typography  data-testid="loading-heading" variant="h6" sx={{ marginBottom: '20px' }}>Loading...</Typography>
+        <Typography data-testid="loading-heading" variant="h6" sx={{ marginBottom: '20px' }}>
+          Loading...
+        </Typography>
       ) : null}
-      <Box
-        sx={{
-          width: '97%',
-          borderRadius: '7px',
-          padding: '20px',
-          boxShadow: "rgba(6, 24, 44, 0.1) 0px 0px 0px 2px, rgba(6, 24, 44, 0.1) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
-        }}
-      >
-        {isLoading || !isMounted ? (
-          <Skeleton
-            sx={{
-              borderRadius: '7px',
-              width: '100%',
-              height: '60px', // Adjust height to match the height of DashBoardHeader
-            }}
-          />
-        ) : (
-          <DashBoardHeader />
-        )}
-      </Box>
-      <Grid container spacing={2} sx={{ marginTop: '20px' }}>
+
+      {/* Responsive Grid layout */}
+      <Grid container spacing={3} sx={{ width: '100%' }}>
+        {/* Header and Clock */}
+        <Grid item xs={12} md={6}>
+          {isLoading || !isMounted ? (
+            <Skeleton
+              sx={{
+                borderRadius: '7px',
+                width: '100%',
+                height: '60px', // Adjust height to match DashBoardHeader and Clock height
+              }}
+            />
+          ) : (
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                padding: '20px',
+                borderRadius: '7px',
+              }}
+            >
+              <DashBoardHeader />
+            </Box>
+          )}
+        </Grid>
+
+        {/* Clock */}
         <Grid item xs={12} md={6}>
           <Box
             sx={{
               padding: '20px',
-              width: '100%',
               borderRadius: '7px',
+            }}
+          >
+            {isLoading || !isMounted ? (
+              Array.from({ length: 6 }).map((_, index) => (
+                <Skeleton
+                  sx={{
+                    borderRadius: '10px',
+                    width: '100%',
+                    margin: '20px 0',
+                    padding: '20px',
+                  }}
+                  key={index}
+                />
+              ))
+            ) : (
+              <Clock />
+            )}
+          </Box>
+        </Grid>
+
+        {/* Task Table */}
+        <Grid item xs={12} md={6}>
+          <Box
+            sx={{
+              padding: '20px',
+              borderRadius: '7px',
+              // Ensure the table occupies full width within its grid item
+              width: '100%',
             }}
           >
             {isLoading || !isMounted ? (
@@ -85,23 +123,31 @@ const DashBoardGrid = ({ tasks, isLoading }) => {
             )}
           </Box>
         </Grid>
+
+        {/* Calendar */}
         <Grid item xs={12} md={6}>
           <Box
             sx={{
               padding: '20px',
-              width: '97%',
               borderRadius: '7px',
-              marginTop: "24px"
+              // Ensure the calendar occupies full width within its grid item
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'flex-end', // Push the calendar to the right
             }}
           >
             {isLoading || !isMounted ? (
-              <Skeleton
-                sx={{
-                  borderRadius: '7px',
-                  width: '100%',
-                  height: '400px', // Adjust height to match the height of the Calendar component
-                }}
-              />
+              Array.from({ length: 6 }).map((_, index) => (
+                <Skeleton
+                  sx={{
+                    borderRadius: '10px',
+                    width: '100%',
+                    margin: '20px 0',
+                    padding: '20px',
+                  }}
+                  key={index}
+                />
+              ))
             ) : (
               <Calendar />
             )}
