@@ -99,7 +99,7 @@ export default function DropDownMenu({ task }) {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={() => { handleClose(); handleOpenExpand(); }}>
+        <MenuItem onClick={() => { handleClose(); handleOpenExpand(); }} data-testid="open-taskcard">
           <OpenInFullIcon fontSize='small' sx={{ margin: '5px' }} />
           Open
         </MenuItem>
